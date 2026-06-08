@@ -1,0 +1,1449 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用仓库</title>
+    <script>
+        (function(){
+            try {
+                var theme = localStorage.getItem('studio_theme') || localStorage.getItem('canvas_theme') || 'light';
+                if(theme === 'dark') {
+                    document.documentElement.classList.add('studio-theme-dark');
+                    document.documentElement.classList.add('theme-dark');
+                }
+            } catch(e) {}
+        })();
+    </script>
+    <script src="/static/vendor/js/tailwindcss-cdn.js?v=2026.06.06.1"></script>
+    <script src="/static/vendor/js/lucide.js?v=2026.06.06.1"></script>
+    <script src="/static/js/theme.js?v=2026.06.06.1"></script>
+    <link rel="stylesheet" href="/static/css/theme.css?v=2026.06.06.1">
+    <style>
+        :root {
+            --bg:#f7f8fb;
+            --panel:#ffffff;
+            --soft:#f1f4f8;
+            --line:#e5eaf1;
+            --line-strong:#d5deea;
+            --text:#0f172a;
+            --muted:#64748b;
+            --faint:#94a3b8;
+            --accent:#0f172a;
+            --accent-2:#2563eb;
+            --good:#059669;
+            --danger:#dc2626;
+            --shadow:0 18px 55px rgba(15,23,42,.07);
+        }
+        html.studio-theme-dark body {
+            --bg:#0e1014;
+            --panel:#1c1f27;
+            --soft:#272b35;
+            --line:#323744;
+            --line-strong:#424858;
+            --text:#e8eaee;
+            --muted:#a4adbf;
+            --faint:#778196;
+            --accent:#f5f6f8;
+            --accent-2:#93c5fd;
+            --shadow:0 18px 55px rgba(0,0,0,.28);
+        }
+        * { box-sizing:border-box; }
+        body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+        button,input,textarea,select { font:inherit; }
+        button { border:0; cursor:pointer; }
+        .page { min-height:100vh; padding:42px 28px 80px; }
+        .wrap { max-width:1420px; margin:0 auto; }
+        .hero { display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:22px; }
+        .eyebrow { font-size:11px; font-weight:950; letter-spacing:.28em; color:var(--muted); text-transform:uppercase; }
+        h1 { margin:7px 0 0; font-size:54px; line-height:.95; font-weight:950; letter-spacing:-.055em; font-style:italic; color:#06234a; }
+        html.studio-theme-dark h1 { color:#eef4ff; }
+        .sub { margin-top:10px; color:var(--muted); font-size:13px; line-height:1.7; font-weight:700; max-width:820px; }
+        .status { min-height:18px; color:var(--muted); font-size:12px; font-weight:850; text-align:right; }
+        .layout { display:grid; grid-template-columns:minmax(360px,430px) minmax(0,1fr); gap:20px; align-items:start; transition:grid-template-columns .18s ease; }
+        .layout.builder-collapsed { grid-template-columns:64px minmax(0,1fr); }
+        .panel { background:var(--panel); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); }
+        .builder { padding:0; position:sticky; top:24px; max-height:calc(100vh - 48px); overflow:visible; }
+        .builder-content { padding:18px; display:flex; flex-direction:column; gap:14px; max-height:calc(100vh - 48px); overflow:auto; }
+        .builder-toggle { position:absolute; right:-15px; top:50%; transform:translateY(-50%); z-index:5; width:30px; height:30px; border-radius:999px; border:1px solid var(--line-strong); background:var(--panel); color:var(--text); box-shadow:0 10px 28px rgba(15,23,42,.16); display:flex; align-items:center; justify-content:center; }
+        .builder-toggle:hover { border-color:var(--text); }
+        .builder-rail { display:none; min-height:calc(100vh - 48px); padding:58px 0 18px; align-items:center; justify-content:flex-start; gap:12px; color:var(--muted); font-size:12px; font-weight:950; letter-spacing:.08em; }
+        .builder-rail span { writing-mode:vertical-rl; text-orientation:mixed; }
+        .layout.builder-collapsed .builder { min-height:calc(100vh - 48px); }
+        .layout.builder-collapsed .builder-content { display:none; }
+        .layout.builder-collapsed .builder-rail { display:flex; flex-direction:column; }
+        .layout.builder-collapsed .builder-toggle { right:50%; top:50%; transform:translate(50%, -50%); }
+        .section-title { display:flex; align-items:center; gap:8px; color:var(--text); font-size:13px; font-weight:950; letter-spacing:.02em; }
+        .hint { color:var(--muted); font-size:11.5px; line-height:1.55; font-weight:700; }
+        .field { display:flex; flex-direction:column; gap:7px; }
+        .field span { color:var(--muted); font-size:10.5px; font-weight:950; letter-spacing:.08em; text-transform:uppercase; }
+        .input, .select, .textarea { width:100%; border:1px solid var(--line); border-radius:13px; background:var(--soft); color:var(--text); outline:none; padding:12px 13px; font-size:13px; font-weight:780; }
+        .textarea { min-height:82px; resize:vertical; line-height:1.55; }
+        .input:focus, .select:focus, .textarea:focus { border-color:var(--text); background:var(--panel); }
+        .cover-upload { border:1px dashed var(--line-strong); background:var(--soft); border-radius:15px; padding:10px; display:flex; flex-direction:column; gap:9px; outline:none; transition:border-color .15s ease, background .15s ease, box-shadow .15s ease; }
+        .cover-upload:hover, .cover-upload.is-hover, .cover-upload.is-paste-ready { border-color:var(--text); background:var(--panel); box-shadow:0 12px 34px rgba(15,23,42,.06); }
+        .cover-drop { min-height:128px; border:1px dashed var(--line); border-radius:13px; background:var(--panel); color:var(--muted); cursor:pointer; overflow:hidden; display:flex; align-items:center; justify-content:center; position:relative; }
+        .cover-drop img { width:100%; height:100%; max-height:180px; object-fit:cover; display:block; }
+        .cover-upload-strip { width:100%; height:100%; min-height:128px; display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:var(--line-strong) transparent; }
+        .cover-upload-strip::-webkit-scrollbar { height:6px; }
+        .cover-upload-strip::-webkit-scrollbar-thumb { background:var(--line-strong); border-radius:999px; }
+        .cover-upload-strip img { flex:0 0 100%; min-width:100%; height:100%; max-height:180px; object-fit:cover; scroll-snap-align:start; }
+        .cover-preview-count { position:absolute; right:8px; bottom:8px; border-radius:999px; background:rgba(15,23,42,.86); color:#fff; padding:4px 8px; font-size:10.5px; font-weight:950; box-shadow:0 10px 24px rgba(15,23,42,.18); }
+        .cover-drop-empty { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; text-align:center; padding:18px; font-size:12px; font-weight:900; }
+        .cover-drop-empty i { width:24px; height:24px; }
+        .cover-drop-empty small { color:var(--faint); font-size:10.5px; font-weight:850; line-height:1.45; }
+        .cover-url-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; align-items:center; }
+        .cover-actions { display:flex; gap:8px; flex-wrap:wrap; }
+        .cover-actions .secondary { min-height:34px; padding:0 11px; font-size:11px; }
+        .cover-upload-status { min-height:16px; color:var(--muted); font-size:11px; font-weight:760; line-height:1.45; }
+        .hidden-file { display:none; }
+        .split { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+        .framework-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+        .framework-btn { height:48px; border:1px solid var(--line); border-radius:13px; color:var(--muted); background:var(--soft); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:11px; font-weight:950; transition:all .15s ease; }
+        .framework-btn:hover { color:var(--text); border-color:var(--line-strong); }
+        .framework-btn.active { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+        html.studio-theme-dark .framework-btn.active { color:#0e1014; }
+        .primary { min-height:48px; border-radius:14px; background:var(--accent); color:var(--bg); font-size:13px; font-weight:950; display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:0 16px; }
+        html.studio-theme-dark .primary { color:#0e1014; }
+        .secondary { min-height:40px; border-radius:12px; border:1px solid var(--line); background:var(--panel); color:var(--muted); padding:0 13px; font-size:12px; font-weight:900; display:inline-flex; align-items:center; justify-content:center; gap:7px; }
+        .secondary:hover { color:var(--text); border-color:var(--text); }
+        .danger { color:var(--danger); border-color:#fecaca; }
+        html.studio-theme-dark .danger { color:#fca5a5; border-color:rgba(248,113,113,.35); }
+        .field-preview { border:1px dashed var(--line-strong); background:var(--soft); border-radius:15px; padding:12px; display:flex; flex-direction:column; gap:8px; max-height:220px; overflow:auto; }
+        .field-chip { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 10px; border-radius:11px; background:var(--panel); border:1px solid var(--line); }
+        .field-chip b { font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .field-chip em { font-style:normal; color:var(--faint); font-size:10px; font-weight:950; text-transform:uppercase; }
+        .code { margin:0; padding:12px; border-radius:13px; background:#10141d; color:#e8eef9; overflow:auto; font-size:11.5px; line-height:1.55; max-height:150px; }
+        .market-head { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:14px; }
+        .market-title { font-size:20px; font-weight:950; letter-spacing:-.03em; }
+        .toolbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+        .search { position:relative; min-width:280px; flex:1; }
+        .search input { width:100%; height:44px; border-radius:999px; border:1px solid var(--line); background:var(--panel); color:var(--text); padding:0 42px 0 42px; font-size:13px; font-weight:760; outline:none; }
+        .search i { position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--faint); }
+        .chips { display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 18px; }
+        .filter-chip { min-height:36px; border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--muted); padding:0 13px; display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:950; }
+        .filter-chip.active { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+        html.studio-theme-dark .filter-chip.active { color:#0e1014; }
+        .count { min-width:22px; height:22px; border-radius:999px; background:var(--soft); color:var(--muted); display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:950; }
+        .filter-chip.active .count { background:rgba(255,255,255,.18); color:inherit; }
+        .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:16px; }
+        .app-card { overflow:hidden; background:var(--panel); border:1px solid var(--line); border-radius:18px; display:flex; flex-direction:column; min-width:0; transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease; }
+        .app-card:hover { transform:translateY(-2px); border-color:var(--line-strong); box-shadow:0 20px 58px rgba(15,23,42,.09); }
+        .cover { height:170px; background:linear-gradient(135deg,#0f172a,#1d4ed8 62%,#f8fafc); position:relative; overflow:hidden; }
+        .cover img { width:100%; height:100%; object-fit:cover; display:block; }
+        .preview-strip { width:100%; height:100%; display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.46) transparent; }
+        .preview-strip::-webkit-scrollbar { height:6px; }
+        .preview-strip::-webkit-scrollbar-thumb { background:rgba(255,255,255,.46); border-radius:999px; }
+        .preview-strip img { flex:0 0 100%; min-width:100%; scroll-snap-align:start; }
+        .preview-count { position:absolute; right:12px; bottom:12px; min-width:28px; height:24px; padding:0 9px; border-radius:999px; background:rgba(15,23,42,.78); color:white; font-size:10px; font-weight:950; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px); }
+        .cover-fallback { height:100%; display:flex; align-items:center; justify-content:center; color:white; }
+        .cover-fallback i { width:42px; height:42px; opacity:.9; }
+        .cover-badge { position:absolute; left:12px; top:12px; padding:5px 9px; border-radius:999px; background:rgba(15,23,42,.78); color:white; font-size:10px; font-weight:950; backdrop-filter:blur(8px); }
+        .card-body { padding:14px; display:flex; flex-direction:column; gap:10px; }
+        .app-name { font-size:15px; line-height:1.28; font-weight:950; min-height:38px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        .app-desc { color:var(--muted); font-size:12px; line-height:1.5; font-weight:690; min-height:36px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        .meta { display:flex; flex-wrap:wrap; gap:6px; }
+        .pill { padding:4px 8px; border-radius:999px; background:var(--soft); border:1px solid var(--line); color:var(--muted); font-size:10px; font-weight:950; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .path { padding:8px 9px; border-radius:10px; background:var(--soft); color:var(--muted); border:1px solid var(--line); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:10.5px; line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .card-actions { display:flex; flex-direction:column; gap:8px; }
+        .card-action-row { display:grid; grid-template-columns:minmax(0,1fr) 42px; gap:8px; }
+        .open-action { grid-column:1 / -1; background:var(--accent); color:var(--bg); border-color:var(--accent); }
+        .card-action-row .open-action { grid-column:auto; min-width:0; }
+        .action-drawer-toggle { padding:0; }
+        .action-drawer-toggle i { transition:transform .16s ease; }
+        .card-action-drawer { display:grid; grid-template-columns:1fr 1fr; gap:8px; max-height:0; overflow:hidden; opacity:0; pointer-events:none; transition:max-height .18s ease, opacity .16s ease; }
+        .app-card.actions-open .card-action-drawer { max-height:104px; opacity:1; pointer-events:auto; }
+        .app-card.actions-open .action-drawer-toggle i { transform:rotate(180deg); }
+        html.studio-theme-dark .open-action { color:#0e1014; }
+        .empty { padding:70px 24px; border:1px dashed var(--line-strong); border-radius:20px; background:var(--panel); color:var(--muted); text-align:center; font-size:13px; font-weight:800; }
+        .drawer-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.38); z-index:40; display:flex; justify-content:flex-end; }
+        .drawer-backdrop.hidden { display:none; }
+        .drawer { width:min(980px,calc(100vw - 42px)); height:100vh; background:var(--panel); border-left:1px solid var(--line); box-shadow:-24px 0 70px rgba(15,23,42,.20); display:flex; flex-direction:column; }
+        .drawer-head { padding:22px 24px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:flex-start; gap:18px; }
+        .drawer-title { font-size:24px; font-weight:950; letter-spacing:-.035em; line-height:1.1; }
+        .drawer-desc { margin-top:8px; color:var(--muted); font-size:13px; line-height:1.55; font-weight:700; max-width:680px; }
+        .icon-btn { width:40px; height:40px; border-radius:12px; border:1px solid var(--line); background:var(--soft); color:var(--text); display:flex; align-items:center; justify-content:center; }
+        .drawer-body { flex:1; overflow:auto; padding:20px 24px 26px; display:grid; grid-template-columns:minmax(300px,380px) minmax(0,1fr); gap:18px; }
+        .runner-panel { border:1px solid var(--line); background:var(--soft); border-radius:18px; padding:16px; display:flex; flex-direction:column; gap:12px; }
+        .runner-fields { display:flex; flex-direction:column; gap:12px; }
+        .runner-field { display:flex; flex-direction:column; gap:7px; }
+        .runner-field label { color:var(--muted); font-size:11px; font-weight:950; letter-spacing:.05em; text-transform:uppercase; }
+        .runner-field input, .runner-field textarea, .runner-field select { width:100%; border:1px solid var(--line); border-radius:12px; background:var(--panel); color:var(--text); padding:11px 12px; outline:none; font-size:13px; font-weight:760; }
+        .runner-field textarea { min-height:110px; resize:vertical; line-height:1.55; }
+        .runner-check { display:flex; align-items:center; gap:10px; color:var(--muted); font-weight:850; }
+        .runner-check input { width:18px; height:18px; }
+        .upload-state { color:var(--muted); font-size:11px; font-weight:760; min-height:16px; }
+        .outputs { min-height:420px; border:1px solid var(--line); border-radius:18px; background:var(--panel); padding:16px; }
+        .output-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px; }
+        .output-item { background:var(--soft); border:1px solid var(--line); border-radius:14px; overflow:hidden; min-height:120px; display:flex; align-items:center; justify-content:center; }
+        .output-item img, .output-item video { width:100%; height:100%; object-fit:contain; display:block; }
+        .output-file { padding:16px; color:var(--muted); font-size:12px; font-weight:850; text-align:center; word-break:break-all; }
+        @media (max-width: 1100px) {
+            .layout, .layout.builder-collapsed { grid-template-columns:1fr; }
+            .builder { position:static; max-height:none; }
+            .builder-content { max-height:none; }
+            .layout.builder-collapsed .builder { min-height:54px; }
+            .layout.builder-collapsed .builder-rail { min-height:54px; height:54px; padding:0 18px 0 58px; flex-direction:row; justify-content:flex-start; }
+            .layout.builder-collapsed .builder-rail span { writing-mode:initial; letter-spacing:.02em; }
+            .layout.builder-collapsed .builder-toggle { left:16px; right:auto; top:12px; transform:none; }
+        }
+        @media (max-width: 760px) {
+            .page { padding:28px 16px 60px; }
+            h1 { font-size:42px; }
+            .hero, .market-head { align-items:flex-start; flex-direction:column; }
+            .framework-grid { grid-template-columns:repeat(2,1fr); }
+            .drawer { width:100vw; }
+            .drawer-body { grid-template-columns:1fr; }
+            .split { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="wrap">
+            <header class="hero">
+                <div>
+                    <div class="eyebrow">ComfyUI App Repository</div>
+                    <h1>APP REPO</h1>
+                    <div class="sub">把每一个 ComfyUI API 工作流发布成可运行的 AI 应用。应用会进入本地仓库，可搜索、分类、打开运行，也可以下载为 React / Vue / Gradio / Streamlit 独立项目。</div>
+                </div>
+                <div id="status" class="status"></div>
+            </header>
+
+            <div id="appRepoLayout" class="layout">
+                <aside id="appBuilderDrawer" class="panel builder">
+                    <button id="builderDrawerToggle" class="builder-toggle" type="button" onclick="toggleBuilderDrawer()" aria-expanded="true" title="收起发布面板">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    </button>
+                    <div class="builder-rail" aria-hidden="true">
+                        <i data-lucide="package-plus" class="w-5 h-5"></i>
+                        <span>发布应用</span>
+                    </div>
+                    <div class="builder-content">
+                    <div class="section-title"><i data-lucide="package-plus" class="w-4 h-4"></i><span>发布工作流为应用</span></div>
+                    <div class="hint">先在“工作流设置”里上传 ComfyUI API JSON 并勾选要暴露的输入参数，然后在这里发布为应用。</div>
+
+                    <div class="field">
+                        <span>工作流</span>
+                        <select id="workflowSelect" class="select" onchange="onWorkflowChange()"></select>
+                    </div>
+                    <div class="field">
+                        <span>应用名称</span>
+                        <input id="titleInput" class="input" placeholder="例如：产品海报生成器">
+                    </div>
+                    <div class="field">
+                        <span>说明</span>
+                        <textarea id="descInput" class="textarea" placeholder="这个应用的用途、输入要求、适用场景"></textarea>
+                    </div>
+                    <div class="split">
+                        <div class="field">
+                            <span>分类</span>
+                            <input id="categoryInput" class="input" placeholder="例如：文生图">
+                        </div>
+                        <div class="field">
+                            <span>作者</span>
+                            <input id="authorInput" class="input" placeholder="Hanako">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <span>标签</span>
+                        <input id="tagsInput" class="input" placeholder="用逗号分隔，例如：海报, 人像, 3D">
+                    </div>
+                    <div class="field">
+                        <span>封面图片</span>
+                        <div id="coverUploadBox" class="cover-upload" tabindex="0" onmouseenter="focusCoverUploadBox()" onmouseleave="blurCoverUploadBox()" onpaste="handleCoverPaste(event)" ondragover="handleCoverDragOver(event)" ondragleave="handleCoverDragLeave(event)" ondrop="handleCoverDrop(event)">
+                            <input id="coverFileInput" class="hidden-file" type="file" accept="image/*" multiple onchange="handleCoverFileInput(this)">
+                            <div id="coverDropZone" class="cover-drop" onclick="$('coverFileInput').click()"></div>
+                            <div class="cover-url-row">
+                                <input id="coverInput" class="input" placeholder="/output/example.png 或 https://..." oninput="syncCoverPreview()">
+                                <button class="secondary" type="button" onclick="$('coverFileInput').click()"><i data-lucide="upload" class="w-4 h-4"></i>上传</button>
+                            </div>
+                            <div class="cover-actions">
+                                <button class="secondary" type="button" onclick="readClipboardCoverImage()"><i data-lucide="clipboard-paste" class="w-4 h-4"></i>粘贴图片</button>
+                                <button class="secondary danger" type="button" onclick="clearCoverImage()"><i data-lucide="x" class="w-4 h-4"></i>清空</button>
+                            </div>
+                            <div id="coverUploadStatus" class="cover-upload-status">支持上传、拖拽，或鼠标悬停在这里时 Ctrl+V 粘贴图片。</div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <span>预览图片</span>
+                        <textarea id="previewImagesInput" class="textarea" placeholder="每行一张图片地址，或用逗号分隔；留空则使用封面图片"></textarea>
+                    </div>
+                    <div class="split">
+                        <div class="field">
+                            <span>目录名</span>
+                            <input id="slugInput" class="input" placeholder="可留空">
+                        </div>
+                        <div class="field">
+                            <span>后端地址</span>
+                            <input id="apiBaseInput" class="input" placeholder="http://127.0.0.1:13000">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <span>独立项目前端</span>
+                        <div class="framework-grid">
+                            <button class="framework-btn active" data-framework="react" onclick="setFramework('react')" type="button"><i data-lucide="atom" class="w-4 h-4"></i>React</button>
+                            <button class="framework-btn" data-framework="vue" onclick="setFramework('vue')" type="button"><i data-lucide="triangle" class="w-4 h-4"></i>Vue</button>
+                            <button class="framework-btn" data-framework="gradio" onclick="setFramework('gradio')" type="button"><i data-lucide="panel-top" class="w-4 h-4"></i>Gradio</button>
+                            <button class="framework-btn" data-framework="streamlit" onclick="setFramework('streamlit')" type="button"><i data-lucide="columns-3" class="w-4 h-4"></i>Streamlit</button>
+                        </div>
+                    </div>
+                    <button id="saveBtn" class="primary" type="button" onclick="saveApp()"><i data-lucide="send" class="w-4 h-4"></i><span>发布到应用仓库</span></button>
+                    <button class="secondary" type="button" onclick="resetForm()"><i data-lucide="rotate-ccw" class="w-4 h-4"></i><span>新建空白配置</span></button>
+
+                    <div>
+                        <div class="section-title" style="margin-bottom:10px"><i data-lucide="sliders-horizontal" class="w-4 h-4"></i><span>应用输入参数</span></div>
+                        <div id="fieldPreview" class="field-preview"></div>
+                    </div>
+                    <pre id="apiSnippet" class="code"></pre>
+                    </div>
+                </aside>
+
+                <main>
+                    <div class="market-head">
+                        <div>
+                            <div class="market-title">应用仓库</div>
+                            <div class="hint">像 AI 应用市场一样管理本地 ComfyUI 工作流应用。</div>
+                        </div>
+                        <div class="toolbar">
+                            <div class="search">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                                <input id="searchInput" placeholder="搜索应用、工作流、标签..." oninput="onSearchInput()">
+                            </div>
+                            <button class="secondary" type="button" onclick="loadAll()"><i data-lucide="refresh-cw" class="w-4 h-4"></i><span>刷新</span></button>
+                        </div>
+                    </div>
+                    <div id="categoryChips" class="chips"></div>
+                    <div id="appsGrid" class="cards"></div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div id="runnerOverlay" class="drawer-backdrop hidden">
+        <div class="drawer">
+            <div class="drawer-head">
+                <div>
+                    <div id="runnerTitle" class="drawer-title"></div>
+                    <div id="runnerDesc" class="drawer-desc"></div>
+                    <div id="runnerMeta" class="meta" style="margin-top:10px"></div>
+                </div>
+                <button class="icon-btn" type="button" onclick="closeRunner()"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="drawer-body">
+                <section class="runner-panel">
+                    <div class="section-title"><i data-lucide="sliders-horizontal" class="w-4 h-4"></i><span>输入参数</span></div>
+                    <div id="runnerFields" class="runner-fields"></div>
+                    <button id="runnerRunBtn" class="primary" type="button" onclick="runCurrentApp()"><i data-lucide="sparkles" class="w-4 h-4"></i><span>运行应用</span></button>
+                    <div id="runnerStatus" class="hint"></div>
+                </section>
+                <section class="outputs">
+                    <div class="section-title" style="margin-bottom:12px"><i data-lucide="image" class="w-4 h-4"></i><span>输出结果</span></div>
+                    <div id="runnerOutputs" class="empty">运行后会在这里显示图片、视频、音频或文件输出。</div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let workflows = [];
+        let apps = [];
+        let currentWorkflow = null;
+        let currentFramework = 'react';
+        let editingId = '';
+        let selectedCategory = '鍏ㄩ儴';
+        let runnerApp = null;
+        let runnerConfig = null;
+        let runnerValues = {};
+        let coverUploadHover = false;
+        const BUILDER_DRAWER_KEY = 'workflow_app_builder_collapsed';
+
+        const $ = id => document.getElementById(id);
+        const statusEl = $('status');
+        const mediaTypes = new Set(['image', 'video', 'audio']);
+
+        function setStatus(text){ statusEl.textContent = text || ''; }
+        function runnerStatus(text){ $('runnerStatus').textContent = text || ''; }
+        function esc(value){ return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+        function jsStr(value){ return String(value == null ? '' : value).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, "\\n"); }
+        function frameworkIcon(name){ return {react:'atom', vue:'triangle', gradio:'panel-top', streamlit:'columns-3'}[name] || 'app-window'; }
+        function slugify(text){ return String(text || '').toLowerCase().replace(/\.json$/i, '').replace(/[^a-z0-9_.-]+/g, '-').replace(/-+/g, '-').replace(/^[-._]+|[-._]+$/g, '').slice(0, 80); }
+        function selectedWorkflowName(){ return $('workflowSelect').value || ''; }
+        function splitTags(value){ return String(value || '').split(/[,\s，]+/).map(x => x.trim()).filter(Boolean).slice(0, 12); }
+        function splitPreviewImages(value){
+            const source = Array.isArray(value) ? value : String(value || '').split(/[\n,\s，]+/);
+            const seen = new Set();
+            const images = [];
+            for(const item of source){
+                const text = String(item || '').trim();
+                const key = text.toLowerCase();
+                if(!text || seen.has(key)) continue;
+                seen.add(key);
+                images.push(text);
+            }
+            return images.slice(0, 24);
+        }
+        function joinPreviewImages(value){ return splitPreviewImages(value).join('\n'); }
+        function iconRefresh(){ if(window.lucide) lucide.createIcons(); }
+        function setBuilderDrawerCollapsed(collapsed, persist = true){
+            const layout = $('appRepoLayout');
+            const toggle = $('builderDrawerToggle');
+            if(!layout || !toggle) return;
+            layout.classList.toggle('builder-collapsed', Boolean(collapsed));
+            toggle.setAttribute('aria-expanded', String(!collapsed));
+            toggle.title = collapsed ? '展开发布面板' : '收起发布面板';
+            toggle.innerHTML = `<i data-lucide="${collapsed ? 'chevron-right' : 'chevron-left'}" class="w-4 h-4"></i>`;
+            if(persist) {
+                try { localStorage.setItem(BUILDER_DRAWER_KEY, collapsed ? '1' : '0'); } catch(e) {}
+            }
+            iconRefresh();
+        }
+        function toggleBuilderDrawer(){
+            const layout = $('appRepoLayout');
+            setBuilderDrawerCollapsed(!layout?.classList.contains('builder-collapsed'));
+        }
+        function assetUrl(url){
+            const text = String(url || '').trim();
+            if(!text) return '';
+            if(/^https?:\/\//i.test(text) || text.startsWith('data:')) return text;
+            if(text.startsWith('/')) return text;
+            return `/api/view?filename=${encodeURIComponent(text)}`;
+        }
+
+        /*
+        function coverDropEmptyHtml(){
+            return `
+                <div class="cover-drop-empty">
+                    <i data-lucide="image-plus"></i>
+                    <b>鐐瑰嚮涓婁紶灏侀潰</b>
+                    <small>鏀寔鎷栨嫿锛屾垨榧犳爣鎮仠鍚?Ctrl+V 绮樿创鍥剧墖</small>
+                </div>
+            `;
+        }
+
+        function setCoverUploadStatus(text){
+            const el = $('coverUploadStatus');
+            if(el) el.textContent = text || '';
+        }
+
+        function syncCoverPreview(){
+            const dropZone = $('coverDropZone');
+            if(!dropZone) return;
+            const url = assetUrl($('coverInput')?.value || '');
+            if(url){
+                dropZone.innerHTML = `<img src="${esc(url)}" alt="灏侀潰棰勮" onerror="this.closest('.cover-drop').innerHTML=coverDropEmptyHtml(); iconRefresh();">`;
+            } else {
+                dropZone.innerHTML = coverDropEmptyHtml();
+            }
+            iconRefresh();
+        }
+
+        function focusCoverUploadBox(){
+            coverUploadHover = true;
+            const box = $('coverUploadBox');
+            if(!box) return;
+            box.classList.add('is-paste-ready');
+            try { box.focus({preventScroll:true}); } catch(e) { box.focus(); }
+        }
+
+        function blurCoverUploadBox(){
+            coverUploadHover = false;
+            $('coverUploadBox')?.classList.remove('is-paste-ready', 'is-hover');
+        }
+
+        function imageFileFromClipboard(data){
+            const files = Array.from(data?.files || []).filter(file => /^image\//i.test(file.type || ''));
+            if(files.length) return files[0];
+            const item = Array.from(data?.items || []).find(entry => entry.kind === 'file' && /^image\//i.test(entry.type || ''));
+            return item ? item.getAsFile() : null;
+        }
+
+        async function uploadCoverFile(file){
+            if(!file || !/^image\//i.test(file.type || '')){
+                setCoverUploadStatus('璇烽€夋嫨鍥剧墖鏂囦欢銆?);
+                return;
+            }
+            const form = new FormData();
+            form.append('files', file, file.name || `cover-${Date.now()}.png`);
+            setCoverUploadStatus('灏侀潰涓婁紶涓?..');
+            const res = await fetch('/api/ai/upload', { method:'POST', body:form });
+            const data = await res.json().catch(() => ({}));
+            if(!res.ok) throw new Error(data.detail || '灏侀潰涓婁紶澶辫触');
+            const item = data.files?.[0] || {};
+            const url = item.url || item.path || item.filename || '';
+            if(!url) throw new Error('涓婁紶鎴愬姛锛屼絾娌℃湁杩斿洖灏侀潰鍦板潃');
+            $('coverInput').value = url;
+            syncCoverPreview();
+            setCoverUploadStatus(`宸蹭笂浼狅細${item.name || item.filename || file.name || '灏侀潰鍥剧墖'}`);
+        }
+
+        function handleCoverFileInput(input){
+            const file = input?.files?.[0];
+            uploadCoverFile(file).catch(error => setCoverUploadStatus(error.message || '灏侀潰涓婁紶澶辫触'));
+            if(input) input.value = '';
+        }
+
+        function handleCoverPaste(event){
+            const file = imageFileFromClipboard(event.clipboardData);
+            if(!file) return;
+            event.preventDefault();
+            uploadCoverFile(file).catch(error => setCoverUploadStatus(error.message || '灏侀潰绮樿创澶辫触'));
+        }
+
+        async function readClipboardCoverImage(){
+            try {
+                if(!navigator.clipboard?.read) throw new Error('褰撳墠鐜涓嶅厑璁哥洿鎺ヨ鍙栧壀璐存澘锛岃鍦ㄥ皝闈㈠尯鍩熸寜 Ctrl+V 绮樿创銆?);
+                const items = await navigator.clipboard.read();
+                for(const item of items){
+                    const type = item.types.find(value => /^image\//i.test(value));
+                    if(!type) continue;
+                    const blob = await item.getType(type);
+                    const ext = (type.split('/')[1] || 'png').replace(/[^a-z0-9]/gi, '') || 'png';
+                    await uploadCoverFile(new File([blob], `cover-${Date.now()}.${ext}`, {type}));
+                    return;
+                }
+                setCoverUploadStatus('鍓创鏉块噷娌℃湁鍥剧墖銆?);
+            } catch(error) {
+                setCoverUploadStatus(error.message || '璇峰湪灏侀潰鍖哄煙鎸?Ctrl+V 绮樿创鍥剧墖銆?);
+            }
+        }
+
+        function handleCoverDragOver(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.add('is-hover');
+        }
+
+        function handleCoverDragLeave(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.remove('is-hover');
+        }
+
+        function handleCoverDrop(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.remove('is-hover');
+            const file = Array.from(event.dataTransfer?.files || []).find(item => /^image\//i.test(item.type || ''));
+            uploadCoverFile(file).catch(error => setCoverUploadStatus(error.message || '灏侀潰涓婁紶澶辫触'));
+        }
+
+        function clearCoverImage(){
+            $('coverInput').value = '';
+            syncCoverPreview();
+            setCoverUploadStatus('灏侀潰宸叉竻绌恒€?);
+        }
+
+        window.addEventListener('paste', event => {
+            if(event.defaultPrevented || !coverUploadHover) return;
+            const file = imageFileFromClipboard(event.clipboardData);
+            if(!file) return;
+            event.preventDefault();
+            uploadCoverFile(file).catch(error => setCoverUploadStatus(error.message || '灏侀潰绮樿创澶辫触'));
+        });
+
+        */
+
+        /*
+        function coverDropEmptyHtml(){
+            return `
+                <div class="cover-drop-empty">
+                    <i data-lucide="image-plus"></i>
+                    <b>点击上传封面</b>
+                    <small>支持多图上传、拖拽，或鼠标悬停后 Ctrl+V 粘贴图片</small>
+                </div>
+            `;
+        }
+
+        function focusCoverUploadBox(){
+            coverUploadHover = true;
+            const box = $('coverUploadBox');
+            if(!box) return;
+            box.classList.add('is-paste-ready');
+            try { box.focus({preventScroll:true}); } catch(e) { box.focus(); }
+        }
+
+        function blurCoverUploadBox(){
+            coverUploadHover = false;
+            $('coverUploadBox')?.classList.remove('is-paste-ready', 'is-hover');
+        }
+
+        function handleCoverDragOver(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.add('is-hover');
+        }
+
+        function handleCoverDragLeave(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.remove('is-hover');
+        }
+
+        window.addEventListener('paste', event => {
+            if(event.defaultPrevented || !coverUploadHover) return;
+            const files = imageFilesFromClipboard(event.clipboardData);
+            if(!files.length) return;
+            event.preventDefault();
+            uploadCoverFiles(files, {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || '封面粘贴失败'));
+        });
+
+        function coverImageList(){
+            const cover = String($('coverInput')?.value || '').trim();
+            const images = splitPreviewImages($('previewImagesInput')?.value || '');
+            if(cover && !images.some(item => item.toLowerCase() === cover.toLowerCase())) images.unshift(cover);
+            return images;
+        }
+
+        function coverPreviewPayload(){
+            const cover = String($('coverInput')?.value || '').trim();
+            const images = coverImageList();
+            return {
+                cover_image: cover || images[0] || '',
+                preview_images: images
+            };
+        }
+
+        function renderCoverPreviewImages(images){
+            if(!images.length) return coverDropEmptyHtml();
+            if(images.length === 1) {
+                const url = assetUrl(images[0]);
+                return `<img src="${esc(url)}" alt="灏侀潰棰勮" onerror="this.closest('.cover-drop').innerHTML=coverDropEmptyHtml(); iconRefresh();">`;
+            }
+            return `
+                <div class="cover-upload-strip" aria-label="灏侀潰棰勮鍥剧墖">
+                    ${images.map((image, index) => `<img src="${esc(assetUrl(image))}" alt="灏侀潰棰勮 ${index + 1}" onerror="this.remove();">`).join('')}
+                </div>
+                <span class="cover-preview-count">${images.length} 寮?/span>
+            `;
+        }
+
+        function syncCoverPreview(){
+            const dropZone = $('coverDropZone');
+            if(!dropZone) return;
+            dropZone.innerHTML = renderCoverPreviewImages(coverImageList());
+            iconRefresh();
+        }
+
+        function mergeCoverImages(urls, options = {}){
+            const incoming = splitPreviewImages(urls);
+            if(!incoming.length) return [];
+            const existing = options.replacePreview ? [] : splitPreviewImages($('previewImagesInput')?.value || '');
+            const merged = splitPreviewImages([...existing, ...incoming]);
+            $('previewImagesInput').value = joinPreviewImages(merged);
+            if(options.replaceCover || !$('coverInput').value.trim()) $('coverInput').value = incoming[0];
+            syncCoverPreview();
+            return incoming;
+        }
+
+        function imageFilesFromClipboard(data){
+            const fromFiles = Array.from(data?.files || []).filter(file => /^image\//i.test(file.type || ''));
+            const fromItems = Array.from(data?.items || [])
+                .filter(entry => entry.kind === 'file' && /^image\//i.test(entry.type || ''))
+                .map(entry => entry.getAsFile())
+                .filter(Boolean);
+            return [...fromFiles, ...fromItems];
+        }
+
+        function imageFileFromClipboard(data){
+            return imageFilesFromClipboard(data)[0] || null;
+        }
+
+        async function uploadCoverFiles(files, options = {}){
+            const imageFiles = Array.from(files || []).filter(file => /^image\//i.test(file.type || ''));
+            if(!imageFiles.length){
+                setCoverUploadStatus('璇烽€夋嫨鍥剧墖鏂囦欢銆?);
+                return [];
+            }
+            const form = new FormData();
+            imageFiles.forEach((file, index) => form.append('files', file, file.name || `cover-${Date.now()}-${index + 1}.png`));
+            setCoverUploadStatus(`姝ｅ湪涓婁紶 ${imageFiles.length} 寮犲皝闈㈠浘鐗?..`);
+            const res = await fetch('/api/ai/upload', { method:'POST', body:form });
+            const data = await res.json().catch(() => ({}));
+            if(!res.ok) throw new Error(data.detail || '灏侀潰涓婁紶澶辫触');
+            const urls = (data.files || []).map(item => item.url || item.path || item.filename || '').filter(Boolean);
+            if(!urls.length) throw new Error('涓婁紶鎴愬姛锛屼絾娌℃湁杩斿洖灏侀潰鍦板潃');
+            mergeCoverImages(urls, {replaceCover: options.replaceCover !== false});
+            setCoverUploadStatus(`宸蹭笂浼?${urls.length} 寮犲皝闈㈠浘鐗囥€俙);
+            return urls;
+        }
+
+        async function uploadCoverFile(file){
+            return uploadCoverFiles(file ? [file] : [], {replaceCover:true});
+        }
+
+        function handleCoverFileInput(input){
+            uploadCoverFiles(input?.files || [], {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || '灏侀潰涓婁紶澶辫触'));
+            if(input) input.value = '';
+        }
+
+        function handleCoverPaste(event){
+            const files = imageFilesFromClipboard(event.clipboardData);
+            if(!files.length) return;
+            event.preventDefault();
+            uploadCoverFiles(files, {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || '灏侀潰绮樿创澶辫触'));
+        }
+
+        async function readClipboardCoverImage(){
+            try {
+                if(!navigator.clipboard?.read) throw new Error('褰撳墠鐜涓嶅厑璁哥洿鎺ヨ鍙栧壀璐存澘锛岃鍦ㄥ皝闈㈠尯鍩熸寜 Ctrl+V 绮樿创銆?);
+                const items = await navigator.clipboard.read();
+                const files = [];
+                for(const item of items){
+                    const type = item.types.find(value => /^image\//i.test(value));
+                    if(!type) continue;
+                    const blob = await item.getType(type);
+                    const ext = (type.split('/')[1] || 'png').replace(/[^a-z0-9]/gi, '') || 'png';
+                    files.push(new File([blob], `cover-${Date.now()}-${files.length + 1}.${ext}`, {type}));
+                }
+                if(!files.length) {
+                    setCoverUploadStatus('鍓创鏉块噷娌℃湁鍥剧墖銆?);
+                    return;
+                }
+                await uploadCoverFiles(files, {replaceCover:true});
+            } catch(error) {
+                setCoverUploadStatus(error.message || '璇峰湪灏侀潰鍖哄煙鎸?Ctrl+V 绮樿创鍥剧墖銆?);
+            }
+        }
+
+        function handleCoverDrop(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.remove('is-hover');
+            const files = Array.from(event.dataTransfer?.files || []).filter(item => /^image\//i.test(item.type || ''));
+            uploadCoverFiles(files, {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || '灏侀潰涓婁紶澶辫触'));
+        }
+
+        function clearCoverImage(){
+            $('coverInput').value = '';
+            $('previewImagesInput').value = '';
+            syncCoverPreview();
+            setCoverUploadStatus('灏侀潰鍜岄瑙堝浘鐗囧凡娓呯┖銆?);
+        }
+
+        function updateSaveButton(){
+            const btn = $('saveBtn')?.querySelector('span');
+            if(btn) btn.textContent = editingId ? '淇濆瓨搴旂敤淇敼' : '鍙戝竷鍒板簲鐢ㄤ粨搴?;
+        }
+
+        */
+
+        function coverDropEmptyHtml(){
+            return `
+                <div class="cover-drop-empty">
+                    <i data-lucide="image-plus"></i>
+                    <b>Upload cover images</b>
+                    <small>Upload multiple images, drag files here, or hover and press Ctrl+V.</small>
+                </div>
+            `;
+        }
+
+        function setCoverUploadStatus(text){
+            const el = $('coverUploadStatus');
+            if(el) el.textContent = text || '';
+        }
+
+        function focusCoverUploadBox(){
+            coverUploadHover = true;
+            const box = $('coverUploadBox');
+            if(!box) return;
+            box.classList.add('is-paste-ready');
+            try { box.focus({preventScroll:true}); } catch(e) { box.focus(); }
+        }
+
+        function blurCoverUploadBox(){
+            coverUploadHover = false;
+            $('coverUploadBox')?.classList.remove('is-paste-ready', 'is-hover');
+        }
+
+        function handleCoverDragOver(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.add('is-hover');
+        }
+
+        function handleCoverDragLeave(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.remove('is-hover');
+        }
+
+        function coverImageList(){
+            const cover = String($('coverInput')?.value || '').trim();
+            const images = splitPreviewImages($('previewImagesInput')?.value || '');
+            if(cover && !images.some(item => item.toLowerCase() === cover.toLowerCase())) images.unshift(cover);
+            return images;
+        }
+
+        function coverPreviewPayload(){
+            const cover = String($('coverInput')?.value || '').trim();
+            const images = coverImageList();
+            return { cover_image: cover || images[0] || '', preview_images: images };
+        }
+
+        function renderCoverPreviewImages(images){
+            if(!images.length) return coverDropEmptyHtml();
+            if(images.length === 1) {
+                const url = assetUrl(images[0]);
+                return `<img src="${esc(url)}" alt="cover preview" onerror="this.closest('.cover-drop').innerHTML=coverDropEmptyHtml(); iconRefresh();">`;
+            }
+            return `
+                <div class="cover-upload-strip" aria-label="cover preview images">
+                    ${images.map((image, index) => `<img src="${esc(assetUrl(image))}" alt="cover preview ${index + 1}" onerror="this.remove();">`).join('')}
+                </div>
+                <span class="cover-preview-count">${images.length} images</span>
+            `;
+        }
+
+        function syncCoverPreview(){
+            const dropZone = $('coverDropZone');
+            if(!dropZone) return;
+            dropZone.innerHTML = renderCoverPreviewImages(coverImageList());
+            iconRefresh();
+        }
+
+        function mergeCoverImages(urls, options = {}){
+            const incoming = splitPreviewImages(urls);
+            if(!incoming.length) return [];
+            const existing = options.replacePreview ? [] : splitPreviewImages($('previewImagesInput')?.value || '');
+            const merged = splitPreviewImages([...existing, ...incoming]);
+            $('previewImagesInput').value = joinPreviewImages(merged);
+            if(options.replaceCover || !$('coverInput').value.trim()) $('coverInput').value = incoming[0];
+            syncCoverPreview();
+            return incoming;
+        }
+
+        function imageFilesFromClipboard(data){
+            const fromFiles = Array.from(data?.files || []).filter(file => /^image\//i.test(file.type || ''));
+            const fromItems = Array.from(data?.items || [])
+                .filter(entry => entry.kind === 'file' && /^image\//i.test(entry.type || ''))
+                .map(entry => entry.getAsFile())
+                .filter(Boolean);
+            return [...fromFiles, ...fromItems];
+        }
+
+        function imageFileFromClipboard(data){
+            return imageFilesFromClipboard(data)[0] || null;
+        }
+
+        async function uploadCoverFiles(files, options = {}){
+            const imageFiles = Array.from(files || []).filter(file => /^image\//i.test(file.type || ''));
+            if(!imageFiles.length){
+                setCoverUploadStatus('Please choose image files.');
+                return [];
+            }
+            const form = new FormData();
+            imageFiles.forEach((file, index) => form.append('files', file, file.name || `cover-${Date.now()}-${index + 1}.png`));
+            setCoverUploadStatus(`Uploading ${imageFiles.length} cover image(s)...`);
+            const res = await fetch('/api/ai/upload', { method:'POST', body:form });
+            const data = await res.json().catch(() => ({}));
+            if(!res.ok) throw new Error(data.detail || 'Cover upload failed');
+            const urls = (data.files || []).map(item => item.url || item.path || item.filename || '').filter(Boolean);
+            if(!urls.length) throw new Error('Upload succeeded but no cover URL was returned');
+            mergeCoverImages(urls, {replaceCover: options.replaceCover !== false});
+            setCoverUploadStatus(`Uploaded ${urls.length} cover image(s).`);
+            return urls;
+        }
+
+        async function uploadCoverFile(file){
+            return uploadCoverFiles(file ? [file] : [], {replaceCover:true});
+        }
+
+        function handleCoverFileInput(input){
+            uploadCoverFiles(input?.files || [], {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || 'Cover upload failed'));
+            if(input) input.value = '';
+        }
+
+        function handleCoverPaste(event){
+            const files = imageFilesFromClipboard(event.clipboardData);
+            if(!files.length) return;
+            event.preventDefault();
+            uploadCoverFiles(files, {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || 'Cover paste failed'));
+        }
+
+        async function readClipboardCoverImage(){
+            try {
+                if(!navigator.clipboard?.read) throw new Error('Clipboard read is unavailable. Hover the cover area and press Ctrl+V.');
+                const items = await navigator.clipboard.read();
+                const files = [];
+                for(const item of items){
+                    const type = item.types.find(value => /^image\//i.test(value));
+                    if(!type) continue;
+                    const blob = await item.getType(type);
+                    const ext = (type.split('/')[1] || 'png').replace(/[^a-z0-9]/gi, '') || 'png';
+                    files.push(new File([blob], `cover-${Date.now()}-${files.length + 1}.${ext}`, {type}));
+                }
+                if(!files.length) {
+                    setCoverUploadStatus('No image found in clipboard.');
+                    return;
+                }
+                await uploadCoverFiles(files, {replaceCover:true});
+            } catch(error) {
+                setCoverUploadStatus(error.message || 'Paste failed.');
+            }
+        }
+
+        function handleCoverDrop(event){
+            event.preventDefault();
+            $('coverUploadBox')?.classList.remove('is-hover');
+            const files = Array.from(event.dataTransfer?.files || []).filter(item => /^image\//i.test(item.type || ''));
+            uploadCoverFiles(files, {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || 'Cover upload failed'));
+        }
+
+        function clearCoverImage(){
+            $('coverInput').value = '';
+            $('previewImagesInput').value = '';
+            syncCoverPreview();
+            setCoverUploadStatus('Cover and preview images cleared.');
+        }
+
+        window.addEventListener('paste', event => {
+            if(event.defaultPrevented || !coverUploadHover) return;
+            const files = imageFilesFromClipboard(event.clipboardData);
+            if(!files.length) return;
+            event.preventDefault();
+            uploadCoverFiles(files, {replaceCover:true}).catch(error => setCoverUploadStatus(error.message || 'Cover paste failed'));
+        });
+
+        function updateSaveButton(){
+            const btn = $('saveBtn')?.querySelector('span');
+            if(btn) btn.textContent = editingId ? '保存应用修改' : '发布到应用仓库';
+        }
+
+        function inferKind(url, fallback){
+            const text = String(url || '').split('?')[0].toLowerCase();
+            if(fallback) return fallback;
+            if(/\.(mp4|webm|mov|avi|mkv)$/.test(text)) return 'video';
+            if(/\.(mp3|wav|ogg|m4a|flac)$/.test(text)) return 'audio';
+            if(/\.(txt|json|csv|log)$/.test(text)) return 'text';
+            return 'image';
+        }
+
+        async function loadAll(){
+            setStatus('加载中...');
+            try {
+                const [wf, repo] = await Promise.all([
+                    fetch('/api/workflows').then(r => r.json()),
+                    fetch('/api/workflow-apps').then(r => r.json())
+                ]);
+                workflows = wf.workflows || [];
+                apps = repo.apps || [];
+                renderWorkflowSelect();
+                renderCategories();
+                renderApps();
+                await onWorkflowChange(false);
+                setStatus('');
+            } catch(error) {
+                setStatus(error.message || '加载失败');
+            }
+        }
+
+        function renderWorkflowSelect(){
+            $('workflowSelect').innerHTML = workflows.map(w => `<option value="${esc(w.name)}">${esc(w.title)} 路 ${esc(w.name)}</option>`).join('');
+            if(!workflows.length) $('workflowSelect').innerHTML = '<option value="">请先在工作流设置中上传 ComfyUI API 工作流</option>';
+        }
+
+        async function onWorkflowChange(deriveTitle = true){
+            const name = selectedWorkflowName();
+            if(!name){
+                currentWorkflow = null;
+                renderFieldPreview();
+                renderSnippet();
+                return;
+            }
+            try {
+                const response = await fetch(`/api/workflows/${encodeURIComponent(name)}`);
+                const data = await response.json();
+                if(!response.ok) throw new Error(data.detail || 'Workflow load failed');
+                currentWorkflow = data;
+                if(deriveTitle && !$('titleInput').value.trim()) $('titleInput').value = data.config?.title || name.replace(/\.json$/i, '');
+                if(deriveTitle && !$('slugInput').value.trim()) $('slugInput').value = slugify($('titleInput').value || name);
+                if(deriveTitle && !$('categoryInput').value.trim()) $('categoryInput').value = guessCategory(data.config?.title || name);
+                renderFieldPreview();
+                renderSnippet();
+            } catch(error) {
+                setStatus(error.message || 'Workflow load failed');
+            }
+        }
+
+        function guessCategory(text){
+            const value = String(text || '').toLowerCase();
+            if(value.includes('enhance') || value.includes('upscale')) return '\u7ec6\u8282\u589e\u5f3a';
+            if(value.includes('edit')) return '\u56fe\u7247\u7f16\u8f91';
+            if(value.includes('angle') || value.includes('director')) return '\u89d2\u5ea6\u63a7\u5236';
+            if(value.includes('video') || value.includes('ltx')) return '\u89c6\u9891\u751f\u6210';
+            return '\u6587\u751f\u56fe';
+        }
+
+        function setFramework(name){
+            currentFramework = name;
+            document.querySelectorAll('.framework-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.framework === name));
+        }
+
+        function fieldLabel(field){ return field.name || field.input || field.id || '参数'; }
+        function fieldTypeLabel(field){ return field.type || 'text'; }
+        function defaultValue(field){
+            if(field.type === 'boolean') return Boolean(field.default);
+            if(field.default !== undefined && field.default !== null) return field.default;
+            if(field.type === 'slider' || field.type === 'number') return field.min ?? 0;
+            if(field.type === 'dropdown') return (field.options || [])[0] || '';
+            return '';
+        }
+
+        function renderFieldPreview(){
+            const fields = currentWorkflow?.config?.fields || [];
+            if(!fields.length){
+                $('fieldPreview').innerHTML = '<div class="hint">当前工作流还没有暴露参数。请先到“工作流设置”里勾选需要给应用用户填写的节点输入。</div>';
+                return;
+            }
+            $('fieldPreview').innerHTML = fields.map(field => `
+                <div class="field-chip">
+                    <b>${esc(fieldLabel(field))}</b>
+                    <em>${esc(fieldTypeLabel(field))}</em>
+                </div>
+            `).join('');
+        }
+
+        function renderSnippet(){
+            const name = selectedWorkflowName() || 'custom/workflow.json';
+            const base = $('apiBaseInput').value.trim() || window.location.origin;
+            $('apiSnippet').textContent = `POST ${base.replace(/\/$/, '')}/api/workflows/${encodeURIComponent(name)}/run\n{\n  "fields": { "...": "..." },\n  "config": "<workflow config>",\n  "client_id": "my-app"\n}`;
+        }
+
+        async function saveApp(){
+            const workflowName = selectedWorkflowName();
+            if(!workflowName){ setStatus('Please select a workflow first.'); return; }
+            const title = $('titleInput').value.trim() || currentWorkflow?.config?.title || workflowName.replace(/\.json$/i, '');
+            const coverPayload = coverPreviewPayload();
+            const payload = {
+                id: editingId,
+                title,
+                description: $('descInput').value.trim(),
+                workflow_name: workflowName,
+                framework: currentFramework,
+                slug: $('slugInput').value.trim() || slugify(title),
+                api_base_url: $('apiBaseInput').value.trim() || window.location.origin,
+                category: $('categoryInput').value.trim() || guessCategory(title),
+                tags: splitTags($('tagsInput').value),
+                cover_image: coverPayload.cover_image,
+                preview_images: coverPayload.preview_images,
+                author: $('authorInput').value.trim() || 'Hanako'
+            };
+            setStatus(editingId ? '正在保存修改...' : '正在发布...');
+            try {
+                const url = editingId ? `/api/workflow-apps/${encodeURIComponent(editingId)}` : '/api/workflow-apps';
+                const res = await fetch(url, {
+                    method: editingId ? 'PUT' : 'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if(!res.ok) throw new Error(data.detail || (editingId ? '保存失败' : '发布失败'));
+                editingId = data.app.id;
+                updateSaveButton();
+                await loadAll();
+                setStatus(editingId ? `已保存：${data.app.app_dir || data.app.title}` : `已发布：${data.app.app_dir || data.app.title}`);
+            } catch(error) {
+                setStatus(error.message || (editingId ? '保存失败' : '发布失败'));
+            }
+        }
+
+        function editApp(id){
+            const app = apps.find(item => item.id === id);
+            if(!app){
+                setStatus(`未找到应用配置：${id}`);
+                return;
+            }
+            setBuilderDrawerCollapsed(false);
+            editingId = app.id;
+            updateSaveButton();
+            $('titleInput').value = app.title || '';
+            $('descInput').value = app.description || '';
+            $('slugInput').value = app.slug || '';
+            $('apiBaseInput').value = app.api_base_url || window.location.origin;
+            $('categoryInput').value = app.category || '';
+            $('tagsInput').value = (app.tags || []).join(', ');
+            $('coverInput').value = app.cover_image || '';
+            $('previewImagesInput').value = joinPreviewImages(app.preview_images || []);
+            $('authorInput').value = app.author || 'Hanako';
+            syncCoverPreview();
+            setCoverUploadStatus(app.cover_image ? '已载入当前封面和预览图片。' : '支持上传、拖拽，或鼠标悬停后 Ctrl+V 粘贴图片。');
+            if([...$('workflowSelect').options].some(option => option.value === app.workflow_name)) $('workflowSelect').value = app.workflow_name;
+            setFramework(app.framework || 'react');
+            onWorkflowChange(false);
+            setStatus('正在编辑已发布应用配置');
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+
+        function resetForm(){
+            editingId = '';
+            updateSaveButton();
+            $('titleInput').value = '';
+            $('descInput').value = '';
+            $('slugInput').value = '';
+            $('apiBaseInput').value = window.location.origin;
+            $('categoryInput').value = '';
+            $('tagsInput').value = '';
+            $('coverInput').value = '';
+            $('previewImagesInput').value = '';
+            $('authorInput').value = 'Hanako';
+            syncCoverPreview();
+            setCoverUploadStatus('支持上传、拖拽，或鼠标悬停后 Ctrl+V 粘贴图片。');
+            setFramework('react');
+            onWorkflowChange(true);
+            setStatus('');
+        }
+
+        async function regenerateApp(id){
+            setStatus('Regenerating project...');
+            try {
+                const res = await fetch(`/api/workflow-apps/${encodeURIComponent(id)}/generate`, { method:'POST' });
+                const data = await res.json();
+                if(!res.ok) throw new Error(data.detail || 'Regenerate failed');
+                await loadAll();
+                setStatus(`Regenerated: ${data.app.app_dir}`);
+            } catch(error) {
+                setStatus(error.message || 'Regenerate failed');
+            }
+        }
+
+        async function removeApp(id){
+            if(!confirm('Remove this app from the repository? Local generated files will not be deleted.')) return;
+            setStatus('Removing app...');
+            try {
+                const res = await fetch(`/api/workflow-apps/${encodeURIComponent(id)}`, { method:'DELETE' });
+                const data = await res.json().catch(() => ({}));
+                if(!res.ok) throw new Error(data.detail || 'Remove failed');
+                if(editingId === id) resetForm();
+                await loadAll();
+                setStatus('Removed from app repository.');
+            } catch(error) {
+                setStatus(error.message || 'Remove failed');
+            }
+        }
+
+        function downloadApp(id){
+            window.location.href = `/api/workflow-apps/${encodeURIComponent(id)}/download`;
+        }
+
+        function onSearchInput(){
+            renderApps();
+        }
+
+        function appMatchesSearch(app, q){
+            if(!q) return true;
+            const text = [
+                app.title, app.description, app.workflow_name, app.category, app.author, ...(app.tags || [])
+            ].join(' ').toLowerCase();
+            return text.includes(q);
+        }
+
+        function renderCategories(){
+            const counts = new Map();
+            for(const app of apps){
+                const cat = app.category || '通用';
+                counts.set(cat, (counts.get(cat) || 0) + 1);
+            }
+            const categories = ['全部', ...Array.from(counts.keys()).sort((a,b) => a.localeCompare(b, 'zh-Hans-CN'))];
+            if(!categories.includes(selectedCategory)) selectedCategory = '全部';
+            $('categoryChips').innerHTML = categories.map(cat => {
+                const count = cat === '全部' ? apps.length : (counts.get(cat) || 0);
+                return `<button class="filter-chip ${cat === selectedCategory ? 'active' : ''}" type="button" onclick="setCategory('${jsStr(cat)}')">${esc(cat)} <span class="count">${count}</span></button>`;
+            }).join('');
+        }
+
+        function setCategory(category){
+            selectedCategory = category || '全部';
+            renderCategories();
+            renderApps();
+        }
+
+        function appPreviewImages(app){
+            const images = splitPreviewImages(app.preview_images || []);
+            if(!images.length && app.cover_image) images.push(app.cover_image);
+            return images.map(assetUrl).filter(Boolean);
+        }
+
+        function renderCover(app){
+            const images = appPreviewImages(app);
+            if(images.length === 1) {
+                return `<img src="${esc(images[0])}" alt="${esc(app.title)}" loading="lazy">`;
+            }
+            if(images.length > 1) {
+                return `
+                    <div class="preview-strip" aria-label="工作流效果预览">
+                        ${images.map((url, index) => `<img src="${esc(url)}" alt="${esc(app.title)} 预览 ${index + 1}" loading="lazy">`).join('')}
+                    </div>
+                    <span class="preview-count">${images.length} 张</span>
+                `;
+            }
+            return `<div class="cover-fallback"><i data-lucide="${frameworkIcon(app.framework)}"></i></div>`;
+        }
+
+        function toggleCardActions(id){
+            const card = [...document.querySelectorAll('.app-card')].find(item => item.dataset.appId === id);
+            if(!card) return;
+            const expanded = !card.classList.contains('actions-open');
+            card.classList.toggle('actions-open', expanded);
+            const toggle = card.querySelector('[data-action-toggle]');
+            if(toggle){
+                toggle.setAttribute('aria-expanded', String(expanded));
+                toggle.title = expanded ? '收起管理操作' : '展开管理操作';
+            }
+        }
+
+        function renderApps(){
+            const q = ($('searchInput')?.value || '').trim().toLowerCase();
+            const filtered = apps.filter(app => (selectedCategory === '全部' || (app.category || '通用') === selectedCategory) && appMatchesSearch(app, q));
+            if(!filtered.length){
+                $('appsGrid').innerHTML = '<div class="empty">还没有匹配的应用。选择一个工作流后，点击“发布到应用仓库”。</div>';
+                iconRefresh();
+                return;
+            }
+            $('appsGrid').innerHTML = filtered.map(app => `
+                <article class="app-card" data-app-id="${esc(app.id)}">
+                    <div class="cover">
+                        ${renderCover(app)}
+                        <span class="cover-badge">${esc(app.category || 'General')}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="app-name">${esc(app.title)}</div>
+                        <div class="app-desc">${esc(app.description || 'Local AI app based on a ComfyUI workflow')}</div>
+                        <div class="meta">
+                            <span class="pill">${esc(app.framework || 'react')}</span>
+                            <span class="pill">${esc(app.field_count || 0)} params</span>
+                            <span class="pill">${app.available ? 'Runnable' : 'Workflow missing'}</span>
+                            ${(app.tags || []).slice(0, 3).map(tag => `<span class="pill">${esc(tag)}</span>`).join('')}
+                        </div>
+                        <div class="path" title="${esc(app.workflow_name || '')}">${esc(app.workflow_name || '')}</div>
+                        <div class="card-actions">
+                            <div class="card-action-row">
+                                <button class="secondary open-action" type="button" data-app-action="open" data-app-id="${esc(app.id)}" onclick="event.stopPropagation(); handleCardAction('open','${jsStr(app.id)}')" ${app.available ? '' : 'disabled'}><i data-lucide="play" class="w-4 h-4"></i>Open app</button>
+                                <button class="secondary action-drawer-toggle" data-action-toggle type="button" data-app-action="toggle" data-app-id="${esc(app.id)}" onclick="event.stopPropagation(); handleCardAction('toggle','${jsStr(app.id)}')" aria-expanded="false" title="Expand actions"><i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                            </div>
+                            <div class="card-action-drawer">
+                                <button class="secondary" type="button" data-app-action="download" data-app-id="${esc(app.id)}" onclick="event.stopPropagation(); handleCardAction('download','${jsStr(app.id)}')"><i data-lucide="download" class="w-4 h-4"></i>Download</button>
+                                <button class="secondary" type="button" data-app-action="edit" data-app-id="${esc(app.id)}" onclick="event.stopPropagation(); handleCardAction('edit','${jsStr(app.id)}')"><i data-lucide="pencil" class="w-4 h-4"></i>Edit</button>
+                                <button class="secondary" type="button" data-app-action="regenerate" data-app-id="${esc(app.id)}" onclick="event.stopPropagation(); handleCardAction('regenerate','${jsStr(app.id)}')"><i data-lucide="refresh-cw" class="w-4 h-4"></i>Regenerate</button>
+                                <button class="secondary danger" type="button" data-app-action="remove" data-app-id="${esc(app.id)}" onclick="event.stopPropagation(); handleCardAction('remove','${jsStr(app.id)}')"><i data-lucide="trash-2" class="w-4 h-4"></i>Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+            iconRefresh();
+        }
+
+        function handleCardAction(action, id){
+            if(!id) return;
+            if(action === 'open') return openApp(id);
+            if(action === 'toggle') return toggleCardActions(id);
+            if(action === 'download') return downloadApp(id);
+            if(action === 'edit') return editApp(id);
+            if(action === 'regenerate') return regenerateApp(id);
+            if(action === 'remove') return removeApp(id);
+        }
+
+        function handleAppsGridClick(event){
+            const button = event.target.closest('[data-app-action]');
+            if(!button || !$('appsGrid')?.contains(button)) return;
+            const id = button.dataset.appId || button.closest('.app-card')?.dataset.appId || '';
+            if(!id) return;
+            return handleCardAction(button.dataset.appAction, id);
+        }
+
+        async function openApp(id){
+            const app = apps.find(item => item.id === id);
+            const url = app?.launch_url || `/workflow-apps/${encodeURIComponent(id)}`;
+            window.location.href = url;
+        }
+
+        function closeRunner(){
+            $('runnerOverlay').classList.add('hidden');
+            runnerApp = null;
+            runnerConfig = null;
+            runnerValues = {};
+        }
+
+        function runnerInput(field, index){
+            const value = runnerValues[field.id] ?? defaultValue(field);
+            const label = esc(fieldLabel(field));
+            const common = `data-runner-index="${index}"`;
+            if(mediaTypes.has(field.type)){
+                const accept = field.type === 'image' ? 'image/*' : field.type === 'video' ? 'video/*' : 'audio/*';
+                return `<div class="runner-field"><label>${label}</label><input ${common} type="file" accept="${accept}" onchange="uploadRunnerFile(${index}, this)"><div id="uploadState${index}" class="upload-state">${value ? `已选择：${esc(value)}` : '请选择文件'}</div></div>`;
+            }
+            if(field.type === 'textarea'){
+                return `<div class="runner-field"><label>${label}</label><textarea ${common}>${esc(value)}</textarea></div>`;
+            }
+            if(field.type === 'slider'){
+                const min = field.min ?? 0;
+                const max = field.max ?? 100;
+                const step = field.step ?? 1;
+                return `<div class="runner-field"><label>${label}：<span id="rangeValue${index}">${esc(value)}</span></label><input ${common} type="range" min="${esc(min)}" max="${esc(max)}" step="${esc(step)}" value="${esc(value)}" oninput="$('rangeValue${index}').textContent=this.value"></div>`;
+            }
+            if(field.type === 'number'){
+                return `<div class="runner-field"><label>${label}</label><input ${common} type="number" step="${esc(field.step ?? 1)}" value="${esc(value)}"></div>`;
+            }
+            if(field.type === 'dropdown'){
+                const options = field.options || [];
+                return `<div class="runner-field"><label>${label}</label><select ${common}>${options.map(option => `<option value="${esc(option)}" ${String(option) === String(value) ? 'selected' : ''}>${esc(option)}</option>`).join('')}</select></div>`;
+            }
+            if(field.type === 'boolean'){
+                return `<label class="runner-check"><input ${common} type="checkbox" ${value ? 'checked' : ''}><span>${label}</span></label>`;
+            }
+            return `<div class="runner-field"><label>${label}</label><input ${common} value="${esc(value)}"></div>`;
+        }
+
+        function renderRunner(){
+            if(!runnerApp) return;
+            $('runnerTitle').textContent = runnerApp.title || 'ComfyUI App';
+            $('runnerDesc').textContent = runnerApp.description || '基于 ComfyUI 工作流的本地 AI 应用';
+            $('runnerMeta').innerHTML = `
+                <span class="pill">${esc(runnerApp.category || '通用')}</span>
+                <span class="pill">${esc(runnerApp.workflow_name || '')}</span>
+                <span class="pill">${esc(runnerApp.field_count || 0)} 参数</span>
+                ${(runnerApp.tags || []).map(tag => `<span class="pill">${esc(tag)}</span>`).join('')}
+            `;
+            const fields = runnerConfig?.fields || [];
+            $('runnerFields').innerHTML = fields.length ? fields.map((field, index) => runnerInput(field, index)).join('') : '<div class="hint">这个工作流没有暴露参数，运行时将使用工作流默认值。</div>';
+            iconRefresh();
+        }
+
+        async function uploadRunnerFile(index, input){
+            const field = (runnerConfig?.fields || [])[index];
+            const file = input.files?.[0];
+            if(!field || !file) return;
+            const state = $(`uploadState${index}`);
+            state.textContent = '上传中...';
+            try {
+                const form = new FormData();
+                form.append('files', file);
+                const res = await fetch('/api/upload', { method:'POST', body:form });
+                const data = await res.json();
+                if(!res.ok) throw new Error(data.detail || '上传失败');
+                const item = data.files?.[0] || {};
+                runnerValues[field.id] = item.comfy_name || item.filename || file.name;
+                state.textContent = `已上传：${runnerValues[field.id]}`;
+            } catch(error) {
+                state.textContent = error.message || '上传失败';
+            }
+        }
+
+        function collectRunnerValues(){
+            const values = {...runnerValues};
+            const fields = runnerConfig?.fields || [];
+            fields.forEach((field, index) => {
+                const input = document.querySelector(`[data-runner-index="${index}"]`);
+                if(!input || mediaTypes.has(field.type)) return;
+                if(field.type === 'boolean') values[field.id] = input.checked;
+                else if(field.type === 'number' || field.type === 'slider') values[field.id] = input.value === '' ? '' : Number(input.value);
+                else values[field.id] = input.value;
+            });
+            return values;
+        }
+
+        async function runCurrentApp(){
+            if(!runnerApp) return;
+            const btn = $('runnerRunBtn');
+            btn.disabled = true;
+            runnerStatus('运行中，请等待 ComfyUI 返回结果...');
+            $('runnerOutputs').innerHTML = '<div class="empty">处理中...</div>';
+            try {
+                const res = await fetch(`/api/workflow-apps/${encodeURIComponent(runnerApp.id)}/run`, {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({ fields: collectRunnerValues(), client_id:`app-repo-${Date.now()}` })
+                });
+                const data = await res.json();
+                if(!res.ok) throw new Error(data.detail || '运行失败');
+                if(data.error) throw new Error(data.error);
+                renderOutputs(data);
+                runnerStatus('运行完成');
+            } catch(error) {
+                runnerStatus(error.message || '运行失败');
+                $('runnerOutputs').innerHTML = `<div class="empty">${esc(error.message || '运行失败')}</div>`;
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        function normalizeOutputs(data){
+            const out = [];
+            const seen = new Set();
+            function add(url, kind, name){
+                if(!url) return;
+                const key = `${kind || ''}:${url}`;
+                if(seen.has(key)) return;
+                seen.add(key);
+                out.push({url, kind:inferKind(url, kind), name:name || String(url).split('/').pop()});
+            }
+            (data.items || []).forEach(item => add(item.url, item.kind, item.name));
+            (data.images || []).forEach(url => add(url, 'image'));
+            (data.videos || []).forEach(url => add(url, 'video'));
+            (data.audios || []).forEach(url => add(url, 'audio'));
+            (data.texts || []).forEach(url => add(url, 'text'));
+            (data.files || []).forEach(url => add(url, 'file'));
+            (data.outputs || []).forEach(url => add(url, ''));
+            return out;
+        }
+
+        function renderOutputs(data){
+            const outputs = normalizeOutputs(data);
+            if(!outputs.length){
+                $('runnerOutputs').innerHTML = '<div class="empty">工作流已完成，但没有返回可显示的输出。</div>';
+                return;
+            }
+            $('runnerOutputs').innerHTML = `<div class="output-grid">${outputs.map(item => {
+                const url = assetUrl(item.url);
+                if(item.kind === 'video') return `<div class="output-item"><video src="${esc(url)}" controls></video></div>`;
+                if(item.kind === 'audio') return `<div class="output-item"><audio src="${esc(url)}" controls></audio></div>`;
+                if(item.kind === 'image') return `<a class="output-item" href="${esc(url)}" target="_blank"><img src="${esc(url)}" alt="${esc(item.name || 'output')}"></a>`;
+                return `<a class="output-item output-file" href="${esc(url)}" target="_blank"><span>${esc(item.name || item.url)}</span></a>`;
+            }).join('')}</div>`;
+        }
+
+        window.addEventListener('message', event => {
+            if(event.data?.type === 'studio-theme' && window.StudioTheme) window.StudioTheme.set(event.data.theme);
+        });
+        Object.assign(window, {
+            toggleBuilderDrawer,
+            setFramework,
+            focusCoverUploadBox,
+            blurCoverUploadBox,
+            handleCoverDragOver,
+            handleCoverDragLeave,
+            handleCoverDrop,
+            handleCoverFileInput,
+            handleCoverPaste,
+            readClipboardCoverImage,
+            clearCoverImage,
+            syncCoverPreview,
+            saveApp,
+            editApp,
+            resetForm,
+            regenerateApp,
+            removeApp,
+            downloadApp,
+            toggleCardActions,
+            handleCardAction,
+            handleAppsGridClick,
+            openApp,
+            closeRunner,
+            uploadRunnerFile,
+            runCurrentApp,
+        });
+        $('apiBaseInput').value = window.location.origin;
+        $('authorInput').value = 'Hanako';
+        $('apiBaseInput').addEventListener('input', renderSnippet);
+        $('titleInput').addEventListener('input', () => {
+            if(!editingId && !$('slugInput').dataset.touched) $('slugInput').value = slugify($('titleInput').value);
+        });
+        $('slugInput').addEventListener('input', () => $('slugInput').dataset.touched = '1');
+        document.addEventListener('DOMContentLoaded', () => {
+            let collapsed = false;
+            try { collapsed = localStorage.getItem(BUILDER_DRAWER_KEY) === '1'; } catch(e) {}
+            setBuilderDrawerCollapsed(collapsed, false);
+            $('previewImagesInput')?.addEventListener('input', syncCoverPreview);
+            $('appsGrid')?.addEventListener('click', handleAppsGridClick);
+            updateSaveButton();
+            syncCoverPreview();
+            iconRefresh();
+            loadAll();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,106 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "ANGLE CONTROL ®" [level=1] [ref=e5]:
+        - text: ANGLE CONTROL
+        - generic [ref=e6]: ®
+      - paragraph [ref=e7]: 相机与视角控制
+    - navigation [ref=e8]:
+      - generic [ref=e9]: 角度控制
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "01. 输入图片" [level=3] [ref=e13]
+        - generic [ref=e15] [cursor=pointer]:
+          - img [ref=e17]
+          - paragraph [ref=e19]: 拖放图片到这里
+      - generic [ref=e20]:
+        - heading "02. 相机控制" [level=3] [ref=e21]
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]:
+                - img [ref=e29]
+                - generic [ref=e32]: 旋转
+              - generic [ref=e33]:
+                - button "Reset" [ref=e34] [cursor=pointer]:
+                  - img [ref=e35]
+                - generic [ref=e38]:
+                  - spinbutton [ref=e39]: "0"
+                  - generic [ref=e40]: °
+            - slider [ref=e41] [cursor=pointer]: "0"
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]:
+                - img [ref=e45]
+                - generic [ref=e48]: 俯仰
+              - generic [ref=e49]:
+                - button "Reset" [ref=e50] [cursor=pointer]:
+                  - img [ref=e51]
+                - generic [ref=e54]:
+                  - spinbutton [ref=e55]: "0"
+                  - generic [ref=e56]: °
+            - slider [ref=e57] [cursor=pointer]: "0"
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - img [ref=e61]
+                - generic [ref=e64]: 距离
+              - generic [ref=e65]:
+                - button "Reset" [ref=e66] [cursor=pointer]:
+                  - img [ref=e67]
+                - spinbutton [ref=e71]: "4.0"
+            - slider [ref=e72] [cursor=pointer]: "4"
+    - generic [ref=e73]:
+      - generic [ref=e74]:
+        - heading "03. 参数" [level=3] [ref=e75]
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - img [ref=e78]
+            - generic [ref=e79]: Prompt
+          - textbox "请通过右侧控制器调整，或输入提示词" [ref=e80]
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - img [ref=e84]
+              - generic [ref=e89]: 输出比例
+            - generic [ref=e90]: 1024 x 1024
+          - generic [ref=e91]:
+            - button "原图" [ref=e92] [cursor=pointer]
+            - button "1:1" [ref=e93] [cursor=pointer]
+            - button "3:4" [ref=e94] [cursor=pointer]
+            - button "4:3" [ref=e95] [cursor=pointer]
+            - button "9:16" [ref=e96] [cursor=pointer]
+            - button "16:9" [ref=e97] [cursor=pointer]
+            - button "1:2" [ref=e98] [cursor=pointer]
+            - button "自定义" [ref=e99] [cursor=pointer]
+        - generic [ref=e100]:
+          - generic [ref=e101] [cursor=pointer]:
+            - img [ref=e102]
+            - generic [ref=e104]: Local
+          - generic [ref=e105] [cursor=pointer]:
+            - img [ref=e106]
+            - generic [ref=e108]: ModelScope
+        - button "生成新角度" [ref=e110] [cursor=pointer]:
+          - img [ref=e111]
+          - generic [ref=e113]: 生成新角度
+      - generic [ref=e114]:
+        - heading "04. 结果预览" [level=3] [ref=e115]
+        - generic [ref=e117]:
+          - img [ref=e118]
+          - paragraph [ref=e121]: 画布就绪
+  - generic [ref=e122]:
+    - heading "Archive" [level=2] [ref=e124]
+    - button "批量管理" [ref=e127] [cursor=pointer]
+    - generic [ref=e128]:
+      - generic [ref=e129] [cursor=pointer]:
+        - img [ref=e130]
+        - img [ref=e132]
+        - generic:
+          - paragraph: 将相机向右旋转61度，仰视42度，使用特写镜头，1:2
+      - generic [ref=e133] [cursor=pointer]:
+        - img [ref=e134]
+        - img [ref=e136]
+        - generic:
+          - paragraph: 将相机向右旋转38度，仰视40度，使用特写镜头
+    - generic [ref=e137]: End of Archive

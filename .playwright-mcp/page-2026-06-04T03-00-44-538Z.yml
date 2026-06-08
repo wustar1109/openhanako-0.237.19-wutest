@@ -1,0 +1,45 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: ComfyUI Workflow App
+        - heading "Z-Image-瑶光版-超真实细节增强" [level=1] [ref=e7]
+        - generic [ref=e8]: custom/Z-Image-瑶光版-超真实细节增强.json
+      - button "返回应用仓库" [ref=e9] [cursor=pointer]
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - generic [ref=e13]: 批量大小
+          - spinbutton "批量大小" [ref=e14]: "4"
+        - generic [ref=e15]:
+          - generic [ref=e16]: 高度
+          - spinbutton "高度" [ref=e17]: "512"
+        - generic [ref=e18]:
+          - generic [ref=e19]: 宽度
+          - spinbutton "宽度" [ref=e20]: "512"
+        - generic [ref=e21]:
+          - generic [ref=e22]: LoRA 模型
+          - combobox "LoRA 模型" [ref=e23]:
+            - option "Kook_Zimage_瑶光.safetensors" [selected]
+            - option "Qwen-Image-Lightning-4steps-V2.0.safetensors"
+            - option "Qwen-Image-Lightning-8steps-V2.0.safetensors"
+            - option "Qwen\\Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
+            - option "Qwen\\Qwen-Image-Edit-2511-RefineAny.safetensors"
+            - option "Qwen\\Qwen-_抽象肌理_特殊材质_.safetensors"
+            - option "Qwen\\Qwen-赤韵华纹：红色国风传统纹饰 _Red - line drawing ，qf_V1.safetensors"
+            - option "Qwen\\Qwen-高品质通用抽象肌理背景_抽象肌理背景_特殊材质_.safetensors"
+            - option "Qwen\\Qwen_lineline_线条笔触.safetensors"
+            - option "Z-Image-Fun-Lora-Distill-8-Steps-2603-ComfyUI.safetensors"
+            - option "Z-Image-LOGO设计_1.0.safetensors"
+            - option "i2l_style_lora_118f45bc-ab43-4d48-89a7-e828ca96d9ca.safetensors"
+            - option "i2l_style_lora_25f87824-ccbe-43bb-ac5f-5d24f13254d3.safetensors"
+            - option "i2l_style_lora_e734a376-70f3-460b-8c5c-0566c38bd737.safetensors"
+            - option "i2l_style_lora_e7b98618-9c98-4d2b-a11d-aebbd8f0e43e.safetensors"
+            - option "my_gray_v1_000029500.safetensors"
+            - option "z-image\\Z-Image-LOGO设计_1.0.safetensors"
+            - option "zixunlian\\my_line_gray_shijue_v1.safetensors"
+        - generic [ref=e24]:
+          - generic [ref=e25]: 提示词文本
+          - textbox "提示词文本" [ref=e26]: An abstract firework burst in pure grayscale, clean minimal composition, smooth even grayscale gradients radiating from the center outward, expanding light rays and organic flowing shapes, no realistic fireworks particles or sparks, no figurative or literal firework shapes, pure abstract form and light, bright center core fading smoothly into deep dark surroundings, high-contrast center to low-contrast edges, crisp clean edges, smooth surface, museum-grade fine art print quality, monochrome only, no color
+        - button "运行应用" [ref=e27] [cursor=pointer]
+      - generic [ref=e30]: 运行后会在这里显示输出结果。

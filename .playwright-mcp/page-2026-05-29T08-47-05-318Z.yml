@@ -1,0 +1,80 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: ComfyUI App Repository
+      - heading "APP REPO" [level=1] [ref=e7]
+      - generic [ref=e8]: 把已配置的 ComfyUI API 工作流转换为可独立开发的前端应用项目。生成的目录会保存在本地，模板默认调用当前插件后端，再由插件转发到 ComfyUI API。
+  - generic [ref=e9]:
+    - complementary [ref=e10]:
+      - generic [ref=e11]:
+        - img [ref=e12]
+        - generic [ref=e22]: 创建应用
+      - generic [ref=e23]:
+        - generic [ref=e24]: 工作流
+        - combobox [ref=e25]:
+          - option "Z-Image-瑶光版-超真实细节增强 · custom/Z-Image-瑶光版-超真实细节增强.json" [selected]
+          - option "custom/I2L一键风格转绘___超邪修搭配_一张图直接转绘 · custom/I2L一键风格转绘___超邪修搭配_一张图直接转绘.json"
+          - option "custom/Z_Image-洗图_高清修复v1_api · custom/Z_Image-洗图_高清修复v1_api.json"
+          - option "LTX Director v2 (API) · LTXDirectorv2-API.json"
+      - generic [ref=e26]:
+        - generic [ref=e27]: 应用名称
+        - textbox "例如：产品海报生成器" [ref=e28]
+      - generic [ref=e29]:
+        - generic [ref=e30]: 说明
+        - textbox "这个应用的用途、输入要求、适用场景" [ref=e31]
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: 目录名
+          - textbox "可留空" [ref=e35]
+        - generic [ref=e36]:
+          - generic [ref=e37]: 后端地址
+          - textbox "http://127.0.0.1:13000" [ref=e38]
+      - generic [ref=e39]:
+        - generic [ref=e40]: 前端框架
+        - generic [ref=e41]:
+          - button "React" [ref=e42] [cursor=pointer]:
+            - img [ref=e43]
+            - text: React
+          - button "Vue" [ref=e47] [cursor=pointer]:
+            - img [ref=e48]
+            - text: Vue
+          - button "Gradio" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - text: Gradio
+          - button "Streamlit" [ref=e53] [cursor=pointer]:
+            - img [ref=e54]
+            - text: Streamlit
+      - button "生成应用仓库" [ref=e56] [cursor=pointer]:
+        - img [ref=e57]
+        - generic [ref=e61]: 生成应用仓库
+      - button "新建空白配置" [ref=e62] [cursor=pointer]:
+        - img [ref=e63]
+        - generic [ref=e66]: 新建空白配置
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - img [ref=e69]
+          - generic [ref=e70]: 暴露参数
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - generic [ref=e73]: 批量大小
+            - emphasis [ref=e74]: number
+          - generic [ref=e75]:
+            - generic [ref=e76]: 高度
+            - emphasis [ref=e77]: number
+          - generic [ref=e78]:
+            - generic [ref=e79]: 宽度
+            - emphasis [ref=e80]: number
+          - generic [ref=e81]:
+            - generic [ref=e82]: LoRA 模型
+            - emphasis [ref=e83]: text
+          - generic [ref=e84]:
+            - generic [ref=e85]: 提示词文本
+            - emphasis [ref=e86]: textarea
+      - generic [ref=e87]: "POST http://127.0.0.1:13000/api/workflows/custom%2FZ-Image-%E7%91%B6%E5%85%89%E7%89%88-%E8%B6%85%E7%9C%9F%E5%AE%9E%E7%BB%86%E8%8A%82%E5%A2%9E%E5%BC%BA.json/run { \"fields\": { \"...\": \"...\" }, \"config\": \"<workflow config>\", \"client_id\": \"my-app\" }"
+    - main [ref=e88]:
+      - generic [ref=e89]:
+        - generic [ref=e90]: 应用仓库
+        - button "刷新" [ref=e91] [cursor=pointer]:
+          - img [ref=e92]
+          - generic [ref=e97]: 刷新
+      - generic [ref=e99]: 还没有应用。选择一个工作流和前端框架后，点击“生成应用仓库”。

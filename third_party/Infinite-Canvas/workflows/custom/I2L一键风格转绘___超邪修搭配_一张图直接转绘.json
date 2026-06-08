@@ -1,0 +1,466 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 843920967182136,
+      "steps": 8,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "437",
+        0
+      ],
+      "positive": [
+        "187",
+        0
+      ],
+      "negative": [
+        "207",
+        0
+      ],
+      "latent_image": [
+        "485",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "38": {
+    "inputs": {
+      "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "type": "stable_diffusion",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP"
+    }
+  },
+  "39": {
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "165": {
+    "inputs": {
+      "unet_name": "qwen_image_fp8_e4m3fn.safetensors",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "184": {
+    "inputs": {
+      "anything": [
+        "201",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "清理显存占用"
+    }
+  },
+  "187": {
+    "inputs": {
+      "text": [
+        "184",
+        0
+      ],
+      "clip": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "200": {
+    "inputs": {
+      "text": "这是一张黑白抽象数字艺术图片，无人物，**背景纯白，极简抽象的纹理图。\n石蒜花主体/扇叶边缘波浪缺刻；构图/大留白；引导/边缘波引向左上；光影/刀锋边+柔灰；结构/边缘微脊；走向/横向微波；提示词：纯白底 黑白灰 扇叶波缘 细脊浮雕"
+    },
+    "class_type": "TextInput_",
+    "_meta": {
+      "title": "prompt input"
+    }
+  },
+  "201": {
+    "inputs": {
+      "text_0": "画面呈现一片流动的灰白色物质，表面布满不规则的波纹与褶皱，局部区域因光影变化呈现深浅过渡，整体形态具有动态的起伏感，无明确主体或固定结构，呈现为连续的纹理场。",
+      "text": [
+        "285",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "207": {
+    "inputs": {
+      "conditioning": [
+        "187",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "条件零化"
+    }
+  },
+  "267": {
+    "inputs": {
+      "anything": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "easy cleanGpuUsed",
+    "_meta": {
+      "title": "清理显存占用"
+    }
+  },
+  "285": {
+    "inputs": {
+      "delimiter": "",
+      "string1": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "JoinStrings",
+    "_meta": {
+      "title": "Join Strings"
+    }
+  },
+  "287": {
+    "inputs": {
+      "lora_name": "Qwen-Image-Lightning-8steps-V2.0.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "165",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "437": {
+    "inputs": {
+      "lora_name": [
+        "451",
+        0
+      ],
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "287",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "439": {
+    "inputs": {
+      "image": "飘渺山峰25Y07.G051.V1.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "442": {
+    "inputs": {
+      "text": "i2l_style_lora_fb75161c-2d09-4cf0-b740-f5e7650ae853.safetensors",
+      "anything": [
+        "451",
+        0
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "443": {
+    "inputs": {
+      "text": "D:\\SharingFile\\ComfyUI-aki-v2\\ComfyUI\\models\\loras\\i2l_style_lora_fb75161c-2d09-4cf0-b740-f5e7650ae853.safetensors",
+      "anything": [
+        "451",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "展示任何"
+    }
+  },
+  "445": {
+    "inputs": {},
+    "class_type": "RunningHub_ImageQwenI2L_Loader(Style)",
+    "_meta": {
+      "title": "RunningHub_ImageQwenI2L_Loader(Style)"
+    }
+  },
+  "446": {
+    "inputs": {
+      "inputcount": 15,
+      "Update inputs": null,
+      "image_1": [
+        "439",
+        0
+      ],
+      "image_2": [
+        "439",
+        0
+      ],
+      "image_3": [
+        "439",
+        0
+      ],
+      "image_4": [
+        "439",
+        0
+      ],
+      "image_5": [
+        "439",
+        0
+      ],
+      "image_6": [
+        "486",
+        0
+      ],
+      "image_7": [
+        "486",
+        0
+      ],
+      "image_8": [
+        "486",
+        0
+      ],
+      "image_9": [
+        "486",
+        0
+      ],
+      "image_10": [
+        "486",
+        0
+      ],
+      "image_11": [
+        "512",
+        0
+      ],
+      "image_12": [
+        "512",
+        0
+      ],
+      "image_13": [
+        "512",
+        0
+      ],
+      "image_14": [
+        "512",
+        0
+      ],
+      "image_15": [
+        "512",
+        0
+      ]
+    },
+    "class_type": "ImageBatchMulti",
+    "_meta": {
+      "title": "Image Batch Multi"
+    }
+  },
+  "447": {
+    "inputs": {
+      "inputcount": 15,
+      "direction": "down",
+      "match_image_size": true,
+      "Update inputs": null,
+      "image_1": [
+        "439",
+        0
+      ],
+      "image_2": [
+        "439",
+        0
+      ],
+      "image_3": [
+        "439",
+        0
+      ],
+      "image_4": [
+        "439",
+        0
+      ],
+      "image_5": [
+        "439",
+        0
+      ],
+      "image_6": [
+        "486",
+        0
+      ],
+      "image_7": [
+        "486",
+        0
+      ],
+      "image_8": [
+        "486",
+        0
+      ],
+      "image_9": [
+        "486",
+        0
+      ],
+      "image_10": [
+        "486",
+        0
+      ],
+      "image_11": [
+        "512",
+        0
+      ],
+      "image_12": [
+        "512",
+        0
+      ],
+      "image_13": [
+        "512",
+        0
+      ],
+      "image_14": [
+        "512",
+        0
+      ],
+      "image_15": [
+        "512",
+        0
+      ]
+    },
+    "class_type": "ImageConcatMulti",
+    "_meta": {
+      "title": "Image Concatenate Multi"
+    }
+  },
+  "451": {
+    "inputs": {
+      "seed": 1087784723320597,
+      "custom_lora_name": "",
+      "pipeline": [
+        "445",
+        0
+      ],
+      "training_images": [
+        "446",
+        0
+      ]
+    },
+    "class_type": "RunningHub_ImageQwenI2L_LoraGenerator",
+    "_meta": {
+      "title": "RunningHub_ImageQwenI2L_LoraGenerator"
+    }
+  },
+  "485": {
+    "inputs": {
+      "width": 904,
+      "height": 1800,
+      "batch_size": 4
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent图像"
+    }
+  },
+  "486": {
+    "inputs": {
+      "image": "24Y02.G256.V2急速深渊.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "508": {
+    "inputs": {
+      "output_path": "D:\\SharingFile\\JxingWu\\A2_4_2",
+      "filename_prefix": "XIE4",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": "false",
+      "extension": "png",
+      "dpi": 600,
+      "quality": 100,
+      "optimize_image": "true",
+      "lossless_webp": "false",
+      "overwrite_mode": "false",
+      "show_history": "false",
+      "show_history_by_prefix": "true",
+      "embed_workflow": "true",
+      "show_previews": "true",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "Image Save",
+    "_meta": {
+      "title": "Image Save"
+    }
+  },
+  "509": {
+    "inputs": {
+      "images": [
+        "508",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "512": {
+    "inputs": {
+      "image": "24Y02.G105.V1 液态金属.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  }
+}

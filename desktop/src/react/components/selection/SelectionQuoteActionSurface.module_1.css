@@ -1,0 +1,66 @@
+.surface {
+    position: fixed;
+    z-index: 2147483000;
+    display: flex;
+    gap: 3px;
+    padding: 2px;
+    background: var(--bg-card, var(--bg));
+    border-radius: var(--radius-sm);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    transform-origin: bottom center;
+    animation: hana-popout var(--duration-fast) var(--ease-out);
+    -webkit-app-region: no-drag;
+}
+
+.surface[data-origin="top-center"] {
+    transform-origin: top center;
+}
+
+.button {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: default;
+    transition: background var(--duration-instant), color var(--duration-instant);
+}
+
+.button:hover,
+.button:focus-visible {
+    color: var(--text);
+    background: var(--overlay-light);
+    outline: none;
+}
+
+.icon {
+    width: 12px;
+    height: 12px;
+}
+
+.tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 7px);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 5px 8px;
+    color: var(--bg);
+    background: var(--text);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    line-height: 1.2;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+    pointer-events: none;
+}
+
+.surface[data-origin="top-center"] .tooltip {
+    top: calc(100% + 7px);
+    bottom: auto;
+}

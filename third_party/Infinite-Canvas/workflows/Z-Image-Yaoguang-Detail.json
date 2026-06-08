@@ -1,0 +1,208 @@
+{
+  "11": {
+    "inputs": {
+      "vae_name": "zImageTurboVAE_v10.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "加载VAE"
+    }
+  },
+  "12": {
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "加载CLIP"
+    }
+  },
+  "14": {
+    "inputs": {
+      "lora_name": "Z-Image-Fun-Lora-Distill-8-Steps-2603-ComfyUI.safetensors",
+      "strength_model": 0.45000000000000007,
+      "model": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "16": {
+    "inputs": {
+      "text": "泛黄，发绿，模糊，低分辨率，低质量图像，扭曲的肢体，诡异的外观，丑陋，AI感，噪点，网格感，JPEG压缩条纹，异常的肢体，水印，乱码，意义不明的字符，泛蓝",
+      "clip": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "17": {
+    "inputs": {
+      "samples": [
+        "22",
+        0
+      ],
+      "vae": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "18": {
+    "inputs": {
+      "unet_name": "z_image_bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "21": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 4
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent图像"
+    }
+  },
+  "22": {
+    "inputs": {
+      "seed": 666867237261188,
+      "steps": 8,
+      "cfg": 1,
+      "sampler_name": "res_2s",
+      "scheduler": "bong_tangent",
+      "denoise": 1,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "16",
+        0
+      ],
+      "latent_image": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "23": {
+    "inputs": {
+      "lora_name": "Kook_Zimage_瑶光.safetensors",
+      "strength_model": 1.0000000000000002,
+      "model": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  },
+  "24": {
+    "inputs": {
+      "text": [
+        "33",
+        0
+      ],
+      "clip": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "27": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "28": {
+    "inputs": {
+      "grain_intensity": 0.015000000000000003,
+      "saturation_mix": 0.45000000000000007,
+      "batch_size": 4,
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "FastFilmGrain",
+    "_meta": {
+      "title": "🎞️ Fast Film Grain"
+    }
+  },
+  "29": {
+    "inputs": {
+      "brightness": 0.9000000000000001,
+      "contrast": 1.2000000000000002,
+      "saturation": 0.8000000000000002,
+      "image": [
+        "28",
+        0
+      ]
+    },
+    "class_type": "LayerColor: BrightnessContrastV2",
+    "_meta": {
+      "title": "图层颜色：亮度对比度 V2"
+    }
+  },
+  "32": {
+    "inputs": {
+      "unet_name": "moodyPornMix_v10DPO.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNet加载器"
+    }
+  },
+  "33": {
+    "inputs": {
+      "text": "An abstract firework burst in pure grayscale, clean minimal composition, smooth even grayscale gradients radiating from the center outward, expanding light rays and organic flowing shapes, no realistic fireworks particles or sparks, no figurative or literal firework shapes, pure abstract form and light, bright center core fading smoothly into deep dark surroundings, high-contrast center to low-contrast edges, crisp clean edges, smooth surface, museum-grade fine art print quality, monochrome only, no color\n"
+    },
+    "class_type": "CR Text",
+    "_meta": {
+      "title": "🔤 CR Text"
+    }
+  }
+}

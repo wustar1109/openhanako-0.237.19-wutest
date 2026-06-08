@@ -1,0 +1,63 @@
+{
+  "title": "Z-Image-瑶光版-超真实细节增强",
+  "fields": [
+    {
+      "id": "f_batch_size",
+      "node": "21",
+      "input": "batch_size",
+      "name": "批量大小",
+      "type": "number",
+      "default": 4,
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "random_enabled": false,
+      "options": []
+    },
+    {
+      "id": "f_height",
+      "node": "21",
+      "input": "height",
+      "name": "高度",
+      "type": "number",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 64,
+      "random_enabled": false,
+      "options": []
+    },
+    {
+      "id": "f_width",
+      "node": "21",
+      "input": "width",
+      "name": "宽度",
+      "type": "number",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 64,
+      "random_enabled": false,
+      "options": []
+    },
+    {
+      "id": "f_lora_name",
+      "node": "23",
+      "input": "lora_name",
+      "name": "LoRA 模型",
+      "type": "text",
+      "default": "Kook_Zimage_瑶光.safetensors",
+      "options": []
+    },
+    {
+      "id": "f_prompt_text",
+      "node": "33",
+      "input": "text",
+      "name": "提示词文本",
+      "type": "textarea",
+      "default": "An abstract firework burst in pure grayscale, clean minimal composition, smooth even grayscale gradients radiating from the center outward, expanding light rays and organic flowing shapes, no realistic fireworks particles or sparks, no figurative or literal firework shapes, pure abstract form and light, bright center core fading smoothly into deep dark surroundings, high-contrast center to low-contrast edges, crisp clean edges, smooth surface, museum-grade fine art print quality, monochrome only, no color\n",
+      "options": []
+    }
+  ],
+  "mini_cards": {}
+}

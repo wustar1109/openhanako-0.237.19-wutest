@@ -1,0 +1,101 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - navigation [ref=e6]:
+      - generic [ref=e7] [cursor=pointer]:
+        - img [ref=e8]
+        - generic [ref=e10]: 文/图生图
+      - generic [ref=e11] [cursor=pointer]:
+        - img [ref=e12]
+        - generic [ref=e14]: 细节增强
+      - generic [ref=e15] [cursor=pointer]:
+        - img [ref=e16]
+        - generic [ref=e20]: 转矢量图
+      - generic [ref=e21] [cursor=pointer]:
+        - img [ref=e22]
+        - generic [ref=e25]: 角度控制
+      - generic [ref=e27] [cursor=pointer]:
+        - img [ref=e28]
+        - generic [ref=e31]: 在线生图
+      - generic [ref=e32] [cursor=pointer]:
+        - img [ref=e33]
+        - generic [ref=e38]: 无限画布
+      - generic [ref=e39] [cursor=pointer]:
+        - img [ref=e40]
+        - generic [ref=e43]: 资产库
+      - generic [ref=e44] [cursor=pointer]:
+        - img [ref=e45]
+        - generic [ref=e47]: 素材管理
+      - generic [ref=e48] [cursor=pointer]:
+        - img [ref=e49]
+        - generic [ref=e51]: 应用仓库
+    - generic [ref=e52]:
+      - button "黑夜模式" [ref=e53] [cursor=pointer]:
+        - img [ref=e54]
+        - generic: 黑夜模式
+      - button "中文" [ref=e56] [cursor=pointer]:
+        - img [ref=e57]
+        - generic: 中文
+      - button "API 设置" [ref=e60] [cursor=pointer]:
+        - img [ref=e61]
+        - generic: API 设置
+      - button "工作流设置" [ref=e64] [cursor=pointer]:
+        - generic: 工作流设置
+  - main [ref=e65]:
+    - iframe [ref=e66]:
+      - generic [active] [ref=f1e1]:
+        - banner [ref=f1e2]:
+          - generic [ref=f1e4]:
+            - generic [ref=f1e5]:
+              - generic [ref=f1e6]:
+                - generic [ref=f1e7]: 统一创作控制台
+                - generic [ref=f1e9]: 系统就绪
+              - textbox "描述你想生成的画面..." [ref=f1e11]
+            - generic [ref=f1e12]:
+              - generic [ref=f1e13]:
+                - generic [ref=f1e14]:
+                  - generic [ref=f1e15]: 引擎来源
+                  - generic [ref=f1e16]:
+                    - generic [ref=f1e17] [cursor=pointer]:
+                      - img [ref=f1e18]
+                      - generic [ref=f1e20]: 本地
+                    - generic [ref=f1e21] [cursor=pointer]:
+                      - img [ref=f1e22]
+                      - generic [ref=f1e24]: ModelScope
+                - generic [ref=f1e27]:
+                  - generic [ref=f1e28]: 尺寸
+                  - generic [ref=f1e29]:
+                    - spinbutton [ref=f1e30]: "1024"
+                    - generic [ref=f1e31]: ×
+                    - spinbutton [ref=f1e32]: "1024"
+              - button "本地生成" [ref=f1e33] [cursor=pointer]:
+                - img [ref=f1e34]
+                - generic [ref=f1e36]: 本地生成
+        - main [ref=f1e37]:
+          - button "批量管理" [ref=f1e40] [cursor=pointer]
+    - iframe [ref=e67]:
+      
+    - iframe [ref=e68]:
+      
+    - iframe [ref=e69]:
+      
+    - iframe [ref=e70]:
+      
+    - iframe [ref=e71]:
+      
+    - iframe [ref=e72]:
+      
+    - iframe [ref=e73]:
+      
+    - iframe [ref=e74]:
+      
+    - iframe [ref=e75]:
+      
+    - iframe [ref=e76]:
+      
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e80]: ONLINE
+        - generic [ref=e81]: "1"
+      - generic [ref=e83]:
+        - generic [ref=e84]: QUEUE
+        - generic [ref=e85]: "0"

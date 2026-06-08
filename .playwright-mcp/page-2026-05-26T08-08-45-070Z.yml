@@ -1,0 +1,269 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: 工作流设置
+      - generic [ref=e7]: 选择本地 ComfyUI 工作流，配置可暴露到画布的输入参数。
+  - generic [ref=e8]:
+    - complementary [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: ComfyUI 后端地址
+        - generic [ref=e13]:
+          - generic [ref=e14]: "1"
+          - textbox "host:port" [ref=e15]: 172.16.10.111:8188
+          - button "删除" [ref=e16] [cursor=pointer]:
+            - img [ref=e17]
+        - button "添加后端" [ref=e20] [cursor=pointer]:
+          - img [ref=e21]
+          - generic [ref=e22]: 添加后端
+        - button "保存" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e29]: 保存
+        - generic [ref=e30]: 格式：host:port（如 127.0.0.1:8188）
+      - generic [ref=e31]:
+        - generic [ref=e32]: 工作流列表
+        - button "LTX Director v2 (API) 10 个字段" [ref=e34] [cursor=pointer]:
+          - img [ref=e36]
+          - generic [ref=e41]:
+            - generic [ref=e42]: LTX Director v2 (API)
+            - generic [ref=e43]: 10 个字段
+        - button "上传工作流" [ref=e44] [cursor=pointer]:
+          - img [ref=e45]
+          - generic [ref=e48]: 上传工作流
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - img [ref=e51]
+          - generic [ref=e54]: 画布节点预览
+          - generic [ref=e55]: 实时
+        - generic [ref=e56]: 这个工作流在画布 Comfy 节点上将显示出的控件，可直接填写并点击「运行测试」。
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: 全局提示词
+            - textbox [ref=e60]
+          - generic [ref=e61]:
+            - generic [ref=e62]: 时间轴数据
+            - textbox [ref=e63]: "{\"segments\":[],\"audioSegments\":[]}"
+          - generic [ref=e64]:
+            - generic [ref=e65]: 时长（帧）
+            - spinbutton [ref=e67]: "120"
+          - generic [ref=e68]:
+            - generic [ref=e69]: 时长（秒）
+            - spinbutton [ref=e71]: "5"
+          - generic [ref=e72]:
+            - generic [ref=e73]: 帧率
+            - spinbutton [ref=e75]: "24"
+          - generic [ref=e76]:
+            - generic [ref=e77]: 宽度（0=自动）
+            - spinbutton [ref=e79]: "0"
+          - generic [ref=e80]:
+            - generic [ref=e81]: 高度（0=自动）
+            - spinbutton [ref=e83]: "0"
+          - generic [ref=e85]: 使用自定义音频
+          - generic [ref=e89]:
+            - generic [ref=e90]: 随机种子
+            - spinbutton [ref=e92]: "12"
+          - generic [ref=e93]:
+            - generic [ref=e94]: resize_method
+            - combobox [ref=e95]:
+              - option "maintain aspect ratio" [selected]
+              - option "stretch to fit"
+          - button "运行测试" [ref=e96] [cursor=pointer]:
+            - img [ref=e97]
+            - generic [ref=e99]: 运行测试
+    - main [ref=e100]:
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - textbox "工作流名称" [ref=e106]: LTX Director v2 (API)
+              - generic [ref=e107]: 33 个节点 · 已暴露 10 个字段
+            - generic [ref=e108]:
+              - button "删除" [ref=e109] [cursor=pointer]:
+                - img [ref=e110]
+                - generic [ref=e113]: 删除
+              - button "保存配置" [ref=e114] [cursor=pointer]:
+                - img [ref=e115]
+                - generic [ref=e119]: 保存配置
+          - generic [ref=e120]:
+            - button "工作流" [ref=e121] [cursor=pointer]
+            - button "测试画布" [ref=e122] [cursor=pointer]
+        - generic [ref=e123]:
+          - img [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - generic: ◆
+                - generic: 保存视频
+                - generic: SaveVideo
+                - generic: "#30"
+              - generic [ref=e128]:
+                - generic: ◆
+                - generic: LTX Director
+                - generic: LTXDirector
+                - generic: "#46"
+                - generic: 9 已用
+              - generic [ref=e130]:
+                - generic: 📦
+                - generic: Checkpoint加载…
+                - generic: CheckpointLoader…
+                - generic: "#93:77"
+              - generic [ref=e132]:
+                - generic: ◆
+                - generic: LTX2 Samplin…
+                - generic: LTX2SamplingPrev…
+                - generic: "#93:79"
+              - generic [ref=e134]:
+                - generic: ◆
+                - generic: Tiny VAELoad…
+                - generic: VAELoaderKJ
+                - generic: "#93:78"
+              - generic [ref=e136]:
+                - generic: ⚡
+                - generic: LoRA加载器（仅模型）
+                - generic: LoraLoaderModelO…
+                - generic: "#93:80"
+              - generic [ref=e138]:
+                - generic: 📦
+                - generic: 双CLIP加载器
+                - generic: DualCLIPLoader
+                - generic: "#93:84"
+              - generic [ref=e140]:
+                - generic: ◆
+                - generic: Audio VAELoa…
+                - generic: VAELoaderKJ
+                - generic: "#93:4"
+              - generic [ref=e142]:
+                - generic: ◆
+                - generic: Video VAELoa…
+                - generic: VAELoaderKJ
+                - generic: "#93:3"
+              - generic [ref=e144]:
+                - generic: ◆
+                - generic: 基本调度器
+                - generic: BasicScheduler
+                - generic: "#94:11"
+              - generic [ref=e146]:
+                - generic: ◆
+                - generic: 自定义采样器（高级）
+                - generic: SamplerCustomAdv…
+                - generic: "#94:10"
+              - generic [ref=e148]:
+                - generic: ◆
+                - generic: K采样器选择
+                - generic: KSamplerSelect
+                - generic: "#94:29"
+              - generic [ref=e150]:
+                - generic: ◆
+                - generic: LTXVConcatAV…
+                - generic: LTXVConcatAVLate…
+                - generic: "#94:7"
+              - generic [ref=e152]:
+                - generic: ◆
+                - generic: LTX Director…
+                - generic: LTXDirectorGuide
+                - generic: "#94:8"
+              - generic [ref=e154]:
+                - generic: ◆
+                - generic: CFG引导器
+                - generic: CFGGuider
+                - generic: "#94:9"
+              - generic [ref=e156]:
+                - generic: ◆
+                - generic: LTXV条件
+                - generic: LTXVConditioning
+                - generic: "#94:5"
+              - generic [ref=e158]:
+                - generic: ◆
+                - generic: 条件零化
+                - generic: ConditioningZero…
+                - generic: "#94:26"
+              - generic [ref=e160]:
+                - generic: ◆
+                - generic: LTXV分离音视频潜空间
+                - generic: LTXVSeparateAVLa…
+                - generic: "#94:13"
+              - generic [ref=e162]:
+                - generic: ◆
+                - generic: 随机噪波
+                - generic: RandomNoise
+                - generic: "#94:28"
+                - generic: 1 已用
+              - generic [ref=e164]:
+                - generic: ◆
+                - generic: LTXV裁剪指导
+                - generic: LTXVCropGuides
+                - generic: "#95:55"
+              - generic [ref=e166]:
+                - generic: ◆
+                - generic: LTX Director…
+                - generic: LTXDirectorGuide
+                - generic: "#95:58"
+              - generic [ref=e168]:
+                - generic: ◆
+                - generic: CFG引导器
+                - generic: CFGGuider
+                - generic: "#95:49"
+              - generic [ref=e170]:
+                - generic: ◆
+                - generic: K采样器选择
+                - generic: KSamplerSelect
+                - generic: "#95:53"
+              - generic [ref=e172]:
+                - generic: ◆
+                - generic: 自定义采样器（高级）
+                - generic: SamplerCustomAdv…
+                - generic: "#95:47"
+              - generic [ref=e174]:
+                - generic: ◆
+                - generic: 加载Latent放大模型
+                - generic: LatentUpscaleMod…
+                - generic: "#95:57"
+              - generic [ref=e176]:
+                - generic: ◆
+                - generic: LTXV分离音视频潜空间
+                - generic: LTXVSeparateAVLa…
+                - generic: "#95:48"
+              - generic [ref=e178]:
+                - generic: ◆
+                - generic: LTXV潜空间上采样器
+                - generic: LTXVLatentUpsamp…
+                - generic: "#95:52"
+              - generic [ref=e180]:
+                - generic: ◆
+                - generic: 基本调度器
+                - generic: BasicScheduler
+                - generic: "#95:54"
+              - generic [ref=e182]:
+                - generic: ◆
+                - generic: LTXVConcatAV…
+                - generic: LTXVConcatAVLate…
+                - generic: "#95:50"
+              - generic [ref=e184]:
+                - generic: ◆
+                - generic: LTXV裁剪指导
+                - generic: LTXVCropGuides
+                - generic: "#95:14"
+              - generic [ref=e186]:
+                - generic: ◆
+                - generic: LTXV音频VAE解码
+                - generic: LTXVAudioVAEDeco…
+                - generic: "#96:16"
+              - generic [ref=e188]:
+                - generic: ◐
+                - generic: VAE解码
+                - generic: VAEDecode
+                - generic: "#96:15"
+              - generic [ref=e190]:
+                - generic: ◆
+                - generic: 创建视频
+                - generic: CreateVideo
+                - generic: "#96:17"
+          - generic [ref=e192]:
+            - generic "减少" [ref=e193] [cursor=pointer]:
+              - img [ref=e194]
+            - generic [ref=e197]: 100%
+            - generic "增加" [ref=e198] [cursor=pointer]:
+              - img [ref=e199]
+            - generic "适应窗口" [ref=e202] [cursor=pointer]:
+              - img [ref=e203]
+      - generic [ref=e208] [cursor=pointer]:
+        - img [ref=e209]
+        - generic [ref=e210]: 显示完整节点列表

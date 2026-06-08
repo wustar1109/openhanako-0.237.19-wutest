@@ -1,0 +1,15 @@
+body { margin:0; background:#f6f7f9; color:#0f172a; font-family:Inter,system-ui,sans-serif; }
+.app { max-width:1120px; margin:0 auto; padding:48px 24px; }
+header { margin-bottom:24px; }
+header p { color:#64748b; font-size:12px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+h1 { margin:0 0 8px; font-size:42px; letter-spacing:-.04em; }
+header span { color:#64748b; font-size:13px; font-weight:700; }
+.panel { display:grid; gap:14px; padding:20px; background:white; border:1px solid #e5e7eb; border-radius:18px; box-shadow:0 16px 50px rgba(15,23,42,.06); }
+.field { display:grid; gap:7px; font-size:13px; font-weight:800; color:#475569; }
+.field input, .field textarea, .field select { width:100%; border:1px solid #dbe1ea; border-radius:12px; padding:11px 12px; font:inherit; background:#f8fafc; }
+.field textarea { min-height:110px; resize:vertical; }
+.check { display:flex; align-items:center; gap:10px; font-weight:800; color:#475569; }
+button { height:46px; border:0; border-radius:13px; background:#0f172a; color:white; font-weight:900; cursor:pointer; }
+.status { color:#64748b; font-size:13px; font-weight:700; min-height:20px; }
+.gallery { margin-top:24px; display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+.gallery img { width:100%; border-radius:16px; background:white; border:1px solid #e5e7eb; }

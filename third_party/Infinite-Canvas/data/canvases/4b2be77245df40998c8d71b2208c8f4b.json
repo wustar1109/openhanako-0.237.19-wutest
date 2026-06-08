@@ -1,0 +1,1568 @@
+{
+  "id": "4b2be77245df40998c8d71b2208c8f4b",
+  "title": "test",
+  "icon": "🧩",
+  "kind": "classic",
+  "created_at": 1779780370467,
+  "updated_at": 1780472752683,
+  "nodes": [
+    {
+      "id": "prompt_c65d3e27849a9_1779783625123",
+      "type": "prompt",
+      "x": -931.5322972055548,
+      "y": -106.99704051549571,
+      "text": "一张nigger的照片"
+    },
+    {
+      "id": "out_f0403c0c1eab3_1779783646002",
+      "type": "output",
+      "x": 1425.2320749805067,
+      "y": 132.65476592416994,
+      "images": [
+        {
+          "url": "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+          "viewed": true,
+          "runMs": 84783,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 900,
+                "f_width": 1800
+              },
+              "count": 1
+            },
+            "prompt": "山水",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 10,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "47a1bcd4-db77-4a61-bafb-077e97d2f3f3",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 509358210425638
+            }
+          },
+          "name": "ComfyUI_07536_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843642_6c77067792.png",
+          "viewed": false,
+          "runMs": 84783,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 900,
+                "f_width": 1800
+              },
+              "count": 1
+            },
+            "prompt": "山水",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 10,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "47a1bcd4-db77-4a61-bafb-077e97d2f3f3",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 509358210425638
+            }
+          },
+          "name": "ComfyUI_07537_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843642_5c29012fcb.png",
+          "viewed": false,
+          "runMs": 84783,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 900,
+                "f_width": 1800
+              },
+              "count": 1
+            },
+            "prompt": "山水",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 10,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "47a1bcd4-db77-4a61-bafb-077e97d2f3f3",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 509358210425638
+            }
+          },
+          "name": "ComfyUI_07539_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+          "viewed": true,
+          "runMs": 86638,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 900,
+                "f_width": 1800
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+                "/assets/output/workflow-custom_1779843642_6c77067792.png",
+                "/assets/output/workflow-custom_1779843642_65456b1afc.png",
+                "/assets/output/workflow-custom_1779843642_5c29012fcb.png"
+              ]
+            },
+            "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 11,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "dc4e6643-3be4-43eb-9610-44082deb2577",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 199539710924430
+            }
+          },
+          "name": "ComfyUI_07540_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+          "viewed": true,
+          "runMs": 86638,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 900,
+                "f_width": 1800
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+                "/assets/output/workflow-custom_1779843642_6c77067792.png",
+                "/assets/output/workflow-custom_1779843642_65456b1afc.png",
+                "/assets/output/workflow-custom_1779843642_5c29012fcb.png"
+              ]
+            },
+            "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 11,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "dc4e6643-3be4-43eb-9610-44082deb2577",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 199539710924430
+            }
+          },
+          "name": "ComfyUI_07541_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_d4b51b7e1b.png",
+          "viewed": true,
+          "runMs": 82166,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 1800,
+                "f_width": 900
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+                "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+                "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+                "/assets/output/workflow-custom_1779843776_d0f6c24387.png"
+              ]
+            },
+            "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 12,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "bc0f9cb8-0453-44e2-9255-5ced0991b65b",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 930642574714404
+            }
+          },
+          "name": "ComfyUI_07544_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_50c18403e8.png",
+          "viewed": true,
+          "runMs": 82166,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 1800,
+                "f_width": 900
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+                "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+                "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+                "/assets/output/workflow-custom_1779843776_d0f6c24387.png"
+              ]
+            },
+            "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 12,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "bc0f9cb8-0453-44e2-9255-5ced0991b65b",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 930642574714404
+            }
+          },
+          "name": "ComfyUI_07545_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_09ca7ab852.png",
+          "viewed": true,
+          "runMs": 82166,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 1800,
+                "f_width": 900
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+                "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+                "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+                "/assets/output/workflow-custom_1779843776_d0f6c24387.png"
+              ]
+            },
+            "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 12,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "bc0f9cb8-0453-44e2-9255-5ced0991b65b",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 930642574714404
+            }
+          },
+          "name": "ComfyUI_07546_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_d745dc4d95.png",
+          "viewed": true,
+          "runMs": 82166,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_a2ea2cfbd7c9c8_1779843534613",
+              "type": "comfy",
+              "x": 554.6009508413929,
+              "y": 367.6871995123885,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_height": 1800,
+                "f_width": 900
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+                "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+                "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+                "/assets/output/workflow-custom_1779843776_d0f6c24387.png"
+              ]
+            },
+            "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 12,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "bc0f9cb8-0453-44e2-9255-5ced0991b65b",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 930642574714404
+            }
+          },
+          "name": "ComfyUI_07547_.png",
+          "kind": "image"
+        }
+      ],
+      "_pending": []
+    },
+    {
+      "id": "out_bf8cbeb5a8e74_1780036222543",
+      "type": "output",
+      "x": 807.2274100010047,
+      "y": 568.7398468419796,
+      "images": [
+        {
+          "url": "/assets/output/workflow-custom_1780451816_29ac6bf3ad.png",
+          "viewed": false,
+          "runMs": 6451,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_3c530f45247598_1780036209423",
+              "type": "comfy",
+              "x": -543.6477847755377,
+              "y": -174.85524055394112,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_batch_size": 1
+              },
+              "count": 1
+            },
+            "prompt": "一张尼哥的照片",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 1,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "0a26b588-05f4-48a7-88c6-9f2701f3575a",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 340259033203639
+            }
+          },
+          "name": "ComfyUI_07576_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451867_40f4712c14.png",
+          "viewed": false,
+          "runMs": 5027,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_3c530f45247598_1780036209423",
+              "type": "comfy",
+              "x": -572.5363522384935,
+              "y": -261.52094294280823,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {
+                "f_batch_size": 1
+              },
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1780451816_29ac6bf3ad.png"
+              ]
+            },
+            "prompt": "一张尼哥的照片",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 2,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "ca760990-c86b-4c5e-91d1-1ae85485e1db",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 109663010893037
+            }
+          },
+          "name": "ComfyUI_07577_.png",
+          "kind": "image"
+        }
+      ],
+      "w": 320,
+      "h": 274,
+      "_pending": []
+    },
+    {
+      "id": "comfy_d948f749b470e8_1780451884008",
+      "type": "comfy",
+      "x": -509.74567412577693,
+      "y": -235.31089585194965,
+      "w": 420,
+      "h": 460,
+      "mode": "custom",
+      "width": 1024,
+      "height": 1024,
+      "enhanceStrength": 0.5,
+      "enhanceUpscale": false,
+      "enhanceUpscaleRes": 2048,
+      "editUpscale": false,
+      "editUpscaleRes": 2048,
+      "editModel": "gpt-image-2",
+      "ratio": "square",
+      "resolution": "1k",
+      "customRatio": "",
+      "customSize": "",
+      "customRatioWidth": "",
+      "customRatioHeight": "",
+      "customWidth": "",
+      "customHeight": "",
+      "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "comfyParams": {},
+      "count": 1,
+      "inputs": [
+        "prompt_c65d3e27849a9_1779783625123"
+      ],
+      "generatedOutputs": [
+        "/assets/output/workflow-custom_1780451945_4f29c3022f.png",
+        "/assets/output/workflow-custom_1780451945_dd6e79a73d.png",
+        "/assets/output/workflow-custom_1780451945_f417655251.png",
+        "/assets/output/workflow-custom_1780451945_e93ad5a52c.png"
+      ],
+      "runStatus": "done",
+      "runError": ""
+    },
+    {
+      "id": "out_800a264445c4f_1780451892290",
+      "type": "output",
+      "x": -44.06023706347913,
+      "y": -339.1338600693213,
+      "images": [
+        {
+          "url": "/assets/output/workflow-custom_1780451945_4f29c3022f.png",
+          "viewed": true,
+          "runMs": 15219,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_d948f749b470e8_1780451884008",
+              "type": "comfy",
+              "x": -509.74567412577693,
+              "y": -235.31089585194965,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {},
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1780451909_891773461b.png",
+                "/assets/output/workflow-custom_1780451909_8af673075e.png",
+                "/assets/output/workflow-custom_1780451909_16c206b427.png",
+                "/assets/output/workflow-custom_1780451909_3e61e63103.png"
+              ]
+            },
+            "prompt": "一张nigger的照片",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 4,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "207f6b5a-688f-468b-bf22-3855286191a2",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 543268928464105
+            }
+          },
+          "name": "ComfyUI_07582_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451945_dd6e79a73d.png",
+          "viewed": true,
+          "runMs": 15219,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_d948f749b470e8_1780451884008",
+              "type": "comfy",
+              "x": -509.74567412577693,
+              "y": -235.31089585194965,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {},
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1780451909_891773461b.png",
+                "/assets/output/workflow-custom_1780451909_8af673075e.png",
+                "/assets/output/workflow-custom_1780451909_16c206b427.png",
+                "/assets/output/workflow-custom_1780451909_3e61e63103.png"
+              ]
+            },
+            "prompt": "一张nigger的照片",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 4,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "207f6b5a-688f-468b-bf22-3855286191a2",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 543268928464105
+            }
+          },
+          "name": "ComfyUI_07583_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451945_f417655251.png",
+          "viewed": true,
+          "runMs": 15219,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_d948f749b470e8_1780451884008",
+              "type": "comfy",
+              "x": -509.74567412577693,
+              "y": -235.31089585194965,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {},
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1780451909_891773461b.png",
+                "/assets/output/workflow-custom_1780451909_8af673075e.png",
+                "/assets/output/workflow-custom_1780451909_16c206b427.png",
+                "/assets/output/workflow-custom_1780451909_3e61e63103.png"
+              ]
+            },
+            "prompt": "一张nigger的照片",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 4,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "207f6b5a-688f-468b-bf22-3855286191a2",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 543268928464105
+            }
+          },
+          "name": "ComfyUI_07584_.png",
+          "kind": "image"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451945_e93ad5a52c.png",
+          "viewed": true,
+          "runMs": 15219,
+          "run": {
+            "nodeType": "comfy",
+            "node": {
+              "id": "comfy_d948f749b470e8_1780451884008",
+              "type": "comfy",
+              "x": -509.74567412577693,
+              "y": -235.31089585194965,
+              "w": 420,
+              "h": 460,
+              "mode": "custom",
+              "width": 1024,
+              "height": 1024,
+              "enhanceStrength": 0.5,
+              "enhanceUpscale": false,
+              "enhanceUpscaleRes": 2048,
+              "editUpscale": false,
+              "editUpscaleRes": 2048,
+              "editModel": "gpt-image-2",
+              "ratio": "square",
+              "resolution": "1k",
+              "customRatio": "",
+              "customSize": "",
+              "customRatioWidth": "",
+              "customRatioHeight": "",
+              "customWidth": "",
+              "customHeight": "",
+              "comfyWorkflow": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "comfyParams": {},
+              "count": 1,
+              "generatedOutputs": [
+                "/assets/output/workflow-custom_1780451909_891773461b.png",
+                "/assets/output/workflow-custom_1780451909_8af673075e.png",
+                "/assets/output/workflow-custom_1780451909_16c206b427.png",
+                "/assets/output/workflow-custom_1780451909_3e61e63103.png"
+              ]
+            },
+            "prompt": "一张nigger的照片",
+            "refs": [],
+            "taskLabel": "custom/Z-Image-瑶光版-超真实细节增强.json",
+            "request": {
+              "task_id": 4,
+              "request_id": "",
+              "provider_id": "",
+              "backend": "172.16.10.111:8188",
+              "prompt_id": "207f6b5a-688f-468b-bf22-3855286191a2",
+              "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+              "seed": 543268928464105
+            }
+          },
+          "name": "ComfyUI_07585_.png",
+          "kind": "image"
+        }
+      ],
+      "_pending": []
+    }
+  ],
+  "connections": [
+    {
+      "id": "c_737aa504af739_1780451887001",
+      "from": "prompt_c65d3e27849a9_1779783625123",
+      "to": "comfy_d948f749b470e8_1780451884008"
+    },
+    {
+      "id": "c_311a9384d4d2b8_1780451892290",
+      "from": "comfy_d948f749b470e8_1780451884008",
+      "to": "out_800a264445c4f_1780451892290"
+    }
+  ],
+  "viewport": {
+    "x": 996.5063101255743,
+    "y": 495.56128279044515,
+    "scale": 0.7343996696242939
+  },
+  "logs": [
+    {
+      "id": "log_e505eca6f96fd_1780451945840",
+      "createdAt": 1780451945840,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 4,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "207f6b5a-688f-468b-bf22-3855286191a2",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 543268928464105
+      },
+      "prompt": "一张nigger的照片",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1780451945_4f29c3022f.png",
+          "kind": "image",
+          "name": "ComfyUI_07582_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451945_dd6e79a73d.png",
+          "kind": "image",
+          "name": "ComfyUI_07583_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451945_f417655251.png",
+          "kind": "image",
+          "name": "ComfyUI_07584_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451945_e93ad5a52c.png",
+          "kind": "image",
+          "name": "ComfyUI_07585_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 15219,
+      "error": ""
+    },
+    {
+      "id": "log_4c8c1ea1ff4c58_1780451909739",
+      "createdAt": 1780451909739,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 3,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "7140a118-6b12-4319-b9fe-7435956a838a",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 310299422972062
+      },
+      "prompt": "一张尼哥的照片",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1780451909_891773461b.png",
+          "kind": "image",
+          "name": "ComfyUI_07578_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451909_8af673075e.png",
+          "kind": "image",
+          "name": "ComfyUI_07579_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451909_16c206b427.png",
+          "kind": "image",
+          "name": "ComfyUI_07580_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1780451909_3e61e63103.png",
+          "kind": "image",
+          "name": "ComfyUI_07581_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 14816,
+      "error": ""
+    },
+    {
+      "id": "log_ec05822d75817_1780451867273",
+      "createdAt": 1780451867273,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 2,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "ca760990-c86b-4c5e-91d1-1ae85485e1db",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 109663010893037
+      },
+      "prompt": "一张尼哥的照片",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1780451867_40f4712c14.png",
+          "kind": "image",
+          "name": "ComfyUI_07577_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 5027,
+      "error": ""
+    },
+    {
+      "id": "log_51af756f0bef58_1780451816870",
+      "createdAt": 1780451816870,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 1,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "0a26b588-05f4-48a7-88c6-9f2701f3575a",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 340259033203639
+      },
+      "prompt": "一张尼哥的照片",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1780451816_29ac6bf3ad.png",
+          "kind": "image",
+          "name": "ComfyUI_07576_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 6451,
+      "error": ""
+    },
+    {
+      "id": "log_ca59f9a7bc7ab8_1780039341592",
+      "createdAt": 1780039341592,
+      "status": "failed",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z_Image-洗图_高清修复v1_api.json",
+      "request": {
+        "task_id": "",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "",
+      "outputs": [],
+      "refs": [
+        {
+          "url": "/assets/input/ai_ref_0bf9f8179df5.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        }
+      ],
+      "runMs": 647,
+      "error": "自定义失败：HTTP Error 400: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"143\": {\"errors\": [{\"type\": \"custom_validation_failed\", \"message\": \"Custom validation failed for node\", \"details\": \"image - Invalid image file: 9f00dfb7d858fde4ed1be1a34ac04f1c8e4c3468d342c3cf90a4cbcd3c2e4b48.png\", \"extra_info\": {\"input_name\": \"image\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"LoadImage\"}, \"218\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEEncode\"}, \"274\": {\"errors\": [{\"type\": \"value_not_in_list\", \"message\": \"Value not in list\", \"details\": \"name: 'Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors' not in []\", \"extra_info\": {\"input_name\": \"name\", \"input_config\": [[], {}], \"received_value\": \"Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"ModelPatchLoader\"}, \"279\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"QwenImageDiffsynthControlnet\"}, \"148\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEDecode\"}}}"
+    },
+    {
+      "id": "log_8977864bf07128_1780038656181",
+      "createdAt": 1780038656181,
+      "status": "failed",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z_Image-洗图_高清修复v1_api.json",
+      "request": {
+        "task_id": "",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "",
+      "outputs": [],
+      "refs": [
+        {
+          "url": "/assets/input/ai_ref_0bf9f8179df5.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        }
+      ],
+      "runMs": 596,
+      "error": "自定义失败：HTTP Error 400: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"143\": {\"errors\": [{\"type\": \"custom_validation_failed\", \"message\": \"Custom validation failed for node\", \"details\": \"image - Invalid image file: 9f00dfb7d858fde4ed1be1a34ac04f1c8e4c3468d342c3cf90a4cbcd3c2e4b48.png\", \"extra_info\": {\"input_name\": \"image\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"LoadImage\"}, \"218\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEEncode\"}, \"274\": {\"errors\": [{\"type\": \"value_not_in_list\", \"message\": \"Value not in list\", \"details\": \"name: 'Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors' not in []\", \"extra_info\": {\"input_name\": \"name\", \"input_config\": [[], {}], \"received_value\": \"Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"ModelPatchLoader\"}, \"279\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"QwenImageDiffsynthControlnet\"}, \"148\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEDecode\"}}}"
+    },
+    {
+      "id": "log_9e57cfdbd19a78_1780038641158",
+      "createdAt": 1780038641158,
+      "status": "failed",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z_Image-洗图_高清修复v1_api.json",
+      "request": {
+        "task_id": "",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "",
+      "outputs": [],
+      "refs": [
+        {
+          "url": "/assets/input/ai_ref_0bf9f8179df5.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        }
+      ],
+      "runMs": 571,
+      "error": "自定义失败：HTTP Error 400: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"143\": {\"errors\": [{\"type\": \"custom_validation_failed\", \"message\": \"Custom validation failed for node\", \"details\": \"image - Invalid image file: 9f00dfb7d858fde4ed1be1a34ac04f1c8e4c3468d342c3cf90a4cbcd3c2e4b48.png\", \"extra_info\": {\"input_name\": \"image\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"LoadImage\"}, \"218\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEEncode\"}, \"274\": {\"errors\": [{\"type\": \"value_not_in_list\", \"message\": \"Value not in list\", \"details\": \"name: 'Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors' not in []\", \"extra_info\": {\"input_name\": \"name\", \"input_config\": [[], {}], \"received_value\": \"Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"ModelPatchLoader\"}, \"279\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"QwenImageDiffsynthControlnet\"}, \"148\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEDecode\"}}}"
+    },
+    {
+      "id": "log_785f1f8a534f3_1780038625147",
+      "createdAt": 1780038625147,
+      "status": "failed",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z_Image-洗图_高清修复v1_api.json",
+      "request": {
+        "task_id": "",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "",
+      "outputs": [],
+      "refs": [
+        {
+          "url": "/assets/input/ai_ref_0bf9f8179df5.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        }
+      ],
+      "runMs": 574,
+      "error": "自定义失败：HTTP Error 400: {\"error\": {\"type\": \"prompt_outputs_failed_validation\", \"message\": \"Prompt outputs failed validation\", \"details\": \"\", \"extra_info\": {}}, \"node_errors\": {\"143\": {\"errors\": [{\"type\": \"custom_validation_failed\", \"message\": \"Custom validation failed for node\", \"details\": \"image - Invalid image file: 9f00dfb7d858fde4ed1be1a34ac04f1c8e4c3468d342c3cf90a4cbcd3c2e4b48.png\", \"extra_info\": {\"input_name\": \"image\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"LoadImage\"}, \"218\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEEncode\"}, \"274\": {\"errors\": [{\"type\": \"value_not_in_list\", \"message\": \"Value not in list\", \"details\": \"name: 'Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors' not in []\", \"extra_info\": {\"input_name\": \"name\", \"input_config\": [[], {}], \"received_value\": \"Z-Image-Turbo-Fun-Controlnet-Union-2.0.safetensors\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"ModelPatchLoader\"}, \"279\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"QwenImageDiffsynthControlnet\"}, \"148\": {\"errors\": [{\"type\": \"required_input_missing\", \"message\": \"Required input is missing\", \"details\": \"vae\", \"extra_info\": {\"input_name\": \"vae\"}}], \"dependent_outputs\": [\"145\", \"150\", \"271\", \"234\", \"272\", \"223\", \"281\", \"273\", \"259\", \"246\", \"280\"], \"class_type\": \"VAEDecode\"}}}"
+    },
+    {
+      "id": "log_1afd8fa72ee8f_1780036322143",
+      "createdAt": 1780036322143,
+      "status": "failed",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/I2L一键风格转绘___超邪修搭配_一张图直接转绘.json",
+      "request": {
+        "task_id": 1,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "4b01c391-f370-4ccf-9fa4-1667b1546be9",
+        "workflow_json": "custom/I2L一键风格转绘___超邪修搭配_一张图直接转绘.json",
+        "seed": 893696169547980
+      },
+      "prompt": "灰度图，抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉 ，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [],
+      "refs": [
+        {
+          "url": "/assets/input/ai_ref_0bf9f8179df5.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        },
+        {
+          "url": "/assets/input/ai_ref_25769754c642.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        },
+        {
+          "url": "/assets/input/ai_ref_31acff8ffafc.png",
+          "name": "微信图片_20260206093208_8_49.png"
+        }
+      ],
+      "runMs": 14037,
+      "error": "自定义失败：未返回图片"
+    },
+    {
+      "id": "log_a842321f7d402_1779934422188",
+      "createdAt": 1779934422188,
+      "status": "success",
+      "platform": "ModelScope",
+      "nodeType": "msgen",
+      "model": "Qwen/Qwen-Image-2512",
+      "request": {
+        "task_id": "d1615f89-1c9c-4476-b0a6-68716195a4b5",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "灰度图，抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [
+        "/assets/output/ms_Qwen_Qwen-Image-2512_1779934422.png"
+      ],
+      "refs": [],
+      "runMs": 84239,
+      "error": ""
+    },
+    {
+      "id": "log_5bd0ff0cde7eb_1779934027528",
+      "createdAt": 1779934027528,
+      "status": "success",
+      "platform": "ModelScope",
+      "nodeType": "msgen",
+      "model": "Qwen/Qwen-Image-2512",
+      "request": {
+        "task_id": "a39e2202-9df5-476e-b4bc-8efa470ff06e",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [
+        "/assets/output/ms_Qwen_Qwen-Image-2512_1779934027.png",
+        "/assets/output/ms_Qwen_Qwen-Image-2512_1779934027.png",
+        "/assets/output/ms_Qwen_Qwen-Image-2512_1779934027.png",
+        "/assets/output/ms_Qwen_Qwen-Image-2512_1779934027.png"
+      ],
+      "refs": [],
+      "runMs": 43359,
+      "error": ""
+    },
+    {
+      "id": "log_98af77508d1ea_1779933965932",
+      "createdAt": 1779933965932,
+      "status": "success",
+      "platform": "ModelScope",
+      "nodeType": "msgen",
+      "model": "Qwen/Qwen-Image-2512",
+      "request": {
+        "task_id": "946ab2af-b7ba-4544-aebc-407cde8bb822",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [
+        "/assets/output/ms_Qwen_Qwen-Image-2512_1779933965.png"
+      ],
+      "refs": [],
+      "runMs": 34952,
+      "error": ""
+    },
+    {
+      "id": "log_6ae5f67342073_1779846089650",
+      "createdAt": 1779846089650,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 15,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "d7e28b58-226f-4445-b56b-c713c03b6bb4",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 623593258526813
+      },
+      "prompt": "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1779846088_6a26168d3f.png",
+          "kind": "image",
+          "name": "ComfyUI_07548_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779846088_6a3d5e502d.png",
+          "kind": "image",
+          "name": "ComfyUI_07549_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779846088_b05a2c51e9.png",
+          "kind": "image",
+          "name": "ComfyUI_07550_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779846088_589541d308.png",
+          "kind": "image",
+          "name": "ComfyUI_07551_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 85979,
+      "error": ""
+    },
+    {
+      "id": "log_cc48affdafb588_1779845306578",
+      "createdAt": 1779845306578,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "文生图",
+      "request": {
+        "task_id": "",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [],
+      "refs": [],
+      "runMs": 546,
+      "error": ""
+    },
+    {
+      "id": "log_6a16f3644903e8_1779844040144",
+      "createdAt": 1779844040144,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "文生图",
+      "request": {
+        "task_id": "",
+        "request_id": "",
+        "provider_id": "",
+        "backend": "",
+        "prompt_id": "",
+        "workflow_json": "",
+        "seed": ""
+      },
+      "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [],
+      "refs": [],
+      "runMs": 581,
+      "error": ""
+    },
+    {
+      "id": "log_defd521a99e5d_1779843902002",
+      "createdAt": 1779843902002,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 12,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "bc0f9cb8-0453-44e2-9255-5ced0991b65b",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 930642574714404
+      },
+      "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1779843899_d4b51b7e1b.png",
+          "kind": "image",
+          "name": "ComfyUI_07544_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_50c18403e8.png",
+          "kind": "image",
+          "name": "ComfyUI_07545_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_09ca7ab852.png",
+          "kind": "image",
+          "name": "ComfyUI_07546_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843899_d745dc4d95.png",
+          "kind": "image",
+          "name": "ComfyUI_07547_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 82166,
+      "error": ""
+    },
+    {
+      "id": "log_2e4de27dfdc818_1779843778664",
+      "createdAt": 1779843778664,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 11,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "dc4e6643-3be4-43eb-9610-44082deb2577",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 199539710924430
+      },
+      "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+          "kind": "image",
+          "name": "ComfyUI_07540_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+          "kind": "image",
+          "name": "ComfyUI_07541_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+          "kind": "image",
+          "name": "ComfyUI_07542_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843776_d0f6c24387.png",
+          "kind": "image",
+          "name": "ComfyUI_07543_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 86638,
+      "error": ""
+    },
+    {
+      "id": "log_7617c61c4b97e_1779843644108",
+      "createdAt": 1779843644109,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 10,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "47a1bcd4-db77-4a61-bafb-077e97d2f3f3",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 509358210425638
+      },
+      "prompt": "山水",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+          "kind": "image",
+          "name": "ComfyUI_07536_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843642_6c77067792.png",
+          "kind": "image",
+          "name": "ComfyUI_07537_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843642_65456b1afc.png",
+          "kind": "image",
+          "name": "ComfyUI_07538_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779843642_5c29012fcb.png",
+          "kind": "image",
+          "name": "ComfyUI_07539_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 84783,
+      "error": ""
+    },
+    {
+      "id": "log_3c8a85f4afccc8_1779783919680",
+      "createdAt": 1779783919680,
+      "status": "success",
+      "platform": "ComfyUI",
+      "nodeType": "comfy",
+      "model": "custom/Z-Image-瑶光版-超真实细节增强.json",
+      "request": {
+        "task_id": 8,
+        "request_id": "",
+        "provider_id": "",
+        "backend": "172.16.10.111:8188",
+        "prompt_id": "17ad2298-05bf-4858-b1a0-b27c65e7b9cc",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "seed": 803575223577906
+      },
+      "prompt": "山水",
+      "outputs": [
+        {
+          "url": "/assets/output/workflow-custom_1779783919_0fd9edaf42.png",
+          "kind": "image",
+          "name": "ComfyUI_07528_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779783919_96177977be.png",
+          "kind": "image",
+          "name": "ComfyUI_07529_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779783919_166ffecc1c.png",
+          "kind": "image",
+          "name": "ComfyUI_07530_.png"
+        },
+        {
+          "url": "/assets/output/workflow-custom_1779783919_b7558fec7d.png",
+          "kind": "image",
+          "name": "ComfyUI_07531_.png"
+        }
+      ],
+      "refs": [],
+      "runMs": 0,
+      "error": ""
+    }
+  ],
+  "settings": {}
+}

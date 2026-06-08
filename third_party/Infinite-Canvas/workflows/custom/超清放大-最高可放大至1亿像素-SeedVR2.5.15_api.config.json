@@ -1,0 +1,49 @@
+{
+  "title": "custom/超清放大-最高可放大至1亿像素-SeedVR2.5.15_api",
+  "fields": [
+    {
+      "id": "f_u7bc19o",
+      "node": "200",
+      "input": "image",
+      "name": "图片",
+      "type": "image",
+      "default": "0004.png",
+      "min": null,
+      "max": null,
+      "step": null,
+      "options": [],
+      "random_enabled": false
+    },
+    {
+      "id": "f_b5joa4v",
+      "node": "186",
+      "input": "value",
+      "name": "最长边像素",
+      "type": "number",
+      "default": 7980,
+      "min": 0.0,
+      "max": 15960.0,
+      "step": 1.0,
+      "options": [],
+      "random_enabled": false
+    }
+  ],
+  "mini_cards": {
+    "prompt": {
+      "x": 24,
+      "y": 30
+    },
+    "image": {
+      "x": 24,
+      "y": 210
+    },
+    "custom": {
+      "x": 280,
+      "y": 78
+    },
+    "output": {
+      "x": 540,
+      "y": 120
+    }
+  }
+}

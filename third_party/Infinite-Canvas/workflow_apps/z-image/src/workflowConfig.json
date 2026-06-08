@@ -1,0 +1,62 @@
+{
+  "id": "app_845706f3c8c2",
+  "title": "z-image-洗图",
+  "description": "",
+  "framework": "react",
+  "category": "图生图",
+  "tags": [],
+  "coverImage": "",
+  "previewImages": [],
+  "author": "Hanako",
+  "workflowName": "custom/Z_Image-洗图_高清修复v1_api.json",
+  "apiBaseUrl": "http://127.0.0.1:13000",
+  "config": {
+    "title": "custom/Z_Image-洗图_高清修复v1_api",
+    "fields": [
+      {
+        "id": "f_wtgeamq",
+        "node": "143",
+        "input": "image",
+        "name": "图片",
+        "type": "image",
+        "default": "9f00dfb7d858fde4ed1be1a34ac04f1c8e4c3468d342c3cf90a4cbcd3c2e4b48.png",
+        "min": null,
+        "max": null,
+        "step": null,
+        "options": [],
+        "random_enabled": false
+      },
+      {
+        "id": "f_visfv7k",
+        "node": "282",
+        "input": "index",
+        "name": "index",
+        "type": "number",
+        "default": 0,
+        "min": 0.0,
+        "max": 2.0,
+        "step": 1.0,
+        "options": [],
+        "random_enabled": false
+      }
+    ],
+    "mini_cards": {
+      "prompt": {
+        "x": 24,
+        "y": 30
+      },
+      "image": {
+        "x": 24,
+        "y": 210
+      },
+      "custom": {
+        "x": 280,
+        "y": 78
+      },
+      "output": {
+        "x": 540,
+        "y": 120
+      }
+    }
+  }
+}

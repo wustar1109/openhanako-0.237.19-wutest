@@ -1,0 +1,181 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "ANGLE CONTROL ®" [level=1] [ref=e5]:
+        - text: ANGLE CONTROL
+        - generic [ref=e6]: ®
+      - paragraph [ref=e7]: 相机与视角控制
+    - navigation [ref=e8]:
+      - generic [ref=e9]: 角度控制
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "01. 输入图片" [level=3] [ref=e13]
+        - generic [ref=e14] [cursor=pointer]:
+          - generic [ref=e15]:
+            - img [ref=e17]
+            - paragraph [ref=e19]: 拖放图片到这里
+          - img [ref=e202]
+          - generic [ref=e204]: 更换
+      - generic [ref=e20]:
+        - heading "02. 相机控制" [level=3] [ref=e21]
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]:
+                - img [ref=e29]
+                - generic [ref=e32]: 旋转
+              - generic [ref=e33]:
+                - button "Reset" [ref=e34] [cursor=pointer]:
+                  - img [ref=e35]
+                - generic [ref=e38]:
+                  - spinbutton [ref=e39]: "0"
+                  - generic [ref=e40]: °
+            - slider [ref=e41] [cursor=pointer]: "0"
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]:
+                - img [ref=e45]
+                - generic [ref=e48]: 俯仰
+              - generic [ref=e49]:
+                - button "Reset" [ref=e50] [cursor=pointer]:
+                  - img [ref=e51]
+                - generic [ref=e54]:
+                  - spinbutton [ref=e55]: "0"
+                  - generic [ref=e56]: °
+            - slider [ref=e57] [cursor=pointer]: "0"
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - img [ref=e61]
+                - generic [ref=e64]: 距离
+              - generic [ref=e65]:
+                - button "Reset" [ref=e66] [cursor=pointer]:
+                  - img [ref=e67]
+                - spinbutton [ref=e71]: "4.0"
+            - slider [ref=e72] [cursor=pointer]: "4"
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - img [ref=e76]
+                - generic [ref=e79]: 滚动角
+              - generic [ref=e80]:
+                - button "Reset" [ref=e81] [cursor=pointer]:
+                  - img [ref=e82]
+                - generic [ref=e85]:
+                  - spinbutton [ref=e86]: "0"
+                  - generic [ref=e87]: °
+            - slider [ref=e88] [cursor=pointer]: "0"
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - heading "03. 参数" [level=3] [ref=e91]
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - img [ref=e94]
+            - generic [ref=e95]: Prompt
+          - textbox "请通过右侧控制器调整，或输入提示词" [ref=e96]
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - img [ref=e100]
+              - generic [ref=e105]: 输出比例
+            - generic [ref=e106]: 1344 x 768
+          - generic [ref=e107]:
+            - button "原图" [ref=e108] [cursor=pointer]
+            - button "1:1" [ref=e109] [cursor=pointer]
+            - button "3:4" [ref=e110] [cursor=pointer]
+            - button "4:3" [ref=e111] [cursor=pointer]
+            - button "9:16" [ref=e112] [cursor=pointer]
+            - button "16:9" [ref=e113] [cursor=pointer]
+            - button "1:2" [ref=e114] [cursor=pointer]
+            - button "自定义" [ref=e115] [cursor=pointer]
+        - generic [ref=e116]:
+          - generic [ref=e117] [cursor=pointer]:
+            - img [ref=e118]
+            - generic [ref=e120]: Local
+          - generic [ref=e121] [cursor=pointer]:
+            - img [ref=e122]
+            - generic [ref=e124]: ModelScope
+        - button "生成新角度" [ref=e126] [cursor=pointer]:
+          - img [ref=e127]
+          - generic [ref=e129]: 生成新角度
+      - generic [ref=e130]:
+        - heading "04. 结果预览" [level=3] [ref=e131]
+        - generic [ref=e133]:
+          - img [ref=e134]
+          - paragraph [ref=e137]: 画布就绪
+  - generic [ref=e138]:
+    - heading "Archive" [level=2] [ref=e140]
+    - button "批量管理" [ref=e143] [cursor=pointer]
+    - generic [ref=e144]:
+      - generic [ref=e145] [cursor=pointer]:
+        - img [ref=e146]
+        - img [ref=e148]
+        - generic:
+          - paragraph: 将相机向左旋转34度，仰视48度，逆时针滚动112度，使用特写镜头
+      - generic [ref=e149] [cursor=pointer]:
+        - img [ref=e150]
+        - img [ref=e152]
+        - generic:
+          - paragraph: 将相机向右旋转12度，仰视20度，逆时针滚动92度，使用特写镜头
+      - generic [ref=e153] [cursor=pointer]:
+        - img [ref=e154]
+        - img [ref=e156]
+        - generic:
+          - paragraph: 将相机仰视59度，逆时针滚动92度，使用特写镜头
+      - generic [ref=e157] [cursor=pointer]:
+        - img [ref=e158]
+        - img [ref=e160]
+        - generic:
+          - paragraph: 将相机仰视59度，逆时针滚动92度，使用特写镜头
+      - generic [ref=e161] [cursor=pointer]:
+        - img [ref=e162]
+        - img [ref=e164]
+        - generic:
+          - paragraph: 将相机向左旋转61度，仰视42度，顺时针滚动108度，使用特写镜头
+      - generic [ref=e165] [cursor=pointer]:
+        - img [ref=e166]
+        - img [ref=e168]
+        - generic:
+          - paragraph: 将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头
+      - generic [ref=e169] [cursor=pointer]:
+        - img [ref=e170]
+        - img [ref=e172]
+        - generic:
+          - paragraph: 将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头
+      - generic [ref=e173] [cursor=pointer]:
+        - img [ref=e174]
+        - img [ref=e176]
+        - generic:
+          - paragraph: 将相机逆时针滚动90度
+      - generic [ref=e177] [cursor=pointer]:
+        - img [ref=e178]
+        - img [ref=e180]
+        - generic:
+          - paragraph: 将相机向左旋转37度，仰视48度，使用特写镜头
+      - generic [ref=e181] [cursor=pointer]:
+        - img [ref=e182]
+        - img [ref=e184]
+        - generic:
+          - paragraph: 将相机向左旋转66度，仰视20度，使用特写镜头
+      - generic [ref=e185] [cursor=pointer]:
+        - img [ref=e186]
+        - img [ref=e188]
+        - generic:
+          - paragraph: 将相机向左旋转67度，俯视67度，使用特写镜头
+      - generic [ref=e189] [cursor=pointer]:
+        - img [ref=e190]
+        - img [ref=e192]
+        - generic:
+          - paragraph: 将相机向左旋转50度，俯视55度，使用特写镜头
+      - generic [ref=e193] [cursor=pointer]:
+        - img [ref=e194]
+        - img [ref=e196]
+        - generic:
+          - paragraph: 将相机向右旋转61度，仰视42度，使用特写镜头，1:2
+      - generic [ref=e197] [cursor=pointer]:
+        - img [ref=e198]
+        - img [ref=e200]
+        - generic:
+          - paragraph: 将相机向右旋转38度，仰视40度，使用特写镜头
+    - generic [ref=e201]: End of Archive

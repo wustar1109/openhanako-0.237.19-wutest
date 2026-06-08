@@ -1,0 +1,129 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "VECTORIZE®" [level=1] [ref=e5]:
+        - text: VECTORIZE
+        - superscript [ref=e6]: ®
+      - paragraph [ref=e7]: 位图转 SVG
+    - generic [ref=e10]: 等待图片
+  - generic [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - heading "01. 输入图片" [level=2] [ref=e14]:
+          - img [ref=e15]
+          - text: 01. 输入图片
+        - button "拖放位图到这里 PNG / JPG / WebP / BMP" [ref=e19] [cursor=pointer]:
+          - generic:
+            - generic:
+              - img
+            - strong: 拖放位图到这里
+            - generic: PNG / JPG / WebP / BMP
+      - generic [ref=e20]:
+        - heading "02. 预处理" [level=2] [ref=e21]:
+          - img [ref=e22]
+          - text: 02. 预处理
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: 处理方式
+            - combobox "处理方式" [ref=e29]:
+              - option "灰度分层后矢量化" [selected]
+              - option "原图直转"
+          - generic [ref=e30]:
+            - generic [ref=e31]: 白底处理
+            - combobox "白底处理" [ref=e32]:
+              - option "保留白底" [selected]
+              - option "去白底"
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]: 灰阶层数
+            - generic [ref=e37]: "12"
+          - slider "灰阶层数" [ref=e38]: "12"
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]: 白底阈值
+            - generic [ref=e42]: "248"
+          - slider "白底阈值" [ref=e43]: "248"
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - generic [ref=e46]: 模糊核
+            - generic [ref=e47]: "3"
+          - slider "模糊核" [ref=e48]: "3"
+      - generic [ref=e49]:
+        - heading "03. VTracer" [level=2] [ref=e50]:
+          - img [ref=e51]
+          - text: 03. VTracer
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: 颜色模式
+            - combobox "颜色模式" [ref=e55]:
+              - option "彩色" [selected]
+              - option "黑白"
+          - generic [ref=e56]:
+            - generic [ref=e57]: 层级方式
+            - combobox "层级方式" [ref=e58]:
+              - option "堆叠" [selected]
+              - option "镂空"
+          - generic [ref=e59]:
+            - generic [ref=e60]: 路径模式
+            - combobox "路径模式" [ref=e61]:
+              - option "平滑曲线"
+              - option "多边形" [selected]
+              - option "无曲线拟合"
+          - generic [ref=e62]:
+            - generic [ref=e63]: 迭代次数
+            - spinbutton "迭代次数" [ref=e64]: "10"
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: 过滤噪点
+            - generic [ref=e69]: "3"
+          - slider "过滤噪点" [ref=e70]: "3"
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - generic [ref=e73]: 颜色精度
+            - generic [ref=e74]: "8"
+          - slider "颜色精度" [ref=e75]: "8"
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: 渐变层差
+            - generic [ref=e79]: "6"
+          - slider "渐变层差" [ref=e80]: "6"
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e83]: 角点阈值
+            - generic [ref=e84]: "70"
+          - slider "角点阈值" [ref=e85]: "70"
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]: 细分长度
+            - generic [ref=e89]: "4"
+          - slider "细分长度" [ref=e90]: "4"
+        - generic [ref=e91]:
+          - generic [ref=e92]:
+            - generic [ref=e93]: 拼接阈值
+            - generic [ref=e94]: "45"
+          - slider "拼接阈值" [ref=e95]: "45"
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: 路径小数精度
+            - generic [ref=e99]: "5"
+          - slider "路径小数精度" [ref=e100]: "5"
+      - button "生成 SVG" [disabled] [ref=e101]:
+        - img [ref=e102]
+        - text: 生成 SVG
+    - generic [ref=e106]:
+      - generic [ref=e107]:
+        - heading "Result" [level=2] [ref=e108]:
+          - img [ref=e109]
+          - text: Result
+        - generic [ref=e114]:
+          - link "在新窗口打开" [disabled]:
+            - /url: "#"
+            - img
+          - link "下载 SVG" [disabled]:
+            - /url: "#"
+            - img
+      - generic [ref=e116]:
+        - img [ref=e117]
+        - generic [ref=e121]: SVG 结果会显示在这里

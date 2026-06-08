@@ -1,0 +1,22 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: 选择画布
+        - generic [ref=e9]: 0 个
+      - generic [ref=e10]: 打开已有画布，或新建一个开始创作。
+    - generic [ref=e11]:
+      - button "刷新列表" [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+      - button "打开回收站" [ref=e18] [cursor=pointer]:
+        - img [ref=e19]
+      - button "新建画布" [ref=e22] [cursor=pointer]:
+        - img [ref=e23]
+        - generic [ref=e24]: 新建画布
+      - button "新建智能画布" [ref=e25] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e29]: 新建智能画布
+  - generic [ref=e31]:
+    - img [ref=e33]
+    - text: 暂无画布
+    - text: 点击右上方「新建画布」开始创作

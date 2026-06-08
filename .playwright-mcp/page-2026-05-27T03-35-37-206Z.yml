@@ -1,0 +1,96 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "VECTORIZE®" [level=1] [ref=e5]:
+        - text: VECTORIZE
+        - superscript [ref=e6]: ®
+      - paragraph [ref=e7]: 位图转 SVG
+    - generic [ref=e10]: 等待图片
+  - generic [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - heading "01. 输入图片" [level=2] [ref=e14]:
+          - img [ref=e15]
+          - text: 01. 输入图片
+        - button "拖放位图到这里 PNG / JPG / WebP / BMP" [ref=e19] [cursor=pointer]:
+          - generic:
+            - generic:
+              - img
+            - strong: 拖放位图到这里
+            - generic: PNG / JPG / WebP / BMP
+      - generic [ref=e20]:
+        - heading "02. 参数" [level=2] [ref=e21]:
+          - img [ref=e22]
+          - text: 02. 参数
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - generic [ref=e25]: 颜色模式
+            - combobox "颜色模式" [ref=e26]:
+              - option "彩色" [selected]
+              - option "黑白"
+          - generic [ref=e27]:
+            - generic [ref=e28]: 层级方式
+            - combobox "层级方式" [ref=e29]:
+              - option "堆叠" [selected]
+              - option "镂空"
+          - generic [ref=e30]:
+            - generic [ref=e31]: 路径模式
+            - combobox "路径模式" [ref=e32]:
+              - option "平滑曲线" [selected]
+              - option "多边形"
+              - option "无曲线拟合"
+          - generic [ref=e33]:
+            - generic [ref=e34]: 迭代次数
+            - spinbutton "迭代次数" [ref=e35]: "10"
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: 过滤噪点
+            - generic [ref=e40]: "4"
+          - slider "过滤噪点" [ref=e41]: "4"
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]: 颜色精度
+            - generic [ref=e45]: "6"
+          - slider "颜色精度" [ref=e46]: "6"
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: 分层差异
+            - generic [ref=e50]: "16"
+          - slider "分层差异" [ref=e51]: "16"
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: 角点阈值
+            - generic [ref=e55]: "60"
+          - slider "角点阈值" [ref=e56]: "60"
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: 长度阈值
+            - generic [ref=e60]: "4"
+          - slider "长度阈值" [ref=e61]: "4"
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - generic [ref=e64]: 拼接阈值
+            - generic [ref=e65]: "45"
+          - slider "拼接阈值" [ref=e66]: "45"
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: 路径小数精度
+            - generic [ref=e70]: "3"
+          - slider "路径小数精度" [ref=e71]: "3"
+      - button "生成 SVG" [disabled] [ref=e72]:
+        - img [ref=e73]
+        - text: 生成 SVG
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - heading "Result" [level=2] [ref=e79]
+        - generic [ref=e80]:
+          - link "在新窗口打开" [disabled]:
+            - /url: "#"
+            - img
+          - link "下载 SVG" [disabled]:
+            - /url: "#"
+            - img
+      - generic [ref=e82]:
+        - img [ref=e83]
+        - generic [ref=e87]: SVG 结果会显示在这里

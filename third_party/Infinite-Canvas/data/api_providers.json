@@ -1,0 +1,192 @@
+[
+  {
+    "id": "modelscope",
+    "name": "ModelScope",
+    "base_url": "https://api-inference.modelscope.cn/v1",
+    "protocol": "openai",
+    "image_generation_endpoint": "",
+    "image_edit_endpoint": "",
+    "enabled": true,
+    "primary": false,
+    "text_image_models": [
+      "Tongyi-MAI/Z-Image-Turbo",
+      "Qwen/Qwen-Image-2512",
+      "black-forest-labs/FLUX.2-klein-9B"
+    ],
+    "image_to_image_models": [
+      "Qwen/Qwen-Image-Edit-2511",
+      "FireRedTeam/FireRed-Image-Edit-1.1"
+    ],
+    "image_models": [
+      "Tongyi-MAI/Z-Image-Turbo",
+      "Qwen/Qwen-Image-2512",
+      "black-forest-labs/FLUX.2-klein-9B",
+      "Qwen/Qwen-Image-Edit-2511",
+      "FireRedTeam/FireRed-Image-Edit-1.1"
+    ],
+    "chat_models": [
+      "Qwen/Qwen3-235B-A22B",
+      "Qwen/Qwen3-VL-235B-A22B-Instruct",
+      "MiniMax/MiniMax-M2.7:MiniMax"
+    ],
+    "video_models": [],
+    "ms_loras": [
+      {
+        "id": "Daniel8152/film",
+        "name": "Z-Image Film",
+        "target_model": "Tongyi-MAI/Z-Image-Turbo",
+        "strength": 0.8,
+        "enabled": true,
+        "note": ""
+      },
+      {
+        "id": "Daniel8152/Qwen-Image-2512-Film",
+        "name": "Qwen Image 2512 Film",
+        "target_model": "Qwen/Qwen-Image-2512",
+        "strength": 0.8,
+        "enabled": true,
+        "note": ""
+      },
+      {
+        "id": "Daniel8152/Klein-enhance",
+        "name": "Klein enhance",
+        "target_model": "black-forest-labs/FLUX.2-klein-9B",
+        "strength": 0.8,
+        "enabled": true,
+        "note": ""
+      },
+      {
+        "id": "muting/cxbj",
+        "name": "muting/cxbj",
+        "target_model": "Qwen/Qwen-Image-2512",
+        "strength": 0.8,
+        "enabled": true,
+        "note": ""
+      }
+    ],
+    "ms_defaults_version": 3,
+    "rh_apps": [],
+    "rh_workflows": []
+  },
+  {
+    "id": "runninghub",
+    "name": "RunningHub",
+    "base_url": "https://www.runninghub.cn",
+    "protocol": "runninghub",
+    "image_generation_endpoint": "",
+    "image_edit_endpoint": "",
+    "enabled": true,
+    "primary": false,
+    "text_image_models": [
+      "seedream-v5-lite/text-to-image"
+    ],
+    "image_to_image_models": [
+      "seedream-v5-lite/image-to-image"
+    ],
+    "image_models": [
+      "seedream-v5-lite/text-to-image",
+      "seedream-v5-lite/image-to-image"
+    ],
+    "chat_models": [],
+    "video_models": [],
+    "ms_loras": [],
+    "ms_defaults_version": 0,
+    "rh_apps": [
+      {
+        "id": "2058517022748798977",
+        "title": "2511-风格迁移",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "fields": [
+          {
+            "id": "100::image",
+            "nodeId": "100",
+            "fieldName": "image",
+            "fieldValue": "pasted/57ef7dc980b6446bca366caaf3f94eb12b22b23f78aa30e294b39cabd7d0187b.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "AI 应用参数",
+            "note": "image",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "112::image",
+            "nodeId": "112",
+            "fieldName": "image",
+            "fieldValue": "8cff63ee4b3e0285ca85ab90a52e26746df84ed0dec0be9d76c679cbb62a247d.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "AI 应用参数",
+            "note": "image",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "14::seed",
+            "nodeId": "14",
+            "fieldName": "seed",
+            "fieldValue": "554049736557817",
+            "fieldType": "INT",
+            "label": "seed",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "AI 应用参数",
+            "note": "seed",
+            "options": [],
+            "random_enabled": true,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          }
+        ],
+        "appId": "2058517022748798977"
+      },
+      {
+        "id": "1997622492837646338",
+        "title": "2511-光线迁移",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "appId": "1997622492837646338"
+      }
+    ],
+    "rh_workflows": [
+      {
+        "id": "2058554058318897153",
+        "title": "GPT-Image-2-图片编辑",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "optionalImageMode": "prune-workflow",
+        "workflowId": "2058554058318897153"
+      },
+      {
+        "id": "2058541134623891458",
+        "title": "NanoBanana-2-图片编辑",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "optionalImageMode": "prune-workflow",
+        "workflowId": "2058541134623891458"
+      }
+    ]
+  }
+]

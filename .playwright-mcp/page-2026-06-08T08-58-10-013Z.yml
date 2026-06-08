@@ -1,0 +1,116 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 素材库管理
+      - generic [ref=e6]: 按库、分组、内容和预览管理素材与提示词。
+    - generic [ref=e7]:
+      - generic [ref=e8]: 准备就绪
+      - button "刷新" [ref=e9] [cursor=pointer]:
+        - img [ref=e10]
+        - generic [ref=e15]: 刷新
+  - generic [ref=e16]:
+    - button "图片资产" [ref=e17] [cursor=pointer]:
+      - img [ref=e18]
+      - generic [ref=e22]: 图片资产
+    - button "工作流管理" [ref=e23] [cursor=pointer]:
+      - img [ref=e24]
+      - generic [ref=e28]: 工作流管理
+    - button "提示词库" [ref=e29] [cursor=pointer]:
+      - img [ref=e30]
+      - generic [ref=e35]: 提示词库
+    - button "画布资产" [ref=e36] [cursor=pointer]:
+      - img [ref=e37]
+      - generic [ref=e42]: 画布资产
+    - button "本地素材" [ref=e43] [cursor=pointer]:
+      - img [ref=e44]
+      - generic [ref=e46]: 本地素材
+  - main [ref=e47]:
+    - complementary [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - strong [ref=e51]: 资产层级
+          - generic [ref=e52]: 先选库，再选分组
+        - button "新建资产库" [ref=e54] [cursor=pointer]:
+          - img [ref=e55]
+      - generic [ref=e58]:
+        - button "默认资产库 129" [ref=e59] [cursor=pointer]:
+          - img [ref=e61]
+          - generic [ref=e63]: 默认资产库
+          - generic [ref=e64]: "129"
+        - generic [ref=e65]:
+          - button "角色 0" [ref=e66] [cursor=pointer]:
+            - img [ref=e69]
+            - generic [ref=e73]: 角色
+            - generic [ref=e74]: "0"
+          - generic [ref=e75]:
+            - button "新分组" [ref=e76] [cursor=pointer]:
+              - img [ref=e77]
+              - generic [ref=e79]: 新分组
+            - button "重命名" [ref=e80] [cursor=pointer]:
+              - img [ref=e81]
+              - generic [ref=e84]: 重命名
+            - button "删除" [ref=e85] [cursor=pointer]:
+              - img [ref=e86]
+              - generic [ref=e89]: 删除
+          - button "场景 0" [ref=e90] [cursor=pointer]:
+            - img [ref=e93]
+            - generic [ref=e97]: 场景
+            - generic [ref=e98]: "0"
+          - button "文生图 59" [ref=e99] [cursor=pointer]:
+            - img [ref=e102]
+            - generic [ref=e106]: 文生图
+            - generic [ref=e107]: "59"
+          - button "细节增强 0" [ref=e108] [cursor=pointer]:
+            - img [ref=e111]
+            - generic [ref=e115]: 细节增强
+            - generic [ref=e116]: "0"
+          - button "图片编辑 16" [ref=e117] [cursor=pointer]:
+            - img [ref=e120]
+            - generic [ref=e124]: 图片编辑
+            - generic [ref=e125]: "16"
+          - button "转矢量图 0" [ref=e126] [cursor=pointer]:
+            - img [ref=e129]
+            - generic [ref=e133]: 转矢量图
+            - generic [ref=e134]: "0"
+          - button "角度控制 23" [ref=e135] [cursor=pointer]:
+            - img [ref=e138]
+            - generic [ref=e142]: 角度控制
+            - generic [ref=e143]: "23"
+          - button "在线生图 0" [ref=e144] [cursor=pointer]:
+            - img [ref=e147]
+            - generic [ref=e151]: 在线生图
+            - generic [ref=e152]: "0"
+          - button "无限画布 30" [ref=e153] [cursor=pointer]:
+            - img [ref=e156]
+            - generic [ref=e160]: 无限画布
+            - generic [ref=e161]: "30"
+          - button "其他生成 1" [ref=e162] [cursor=pointer]:
+            - img [ref=e165]
+            - generic [ref=e169]: 其他生成
+            - generic [ref=e170]: "1"
+    - generic [ref=e171]:
+      - generic [ref=e172]:
+        - generic [ref=e173]:
+          - strong [ref=e174]: 角色
+          - generic [ref=e175]: 默认资产库 / 0 个素材
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - img [ref=e178]
+            - searchbox [ref=e181]
+          - button "批量管理" [ref=e182] [cursor=pointer]:
+            - img [ref=e183]
+            - generic [ref=e186]: 批量管理
+      - generic [ref=e188]:
+        - button "上传到当前分组 拖入文件或点击上传" [ref=e189] [cursor=pointer]:
+          - img [ref=e191]
+          - generic [ref=e194]:
+            - strong [ref=e195]: 上传到当前分组
+            - generic [ref=e196]: 拖入文件或点击上传
+        - generic [ref=e197]: 当前分组还没有素材，可以上传，或从智能画布输出保存到素材库。
+    - complementary [ref=e198]:
+      - generic [ref=e200]:
+        - strong [ref=e201]: 素材预览
+        - generic [ref=e202]: 选择一个素材查看详情
+      - generic [ref=e204]:
+        - img [ref=e205]
+        - generic [ref=e209]: 暂无可预览素材

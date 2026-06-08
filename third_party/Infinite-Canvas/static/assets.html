@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets</title>
+    <link rel="icon" href="data:,">
+    <script src="/static/js/theme.js?v=2026.06.06.1"></script>
+    <script src="/static/js/i18n-core.js?v=2026.06.06.1"></script>
+    <script src="/static/js/i18n/common.js?v=2026.06.06.1"></script>
+    <style>
+        :root {
+            --bg:#f7f8fa;
+            --panel:#fff;
+            --panel-soft:#f2f4f7;
+            --text:#0b1220;
+            --muted:#8a94a6;
+            --line:#dfe5ee;
+            --line-strong:#c8d2df;
+            --accent:#0b1220;
+            --danger:#ef4444;
+            --shadow:0 18px 50px rgba(15,23,42,.08);
+        }
+        html.theme-dark, body.theme-dark {
+            --bg:#0d1117;
+            --panel:#141922;
+            --panel-soft:#1b2230;
+            --text:#f4f7fb;
+            --muted:#9aa5b5;
+            --line:#2b3444;
+            --line-strong:#3b4658;
+            --accent:#f4f7fb;
+            --shadow:0 18px 50px rgba(0,0,0,.34);
+        }
+        * { box-sizing:border-box; }
+        html, body { min-height:100%; }
+        body {
+            margin:0;
+            background:var(--bg);
+            color:var(--text);
+            font-family:Inter, "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            letter-spacing:0;
+        }
+        .page {
+            width:min(1180px, calc(100vw - 72px));
+            margin:0 auto;
+            padding:56px 0 80px;
+        }
+        .topbar {
+            display:flex;
+            align-items:flex-end;
+            justify-content:space-between;
+            gap:24px;
+            margin-bottom:24px;
+        }
+        h1 {
+            margin:0;
+            font-size:44px;
+            line-height:.95;
+            font-weight:900;
+            font-style:italic;
+            color:#001b3a;
+            text-transform:uppercase;
+        }
+        html.theme-dark h1, body.theme-dark h1 { color:#f5f7ff; }
+        .kicker {
+            margin-top:10px;
+            color:var(--muted);
+            font-size:12px;
+            font-weight:900;
+            letter-spacing:.35em;
+        }
+        .search-wrap {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            min-width:min(420px, 48vw);
+        }
+        .search {
+            width:100%;
+            height:42px;
+            border:1px solid var(--line);
+            border-radius:999px;
+            background:var(--panel);
+            color:var(--text);
+            padding:0 16px;
+            font-size:13px;
+            outline:none;
+        }
+        .search:focus { border-color:var(--line-strong); box-shadow:0 0 0 3px rgba(100,116,139,.12); }
+        .icon-btn {
+            width:42px;
+            height:42px;
+            border:1px solid var(--line);
+            border-radius:999px;
+            background:var(--panel);
+            color:var(--text);
+            display:grid;
+            place-items:center;
+            cursor:pointer;
+        }
+        .icon-btn:hover { border-color:var(--line-strong); }
+        .chips {
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin:0 0 26px;
+        }
+        .chip {
+            height:38px;
+            border:1px solid var(--line);
+            border-radius:999px;
+            background:var(--panel);
+            color:var(--muted);
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:0 14px;
+            font-size:12px;
+            font-weight:900;
+            cursor:pointer;
+        }
+        .chip.active {
+            background:var(--accent);
+            border-color:var(--accent);
+            color:var(--panel);
+        }
+        .chip-count {
+            min-width:22px;
+            height:22px;
+            border-radius:999px;
+            display:grid;
+            place-items:center;
+            background:var(--panel-soft);
+            color:var(--muted);
+            font-size:11px;
+        }
+        .chip.active .chip-count { background:rgba(255,255,255,.16); color:inherit; }
+        .section { margin-top:26px; }
+        .section-head {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:12px;
+        }
+        .section-title {
+            margin:0;
+            font-size:13px;
+            font-weight:950;
+            letter-spacing:.2em;
+            text-transform:uppercase;
+        }
+        .section-count {
+            color:var(--muted);
+            font-size:12px;
+            font-weight:800;
+        }
+        .grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+            gap:16px;
+        }
+        .asset-card {
+            border:1px solid var(--line);
+            background:var(--panel);
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:0 8px 28px rgba(15,23,42,.05);
+        }
+        .thumb {
+            width:100%;
+            aspect-ratio:1 / 1;
+            background:var(--panel-soft);
+            display:block;
+            object-fit:cover;
+            cursor:zoom-in;
+        }
+        .asset-info { padding:12px; }
+        .asset-name {
+            font-size:12px;
+            font-weight:900;
+            line-height:1.35;
+            min-height:34px;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
+        }
+        .asset-meta {
+            margin-top:8px;
+            color:var(--muted);
+            font-size:11px;
+            font-weight:700;
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+        }
+        .asset-actions {
+            display:flex;
+            gap:8px;
+            padding:0 12px 12px;
+        }
+        .action {
+            flex:1;
+            height:32px;
+            border:1px solid var(--line);
+            border-radius:7px;
+            background:var(--panel);
+            color:var(--text);
+            font-size:11px;
+            font-weight:900;
+            display:grid;
+            place-items:center;
+            text-decoration:none;
+            cursor:pointer;
+        }
+        .action:hover { border-color:var(--line-strong); }
+        .action.danger { color:var(--danger); border-color:rgba(239,68,68,.35); }
+        .empty {
+            border:1px dashed var(--line-strong);
+            border-radius:8px;
+            min-height:280px;
+            display:grid;
+            place-items:center;
+            color:var(--muted);
+            font-size:13px;
+            font-weight:800;
+            background:var(--panel);
+        }
+        .preview {
+            position:fixed;
+            inset:0;
+            background:rgba(7,10,15,.72);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:36px;
+            z-index:50;
+        }
+        .preview.open { display:flex; }
+        .preview-panel {
+            width:min(1040px, 96vw);
+            max-height:92vh;
+            display:grid;
+            grid-template-columns:minmax(0, 1fr) 280px;
+            background:var(--panel);
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:var(--shadow);
+        }
+        .preview-img-wrap {
+            min-height:360px;
+            background:#0b0f16;
+            display:grid;
+            place-items:center;
+        }
+        .preview-img {
+            max-width:100%;
+            max-height:92vh;
+            object-fit:contain;
+        }
+        .preview-side {
+            border-left:1px solid var(--line);
+            padding:18px;
+            display:flex;
+            flex-direction:column;
+            gap:14px;
+        }
+        .preview-title {
+            margin:0;
+            font-size:15px;
+            line-height:1.35;
+            font-weight:950;
+        }
+        .preview-text {
+            color:var(--muted);
+            font-size:12px;
+            line-height:1.6;
+            word-break:break-word;
+        }
+        .preview-close {
+            align-self:flex-end;
+            width:34px;
+            height:34px;
+            border:1px solid var(--line);
+            border-radius:999px;
+            background:var(--panel);
+            color:var(--text);
+            cursor:pointer;
+        }
+        @media (max-width: 760px) {
+            .page { width:calc(100vw - 28px); padding:32px 0 56px; }
+            .topbar { align-items:stretch; flex-direction:column; }
+            h1 { font-size:34px; }
+            .search-wrap { min-width:0; width:100%; }
+            .grid { grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); }
+            .preview-panel { grid-template-columns:1fr; }
+            .preview-side { border-left:none; border-top:1px solid var(--line); }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <div>
+                <h1>ASSETS</h1>
+                <div class="kicker" data-label="subtitle">生成资产</div>
+            </div>
+            <div class="search-wrap">
+                <input id="search" class="search" data-placeholder="search" placeholder="搜索资产、提示词、模型..." autocomplete="off">
+                <button id="refreshBtn" class="icon-btn" type="button" title="刷新">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 1 1-2.64-6.36"></path>
+                        <path d="M21 3v6h-6"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <div id="chips" class="chips"></div>
+        <main id="content"></main>
+    </div>
+
+    <div id="preview" class="preview" aria-hidden="true">
+        <div class="preview-panel">
+            <div class="preview-img-wrap"><img id="previewImg" class="preview-img" alt=""></div>
+            <aside class="preview-side">
+                <button id="previewClose" class="preview-close" type="button">×</button>
+                <h2 id="previewTitle" class="preview-title"></h2>
+                <div id="previewMeta" class="preview-text"></div>
+                <div id="previewPrompt" class="preview-text"></div>
+                <a id="previewDownload" class="action" href="#" download data-label="download">下载</a>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        const I18N = {
+            zh: {
+                subtitle:'生成资产',
+                search:'搜索资产、提示词、模型...',
+                all:'全部',
+                empty:'暂无资产',
+                download:'下载',
+                delete:'删除',
+                confirmDelete:'再次点击删除',
+                items:'项',
+                unnamed:'未命名资产',
+                unknown:'未知来源',
+                prompt:'提示词',
+                model:'模型',
+                source:'来源'
+            },
+            en: {
+                subtitle:'Generated Assets',
+                search:'Search assets, prompts, models...',
+                all:'All',
+                empty:'No assets',
+                download:'Download',
+                delete:'Delete',
+                confirmDelete:'Click again to delete',
+                items:'items',
+                unnamed:'Untitled asset',
+                unknown:'Unknown source',
+                prompt:'Prompt',
+                model:'Model',
+                source:'Source'
+            }
+        };
+        const CATEGORY_ORDER = [
+            'generated_zimage',
+            'generated_enhance',
+            'generated_edit',
+            'generated_vector',
+            'generated_angle',
+            'generated_online',
+            'generated_canvas',
+            'generated_other',
+            'characters',
+            'scenes'
+        ];
+        let lang = (window.StudioI18n && window.StudioI18n.lang && window.StudioI18n.lang()) || localStorage.getItem('studio_lang') || 'zh';
+        let library = null;
+        let activeCategory = 'all';
+        let query = '';
+
+        function tr(key) {
+            return (I18N[lang] || I18N.zh)[key] || I18N.zh[key] || key;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.documentElement.classList.toggle('theme-dark', isDark);
+            document.body.classList.toggle('theme-dark', isDark);
+        }
+
+        function applyLanguage() {
+            document.querySelectorAll('[data-label]').forEach(el => {
+                el.textContent = tr(el.dataset.label);
+            });
+            document.querySelectorAll('[data-placeholder]').forEach(el => {
+                el.placeholder = tr(el.dataset.placeholder);
+            });
+            render();
+        }
+
+        function imageCategories() {
+            const cats = Array.isArray(library?.categories) ? library.categories : [];
+            return cats
+                .filter(cat => cat && cat.type === 'image')
+                .map(cat => ({...cat, items:Array.isArray(cat.items) ? cat.items : []}))
+                .sort((a, b) => {
+                    const ai = CATEGORY_ORDER.indexOf(a.id);
+                    const bi = CATEGORY_ORDER.indexOf(b.id);
+                    return (ai < 0 ? 999 : ai) - (bi < 0 ? 999 : bi);
+                });
+        }
+
+        function itemText(item, cat) {
+            return [item.name, item.prompt, item.model, item.workflow_json, item.source, cat.name].filter(Boolean).join(' ').toLowerCase();
+        }
+
+        function visibleItems(cat) {
+            const q = query.trim().toLowerCase();
+            if (!q) return cat.items;
+            return cat.items.filter(item => itemText(item, cat).includes(q));
+        }
+
+        function allVisibleCount(cats) {
+            return cats.reduce((sum, cat) => sum + visibleItems(cat).length, 0);
+        }
+
+        function dateLabel(value) {
+            const ms = Number(value || 0);
+            if (!ms) return '';
+            try {
+                return new Date(ms).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+            } catch(e) {
+                return '';
+            }
+        }
+
+        function renderChips(cats) {
+            const allCount = allVisibleCount(cats);
+            const parts = [`<button class="chip ${activeCategory === 'all' ? 'active' : ''}" data-category="all">${escapeHtml(tr('all'))}<span class="chip-count">${allCount}</span></button>`];
+            for (const cat of cats) {
+                const count = visibleItems(cat).length;
+                parts.push(`<button class="chip ${activeCategory === cat.id ? 'active' : ''}" data-category="${escapeHtml(cat.id)}">${escapeHtml(cat.name)}<span class="chip-count">${count}</span></button>`);
+            }
+            document.getElementById('chips').innerHTML = parts.join('');
+        }
+
+        function renderCard(item, cat) {
+            const name = item.name || tr('unnamed');
+            const source = item.model || item.workflow_json || item.source || cat.name || tr('unknown');
+            const created = dateLabel(item.created_at);
+            return `
+                <article class="asset-card" data-item="${escapeHtml(item.id)}">
+                    <img class="thumb" src="${escapeHtml(item.url)}" alt="${escapeHtml(name)}" loading="lazy" data-preview="${escapeHtml(item.id)}">
+                    <div class="asset-info">
+                        <div class="asset-name">${escapeHtml(name)}</div>
+                        <div class="asset-meta"><span>${escapeHtml(source)}</span><span>${escapeHtml(created)}</span></div>
+                    </div>
+                    <div class="asset-actions">
+                        <a class="action" href="${escapeHtml(item.url)}" download>${escapeHtml(tr('download'))}</a>
+                        <button class="action danger" type="button" data-delete="${escapeHtml(item.id)}">${escapeHtml(tr('delete'))}</button>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderSection(cat, items) {
+            if (!items.length) return '';
+            return `
+                <section class="section">
+                    <div class="section-head">
+                        <h2 class="section-title">${escapeHtml(cat.name)}</h2>
+                        <div class="section-count">${items.length} ${escapeHtml(tr('items'))}</div>
+                    </div>
+                    <div class="grid">${items.map(item => renderCard(item, cat)).join('')}</div>
+                </section>
+            `;
+        }
+
+        function render() {
+            if (!library) return;
+            const cats = imageCategories();
+            renderChips(cats);
+            const sections = cats
+                .filter(cat => activeCategory === 'all' || activeCategory === cat.id)
+                .map(cat => renderSection(cat, visibleItems(cat)))
+                .filter(Boolean)
+                .join('');
+            document.getElementById('content').innerHTML = sections || `<div class="empty">${escapeHtml(tr('empty'))}</div>`;
+        }
+
+        function findItem(itemId) {
+            for (const cat of imageCategories()) {
+                const item = cat.items.find(entry => entry.id === itemId);
+                if (item) return {item, cat};
+            }
+            return null;
+        }
+
+        function openPreview(itemId) {
+            const found = findItem(itemId);
+            if (!found) return;
+            const {item, cat} = found;
+            document.getElementById('previewImg').src = item.url;
+            document.getElementById('previewTitle').textContent = item.name || tr('unnamed');
+            document.getElementById('previewMeta').innerHTML = [
+                `${tr('source')}: ${escapeHtml(cat.name)}`,
+                item.model ? `${tr('model')}: ${escapeHtml(item.model)}` : '',
+                item.workflow_json ? `Workflow: ${escapeHtml(item.workflow_json)}` : '',
+                dateLabel(item.created_at)
+            ].filter(Boolean).join('<br>');
+            document.getElementById('previewPrompt').textContent = item.prompt ? `${tr('prompt')}: ${item.prompt}` : '';
+            document.getElementById('previewDownload').href = item.url;
+            document.getElementById('preview').classList.add('open');
+            document.getElementById('preview').setAttribute('aria-hidden', 'false');
+        }
+
+        function closePreview() {
+            document.getElementById('preview').classList.remove('open');
+            document.getElementById('preview').setAttribute('aria-hidden', 'true');
+            document.getElementById('previewImg').src = '';
+        }
+
+        async function loadLibrary() {
+            const data = await fetch('/api/asset-library', {cache:'no-store'}).then(r => r.json());
+            library = data.library || {categories:[]};
+            render();
+        }
+
+        async function deleteAsset(itemId, btn) {
+            if (btn.dataset.confirm !== '1') {
+                btn.dataset.confirm = '1';
+                btn.textContent = tr('confirmDelete');
+                window.setTimeout(() => {
+                    if (btn.dataset.confirm === '1') {
+                        btn.dataset.confirm = '';
+                        btn.textContent = tr('delete');
+                    }
+                }, 2400);
+                return;
+            }
+            const data = await fetch(`/api/asset-library/items/${encodeURIComponent(itemId)}`, {method:'DELETE'}).then(r => r.json());
+            library = data.library || library;
+            render();
+        }
+
+        function connectSocket() {
+            try {
+                const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+                const ws = new WebSocket(`${protocol}://${location.host}/ws/stats?client_id=canvas_assets_${Date.now().toString(36)}`);
+                ws.onmessage = event => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        if (data.type === 'new_image') window.setTimeout(loadLibrary, 500);
+                    } catch(e) {}
+                };
+                ws.onclose = () => window.setTimeout(connectSocket, 2500);
+            } catch(e) {}
+        }
+
+        document.getElementById('search').addEventListener('input', e => {
+            query = e.target.value || '';
+            render();
+        });
+        document.getElementById('refreshBtn').addEventListener('click', loadLibrary);
+        document.getElementById('chips').addEventListener('click', e => {
+            const btn = e.target.closest('[data-category]');
+            if (!btn) return;
+            activeCategory = btn.dataset.category || 'all';
+            render();
+        });
+        document.getElementById('content').addEventListener('click', e => {
+            const del = e.target.closest('[data-delete]');
+            if (del) {
+                deleteAsset(del.dataset.delete, del).catch(err => alert(err.message || String(err)));
+                return;
+            }
+            const preview = e.target.closest('[data-preview]');
+            if (preview) openPreview(preview.dataset.preview);
+        });
+        document.getElementById('previewClose').addEventListener('click', closePreview);
+        document.getElementById('preview').addEventListener('click', e => {
+            if (e.target.id === 'preview') closePreview();
+        });
+        window.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closePreview();
+        });
+        window.addEventListener('message', event => {
+            if (event.data?.type === 'studio-theme') applyTheme(event.data.theme);
+            if (event.data?.type === 'studio-lang') {
+                lang = event.data.lang || lang;
+                applyLanguage();
+            }
+        });
+        window.addEventListener('studio-theme-change', e => applyTheme(e.detail?.theme));
+        window.addEventListener('studio-lang-change', e => {
+            lang = e.detail?.lang || lang;
+            applyLanguage();
+        });
+
+        applyTheme(window.StudioTheme?.get?.() || localStorage.getItem('studio_theme') || 'light');
+        applyLanguage();
+        loadLibrary().catch(err => {
+            document.getElementById('content').innerHTML = `<div class="empty">${escapeHtml(err.message || String(err))}</div>`;
+        });
+        connectSocket();
+    </script>
+</body>
+</html>

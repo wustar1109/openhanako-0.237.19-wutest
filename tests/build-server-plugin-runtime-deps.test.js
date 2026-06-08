@@ -1,0 +1,95 @@
+import fs from "fs";
+import os from "os";
+import path from "path";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+
+import {
+  collectBundledPluginRuntimeDependencies,
+  copyBundledPluginRuntimeDependencies,
+} from "../scripts/build-server-plugin-runtime-deps.mjs";
+
+describe("bundled plugin runtime dependencies", () => {
+  let tempDir;
+  let rootDir;
+  let outDir;
+
+  beforeEach(() => {
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "hana-plugin-runtime-deps-"));
+    rootDir = path.join(tempDir, "root");
+    outDir = path.join(tempDir, "dist-server", "mac-arm64");
+
+    fs.mkdirSync(path.join(rootDir, "plugins", "mcp", "lib"), { recursive: true });
+    fs.writeFileSync(
+      path.join(rootDir, "plugins", "mcp", "index.js"),
+      'import { loadRuntime } from "./lib/mcp-runtime.js";\nexport default loadRuntime;\n',
+      "utf-8",
+    );
+    fs.writeFileSync(
+      path.join(rootDir, "plugins", "mcp", "lib", "mcp-runtime.js"),
+      'import { createSettingsUpdate } from "../../../lib/tools/settings-update-result.js";\nexport function loadRuntime() { return createSettingsUpdate; }\n',
+      "utf-8",
+    );
+
+    fs.mkdirSync(path.join(rootDir, "plugins", "image-gen", "lib"), { recursive: true });
+    fs.writeFileSync(
+      path.join(rootDir, "plugins", "image-gen", "lib", "local-cli-wrapper.js"),
+      'import { buildCliArgs } from "../../../core/media-runtime-contract.js";\nexport { buildCliArgs };\n',
+      "utf-8",
+    );
+    fs.mkdirSync(path.join(rootDir, "plugins", "image-gen", "tests"), { recursive: true });
+    fs.writeFileSync(
+      path.join(rootDir, "plugins", "image-gen", "tests", "fixture.test.js"),
+      'import "../../../server/test-only.js";\n',
+      "utf-8",
+    );
+
+    fs.mkdirSync(path.join(rootDir, "lib", "tools"), { recursive: true });
+    fs.writeFileSync(
+      path.join(rootDir, "lib", "tools", "settings-update-result.js"),
+      "export function createSettingsUpdate() { return {}; }\n",
+      "utf-8",
+    );
+    fs.mkdirSync(path.join(rootDir, "core"), { recursive: true });
+    fs.writeFileSync(
+      path.join(rootDir, "core", "media-runtime-contract.js"),
+      "export function buildCliArgs() { return []; }\n",
+      "utf-8",
+    );
+  });
+
+  afterEach(() => {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  });
+
+  it("copies host modules imported by bundled plugin source into the packaged server root", async () => {
+    const deps = await collectBundledPluginRuntimeDependencies({ rootDir });
+
+    expect(deps).toEqual([
+      path.join("core", "media-runtime-contract.js"),
+      path.join("lib", "tools", "settings-update-result.js"),
+    ]);
+
+    const copied = await copyBundledPluginRuntimeDependencies({ rootDir, outDir });
+
+    expect(copied).toEqual(deps);
+    expect(fs.readFileSync(path.join(outDir, "lib", "tools", "settings-update-result.js"), "utf-8"))
+      .toContain("createSettingsUpdate");
+    expect(fs.readFileSync(path.join(outDir, "core", "media-runtime-contract.js"), "utf-8"))
+      .toContain("buildCliArgs");
+    expect(fs.existsSync(path.join(outDir, "plugins", "mcp", "index.js"))).toBe(false);
+  });
+
+  it("rejects plugin imports into host paths that are not explicit runtime surfaces", async () => {
+    fs.mkdirSync(path.join(rootDir, "plugins", "bad"), { recursive: true });
+    fs.writeFileSync(
+      path.join(rootDir, "plugins", "bad", "index.js"),
+      'import "../../server/private.js";\n',
+      "utf-8",
+    );
+    fs.mkdirSync(path.join(rootDir, "server"), { recursive: true });
+    fs.writeFileSync(path.join(rootDir, "server", "private.js"), "export {};\n", "utf-8");
+
+    await expect(collectBundledPluginRuntimeDependencies({ rootDir }))
+      .rejects.toThrow(/server[/\\]private\.js/);
+  });
+});

@@ -1,0 +1,1865 @@
+/**
+ * HanaEngine — Hanako 的核心引擎（Thin Facade）
+ *
+ * 持有所有 Manager，对外暴露统一 API。
+ * 具体逻辑委托给：
+ *   - AgentManager       — agent CRUD / init / switch
+ *   - SessionCoordinator — session 生命周期 / listing
+ *   - ConfigCoordinator  — 配置读写 / 模型 / 搜索 / utility
+ *   - ChannelManager     — 频道 CRUD / 成员管理
+ *   - BridgeSessionManager — 外部平台 session
+ *   - ModelManager        — 模型注册 / 发现
+ *   - PreferencesManager  — 全局偏好
+ *   - SkillManager        — 技能注册 / 同步
+ */
+import fs from "fs";
+import os from "os";
+import path from "path";
+import { migrateConfigScope } from "../shared/migrate-config-scope.js";
+import { migrateToProvidersYaml } from "./migrate-providers.js";
+import { migrateProviderMediaConfig } from "./provider-media-config.js";
+import { runMigrations } from "./migrations.js";
+import { createServerRuntimeContext } from "./server-runtime-context.js";
+import { StudioCronService } from "./studio-cron-service.js";
+import { createRuntimeExecutionBoundary } from "./execution-boundary.js";
+import { ResourceAccessService } from "./resource-access-service.js";
+import { ResourceService } from "./resource-service.js";
+import { appendSecurityAuditEvent } from "./security-audit-log.js";
+import { findModel } from "../shared/model-ref.js";
+import { resolveWorkspaceSkillPaths } from "../shared/workspace-skill-paths.js";
+import { resolveHanaPiAgentDir, resolveHanaPiProjectDir } from "../shared/hana-runtime-paths.js";
+import { PluginManager } from "./plugin-manager.js";
+import { PluginDevService } from "./plugin-dev-service.js";
+import { createPluginDevTools } from "./plugin-dev-tools.js";
+import { DefaultResourceLoader, SettingsManager } from "../lib/pi-sdk/index.js";
+import { compactSessionWithCachePreservation, isStaleExtensionContextError } from "./session-compactor.js";
+import { DeferredResultCoordinator } from "../lib/deferred-result-coordinator.js";
+import { getToolSessionPath, normalizeToolRuntimeContext } from "../lib/tools/tool-session.js";
+import { loadLocale } from "../server/i18n.js";
+
+/** 已知的外部 AI 工具技能目录（相对 $HOME） */
+export const WELL_KNOWN_SKILL_PATHS = [
+  { suffix: ".claude/skills",     label: "Claude Code" },
+  { suffix: ".codex/skills",      label: "Codex" },
+  { suffix: ".openclaw/skills",   label: "OpenClaw" },
+  { suffix: ".pi/agent/skills",   label: "Pi" },
+  { suffix: ".agents/skills",     label: "Agents" },
+];
+
+function findUniqueModelById(models, id) {
+  if (!id || !Array.isArray(models)) return null;
+  const matches = models.filter(m => m.id === id);
+  return matches.length === 1 ? matches[0] : null;
+}
+
+function readSessionThinkingLevel(ctx) {
+  try {
+    const level = ctx?.sessionManager?.buildSessionContext?.()?.thinkingLevel;
+    return typeof level === "string" ? level : null;
+  } catch {
+    return null;
+  }
+}
+
+function resolveRequestReasoningLevel(models, prefs, ctx) {
+  const sessionThinkingLevel = readSessionThinkingLevel(ctx);
+  const preferenceThinkingLevel = models.resolveThinkingLevel(prefs.getThinkingLevel());
+  return preferenceThinkingLevel === "xhigh" && sessionThinkingLevel === "high"
+    ? "xhigh"
+    : (sessionThinkingLevel || preferenceThinkingLevel);
+}
+
+function resolveChannelsEnabledForToolAvailability(engine) {
+  try {
+    if (
+      Object.prototype.hasOwnProperty.call(engine, "isChannelsEnabled")
+      && typeof engine.isChannelsEnabled === "function"
+    ) {
+      return engine.isChannelsEnabled();
+    }
+    if (typeof engine._configCoord?.getChannelsEnabled === "function") {
+      return engine._configCoord.getChannelsEnabled();
+    }
+    if (typeof engine._prefs?.getChannelsEnabled === "function") {
+      return engine._prefs.getChannelsEnabled();
+    }
+  } catch {
+    return undefined;
+  }
+  return undefined;
+}
+
+import { PreferencesManager } from "./preferences-manager.js";
+import { ModelManager } from "./model-manager.js";
+import { SkillManager } from "./skill-manager.js";
+import { BridgeSessionManager } from "./bridge-session-manager.js";
+import { createSlashSystem } from "./slash-commands/index.js";
+import { AgentManager } from "./agent-manager.js";
+import { sanitizeMessagesForModel, stripHistoricalInlineMediaForReplay } from "./message-sanitizer.js";
+import { normalizeProviderContextMessages, normalizeProviderPayload } from "./provider-compat.js";
+import { VisionBridge } from "./vision-bridge.js";
+import { SessionCoordinator } from "./session-coordinator.js";
+import { ConfigCoordinator, SHARED_MODEL_KEYS } from "./config-coordinator.js";
+import { ChannelManager } from "./channel-manager.js";
+import {
+  summarizeTitle as _summarizeTitle,
+  translateSkillNames as _translateSkillNames,
+  summarizeActivity as _summarizeActivity,
+  summarizeActivityQuick as _summarizeActivityQuick,
+} from "./llm-utils.js";
+import { debugLog, createModuleLogger } from "../lib/debug-log.js";
+import { createSandboxedTools } from "../lib/sandbox/index.js";
+import { externalReadPathsFromSessionFiles } from "../lib/sandbox/win32-policy.js";
+import { Win32LegacySandboxCleanupQueue } from "../lib/sandbox/win32-legacy-migration.js";
+import { t } from "../server/i18n.js";
+import { CheckpointStore } from "../lib/checkpoint-store.js";
+import { assertAllToolsCategorized } from "../shared/tool-categories.js";
+import { workspaceRootsForSandbox } from "../shared/workspace-scope.js";
+import { wrapWithCheckpoint } from "../lib/checkpoint-wrapper.js";
+import { wrapWithSessionPermission } from "../lib/tools/session-permission-wrapper.js";
+import { filterToolObjectsByAvailability } from "./tool-availability.js";
+import { TaskRegistry } from "../lib/task-registry.js";
+import { TerminalSessionManager } from "../lib/terminal/terminal-session-manager.js";
+import { PluginInstallRecords } from "../lib/plugin-install-records.js";
+import { ComputerHost } from "./computer-use/computer-host.js";
+import { ComputerProviderRegistry } from "./computer-use/provider-registry.js";
+import { createMockComputerProvider } from "./computer-use/providers/mock-provider.js";
+import { createMacosCuaProvider } from "./computer-use/providers/macos-cua-provider.js";
+import { createWindowsUiaProvider } from "./computer-use/providers/windows-uia-provider.js";
+import {
+  effectiveComputerUseSettings,
+  isComputerUsePlatformSupported,
+} from "./computer-use/platform-support.js";
+import { SessionFileRegistry } from "../lib/session-files/session-file-registry.js";
+import { serializeSessionFile } from "../lib/session-files/session-file-response.js";
+import { NotificationService } from "../lib/notifications/notification-service.js";
+import {
+  getSkillNameTranslationCachePath,
+  translateSkillNamesWithCache,
+} from "../lib/skills/skill-name-translation-cache.js";
+
+const moduleLog = createModuleLogger("engine");
+const toolAvailabilityLog = createModuleLogger("tool-availability");
+const win32SandboxCleanupLog = createModuleLogger("win32-sandbox-cleanup");
+
+export class HanaEngine {
+  /**
+   * @param {object} dirs
+   * @param {string} dirs.hanakoHome
+   * @param {string} dirs.productDir
+   * @param {string} [dirs.agentId]
+   * @param {string} [dirs.appVersion]
+   */
+  constructor({ hanakoHome, productDir, agentId, appVersion }) {
+    this.hanakoHome = hanakoHome;
+    this.productDir = productDir;
+    this.appVersion = appVersion || "0.0.0";
+    this._runtimeContext = null;
+    this._resources = null;
+    this._resourceAccess = null;
+    this.agentsDir = path.join(hanakoHome, "agents");
+    this.userDir = path.join(hanakoHome, "user");
+    this.channelsDir = path.join(hanakoHome, "channels");
+    fs.mkdirSync(this.channelsDir, { recursive: true });
+    this._studioCronService = new StudioCronService({
+      hanakoHome: this.hanakoHome,
+      agentsDir: this.agentsDir,
+      getStudioId: () => {
+        const studioId = this._runtimeContext?.studioId;
+        if (!studioId) throw new Error("runtime studioId unavailable");
+        return studioId;
+      },
+    });
+    this._sessionFiles = new SessionFileRegistry({
+      managedCacheRoot: path.join(hanakoHome, "session-files"),
+    });
+    this._pluginInstallRecords = new PluginInstallRecords({ hanakoHome });
+
+    // ── Core managers ──
+    this._prefs = new PreferencesManager({ userDir: this.userDir, agentsDir: this.agentsDir });
+    this._models = new ModelManager({ hanakoHome });
+
+    // 确定启动时焦点 agent
+    const startId = agentId || this._prefs.getPrimaryAgent() || this._prefs.findFirstAgent();
+    if (!startId) throw new Error(t("error.noAgentsFound"));
+
+    // ── Channel Manager ──
+    this._channels = new ChannelManager({
+      channelsDir: this.channelsDir,
+      agentsDir: this.agentsDir,
+      userDir: this.userDir,
+      getHub: () => this._hubCallbacks,
+    });
+
+    // ── Agent Manager ──
+    this._agentMgr = new AgentManager({
+      hanakoHome: this.hanakoHome,
+      agentsDir: this.agentsDir,
+      productDir: this.productDir,
+      userDir: this.userDir,
+      channelsDir: this.channelsDir,
+      getPrefs: () => this._prefs,
+      getModels: () => this._models,
+      getHub: () => this._hubCallbacks,
+      getSkills: () => this._skills,
+      getSearchConfig: () => this.getSearchConfig(),
+      resolveUtilityConfig: (options) => this.resolveUtilityConfig(options),
+      getSharedModels: () => this._configCoord.getSharedModels(),
+      getChannelManager: () => this._channels,
+      getSessionCoordinator: () => this._sessionCoord,
+      getEngine: () => this,
+      getResourceLoader: () => this._resourceLoader,
+    });
+
+    // ── Session Coordinator ──
+    this._sessionCoord = new SessionCoordinator({
+      agentsDir: this.agentsDir,
+      getAgent: () => this.agent,
+      getActiveAgentId: () => this.currentAgentId,
+      getModels: () => this._models,
+      getResourceLoader: () => this._resourceLoader,
+      getSkills: () => this._skills,
+      buildTools: (cwd, ct, opts) => this.buildTools(cwd, ct, opts),
+      emitEvent: (e, sp) => this._emitEvent(e, sp),
+      emitDevLog: (t, l) => this.emitDevLog(t, l),
+      getHomeCwd: (agentId) => this.getHomeCwd(agentId),
+      agentIdFromSessionPath: (p) => this.agentIdFromSessionPath(p),
+      switchAgentOnly: (id) => this._agentMgr.switchAgentOnly(id),
+      getConfig: () => this.config,
+      getPrefs: () => this._prefs,
+      getAgents: () => this._agentMgr.agents,
+      getActivityStore: (id) => this.getActivityStore(id),
+      getAgentById: (id) => this._agentMgr.getAgent(id),
+      ensureAgentRuntime: (id, opts) => this.ensureAgentRuntime(id, opts),
+      listAgents: () => this.listAgents(),
+      getConfirmStore: () => this._confirmStore,
+      getDeferredResultStore: () => this._deferredResultStore,
+      getTaskRegistry: () => this._taskRegistry,
+      getEngine: () => this,
+      closeTerminalsForSession: (sessionPath) => this._terminalSessions.closeForSession(sessionPath),
+      closeAllTerminals: () => this._terminalSessions.closeAll(),
+      onBeforeSessionCreate: async (cwd) => {
+        await this.syncWorkspaceSkillPaths(cwd, { reload: true, emitEvent: false });
+      },
+    });
+
+    // ── Config Coordinator ──
+    this._configCoord = new ConfigCoordinator({
+      hanakoHome,
+      agentsDir: this.agentsDir,
+      getAgent: () => this.agent,
+      getAgentById: (id) => this._agentMgr.getAgent(id),
+      getActiveAgentId: () => this._agentMgr.activeAgentId,
+      getAgents: () => this._agentMgr.agents,
+      getModels: () => this._models,
+      getPrefs: () => this._prefs,
+      getSkills: () => this._skills,
+      getSession: () => this._sessionCoord.session,
+      getSessionCoordinator: () => this._sessionCoord,
+      getHub: () => this._hubCallbacks,
+      emitEvent: (e, sp) => this._emitEvent(e, sp),
+      emitDevLog: (t, l) => this.emitDevLog(t, l),
+      getCurrentModel: () => this.currentModel?.name,
+    });
+
+    this._visionBridge = new VisionBridge({
+      resolveVisionConfig: () => this.resolveVisionConfig(),
+    });
+
+    // ── Bridge Session Manager ──
+    this._bridge = new BridgeSessionManager({
+      getAgent: () => this.agent,
+      getAgentById: (id) => this._agentMgr.getAgent(id),
+      getAgents: () => this._agentMgr.agents,
+      getModelManager: () => this._models,
+      getResourceLoader: () => this._resourceLoader,
+      getSkills: () => this._skills,
+      getPreferences: () => this._readPreferences(),
+      buildTools: (cwd, customTools, opts) => this.buildTools(cwd, customTools, opts),
+      getHomeCwd: (agentId) => this.getHomeCwd(agentId),
+      getVisionBridge: () => this._visionBridge,
+      isVisionAuxiliaryEnabled: () => this.isVisionAuxiliaryEnabled(),
+      getHanakoHome: () => this.hanakoHome,
+      registerSessionFile: (entry) => this.registerSessionFile(entry),
+      getSessionFile: (fileId, options) => this.getSessionFile(fileId, options),
+      getSessionFileByPath: (filePath, options) => this.getSessionFileByPath(filePath, options),
+      emitEvent: (event, sessionPath) => this._emitEvent(event, sessionPath),
+      ensureAgentRuntime: (id, opts) => this.ensureAgentRuntime(id, opts),
+    });
+    this._notifications = new NotificationService({
+      emitDesktop: ({ title, body, agentId }) => {
+        this._hubCallbacks?.eventBus?.emit({ type: "notification", title, body, agentId: agentId || null }, null);
+      },
+      getBridgeManager: () => this._hubCallbacks?.hub?.bridgeManager || null,
+    });
+
+    // ── Slash Command System ──
+    // hub 尚未注入，dispatcher 的 hub 字段先为 null；setHubCallbacks 时通过 setHub() 补齐
+    this._slashSystem = createSlashSystem({ engine: this, hub: null });
+
+    // 任务注册表（外部 abort 用）；handler 是运行时函数，任务元数据持久化供插件重启恢复和诊断使用。
+    this._taskRegistry = new TaskRegistry({
+      persistencePath: path.join(this.hanakoHome, ".ephemeral", "plugin-tasks.json"),
+    });
+
+    // subagent AbortController 存储（engine 级别，跨 agent 共享）
+    this._subagentControllers = new Map();
+    this._subagentRunStore = null;
+    this._taskRegistry.registerHandler("subagent", {
+      abort: (taskId) => {
+        const ctrl = this._subagentControllers.get(taskId);
+        if (ctrl) ctrl.abort();
+      },
+    });
+
+    this._terminalSessions = new TerminalSessionManager({
+      hanakoHome: this.hanakoHome,
+      emitEvent: (event, sessionPath) => this._emitEvent(event, sessionPath),
+    });
+
+    // Checkpoint 备份存储
+    this._checkpointStore = new CheckpointStore(
+      path.join(this.hanakoHome, "checkpoints")
+    );
+
+    // Computer Use runtime is deliberately lazy. Constructing the provider
+    // registry resolves native helper paths and wires platform-specific
+    // runners; keep startup cold until the global switch is enabled or a
+    // Computer Use endpoint/tool explicitly needs the host.
+    this._computerProviders = null;
+    this._computerHost = null;
+
+    // ── Plugin Manager ──
+    this._pluginManager = null;  // initialized async in initPlugins()
+    this._pluginDevService = null;
+    this._pluginDevEventBusCleanup = null;
+
+    // Pi SDK resources（init 时填充）
+    this._resourceLoader = null;
+
+    // Hub 回调（由 Hub 构造后通过 setHubCallbacks 注入，替代旧的 engine._hub 双向引用）
+    this._hubCallbacks = null;
+
+    // 事件系统
+    this._listeners = new Set();
+    this._eventBus = null;
+
+    // 首次剥媒体通知去重：sessionPath → 已通知。由 context extension handler 维护，
+    // 避免每一轮对话都重复广播 stripped_notice 事件。
+    this._imageStripNotified = new Set();
+    this._videoStripNotified = new Set();
+
+    // UI context（用户当前视野）：sessionPath → { currentViewed, activeFile,
+    // activePreview, pinnedFiles }。由前端每次发 prompt 时带过来，经 server/routes/chat.js
+    // 写入；current_status 工具按需读取 ui_context 来解析“这个 / 当前打开的”等指代。
+    this._uiContextBySession = new Map();
+
+    // DevTools 日志
+    this._devLogs = [];
+    this._devLogsMax = 200;
+
+    this._outboundProxyRuntime = null;
+    this._win32LegacySandboxCleanupQueue = process.platform === "win32"
+      ? new Win32LegacySandboxCleanupQueue({
+          hanakoHome: this.hanakoHome,
+          log: win32SandboxCleanupLog,
+        })
+      : null;
+
+    // 设置起始 agentId
+    this._agentMgr.activeAgentId = startId;
+  }
+
+  // ════════════════════════════
+  //  Agent 代理（→ AgentManager）
+  // ════════════════════════════
+
+  /** @ui-focus-only 返回 UI 焦点 agent 实例，后端逻辑应通过 getAgent(agentId) 查询 */
+  get agent() { return this._agentMgr.agent; }
+  getAgent(agentId) { return this._agentMgr.getAgent(agentId); }
+  async ensureAgentRuntime(agentId, opts = {}) {
+    const targetId = agentId || this.currentAgentId;
+    return this._agentMgr.ensureAgentRuntime(targetId, opts);
+  }
+  /** @ui-focus-only 返回 UI 焦点 agent 的 ID */
+  get currentAgentId() { return this._agentMgr.activeAgentId; }
+  get confirmStore() { return this._confirmStore; }
+  getStudioCronStore() { return this._studioCronService; }
+
+  /** @deprecated 工具应通过 emitEvent(event, sessionPath) 传入显式 sessionPath */
+  emitSessionEvent(event) {
+    this._emitEvent(event, this.currentSessionPath);
+  }
+
+  setConfirmStore(store) {
+    this._confirmStore = store;
+    if (store) {
+      store.onResolved = (confirmId, action) => {
+        this._emitEvent({ type: "confirmation_resolved", confirmId, action }, null);
+      };
+    }
+  }
+
+  setDeferredResultStore(store) {
+    this._deferredResultCoordinator?.dispose?.();
+    this._deferredResultStore = store;
+    this._deferredResultCoordinator = null;
+    if (store) {
+      this._deferredResultCoordinator = new DeferredResultCoordinator({
+        store,
+        sessionCoordinator: this._sessionCoord,
+        recordCustomEntry: (sessionPath, customType, data) => (
+          this.recordSessionCustomEntry(sessionPath, customType, data)
+        ),
+      });
+      this._deferredResultCoordinator.start();
+    }
+  }
+
+  get deferredResults() {
+    return this._deferredResultStore || null;
+  }
+
+  setSubagentRunStore(store) {
+    this._subagentRunStore = store || null;
+  }
+
+  get subagentRuns() {
+    return this._subagentRunStore || null;
+  }
+
+  get taskRegistry() {
+    return this._taskRegistry;
+  }
+
+  get runtimeContext() {
+    return this._runtimeContext;
+  }
+
+  getRuntimeContext() {
+    if (!this._runtimeContext) {
+      throw new Error("server runtime context is not initialized");
+    }
+    return this._runtimeContext;
+  }
+
+  createExecutionBoundary(options = {}) {
+    return createRuntimeExecutionBoundary(this.getRuntimeContext(), options);
+  }
+
+  get terminalSessions() {
+    return this._terminalSessions;
+  }
+
+  registerSessionFile(entry) { return this._sessionFiles.registerFile(entry); }
+  getSessionFile(fileId, options) { return this._sessionFiles.get(fileId, options); }
+  getSessionFileByPath(filePath, options) { return this._sessionFiles.getByFilePath(filePath, options); }
+  listSessionFiles(sessionPath) { return this._sessionFiles.list(sessionPath); }
+  get resources() { return this._resources; }
+  getResourceService() {
+    if (!this._resources) throw new Error("resource service is not initialized");
+    return this._resources;
+  }
+  getResourceAccessService() {
+    if (!this._resourceAccess) throw new Error("resource access service is not initialized");
+    return this._resourceAccess;
+  }
+  getResource(resourceId) { return this.getResourceService().getResource(resourceId); }
+  resolveResourceContent(resourceId) { return this.getResourceService().resolveContent(resourceId); }
+  serializeSessionFile(file) { return serializeSessionFile(file, { runtimeContext: this.getRuntimeContext() }); }
+  async cleanupColdSessionFiles(options) {
+    return this._sessionFiles.cleanupColdSessions({
+      agentsDir: this.agentsDir,
+      ...(options || {}),
+    });
+  }
+
+  setSubagentController(taskId, controller) { this._subagentControllers.set(taskId, controller); }
+  removeSubagentController(taskId) { this._subagentControllers.delete(taskId); }
+
+  /**
+   * 写入某 session 当前的 UI context（用户视野）。
+   * 前端在发每条 prompt 时带上；current_status(ui_context) 按需读取。
+   * 传 null / undefined 等价于删除（显式清空）。
+   *
+   * @param {string} sessionPath
+   * @param {{currentViewed?: string|null, activeFile?: string|null, activePreview?: string|null, pinnedFiles?: string[]}|null|undefined} ctx
+   */
+  setUiContext(sessionPath, ctx) {
+    if (!sessionPath) return;
+    if (ctx == null) {
+      this._uiContextBySession.delete(sessionPath);
+    } else {
+      this._uiContextBySession.set(sessionPath, ctx);
+    }
+  }
+
+  /** 读取某 session 当前的 UI context。无则返回 null。 */
+  getUiContext(sessionPath) {
+    if (!sessionPath) return null;
+    return this._uiContextBySession.get(sessionPath) || null;
+  }
+
+  // 向后兼容 getter
+  get agentDir() { return this.agent?.agentDir || path.join(this.agentsDir, this.currentAgentId); }
+  get baseDir() { return this.agentDir; }
+  get activityDir() { return path.join(this.agentDir, "activity"); }
+  get activityStore() { return this.getActivityStore(this.currentAgentId); }
+  getActivityStore(agentId) { return this._agentMgr.getActivityStore(agentId); }
+
+  get agents() { return this._agentMgr.agents; }
+  listAgents() { return this._agentMgr.listAgents(); }
+  invalidateAgentListCache() { this._agentMgr.invalidateAgentListCache(); }
+  async createAgent(opts) { return this._agentMgr.createAgent(opts); }
+  async switchAgent(agentId) {
+    return this._agentMgr.switchAgent(agentId);
+  }
+  async deleteAgent(agentId) { return this._agentMgr.deleteAgent(agentId); }
+  setPrimaryAgent(agentId) { return this._agentMgr.setPrimaryAgent(agentId); }
+  agentIdFromSessionPath(p) { return this._agentMgr.agentIdFromSessionPath(p); }
+  async createSessionForAgent(agentId, cwd, mem, model, opts = {}) {
+    return this._agentMgr.createSessionForAgent(agentId, cwd, mem, model, opts);
+  }
+
+  // 向后兼容：agent 属性代理
+  get agentName() { return this.agent.agentName; }
+  set agentName(v) { this.agent.agentName = v; }
+  get userName() { return this.agent.userName; }
+  set userName(v) { this.agent.userName = v; }
+  get configPath() { return this.agent.configPath; }
+  get sessionDir() { return this.agent.sessionDir; }
+  get factsDbPath() { return this.agent.factsDbPath; }
+  get memoryMdPath() { return this.agent.memoryMdPath; }
+
+  // ════════════════════════════
+  //  Session 代理（→ SessionCoordinator）
+  // ════════════════════════════
+
+  get session() { return this._sessionCoord.session; }
+  get messages() { return this._sessionCoord.session?.messages ?? []; }
+  get isStreaming() { return this._sessionCoord.session?.isStreaming ?? false; }
+  /** @ui-focus-only 返回 UI 焦点 session 的路径，后端逻辑不应依赖此值 */
+  get currentSessionPath() { return this._sessionCoord.currentSessionPath; }
+  get cwd() { return this._sessionCoord.session?.sessionManager?.getCwd?.() ?? process.cwd(); }
+  get deskCwd() { return this._sessionCoord.session?.sessionManager?.getCwd?.() || this.homeCwd || null; }
+
+  async createSession(mgr, cwd, mem, model, opts = {}) {
+    return this._sessionCoord.createSession(mgr, cwd, mem, model, opts);
+  }
+  async switchSession(p) {
+    const result = await this._sessionCoord.switchSession(p);
+    await this.syncWorkspaceSkillPaths(this.cwd, { reload: true, emitEvent: false });
+    return result;
+  }
+  /** @deprecated Phase 2: 使用 promptSession(path, text, opts) */
+  async prompt(text, opts) { return this._sessionCoord.prompt(text, opts); }
+  /** @deprecated Phase 2: 使用 abortSession(path) */
+  async abort() { return this._sessionCoord.abort(); }
+  /** @deprecated Phase 2: 使用 steerSession(path, text) */
+  steer(text) { return this._sessionCoord.steer(text); }
+
+  // ── Path 感知 API（Phase 2） ──
+  async promptSession(p, text, opts) { return this._sessionCoord.promptSession(p, text, opts); }
+  steerSession(p, text) { return this._sessionCoord.steerSession(p, text); }
+  async abortSession(p) { return this._sessionCoord.abortSession(p); }
+  get focusSessionPath() { return this._sessionCoord.currentSessionPath; }
+  getMessages(p) { return this._sessionCoord.getSessionByPath(p)?.messages ?? []; }
+  getSessionWorkspaceFolders(p = this.currentSessionPath) {
+    return this._sessionCoord.getSessionWorkspaceFolders(p);
+  }
+
+  async abortAllStreaming() { return this._sessionCoord.abortAllStreaming(); }
+  isBridgeSessionStreaming(key) { return this._bridge?.isSessionStreaming(key) ?? false; }
+  async abortBridgeSession(key) { return this._bridge?.abortSession(key) ?? false; }
+  steerBridgeSession(key, text) { return this._bridge?.steerSession(key, text) ?? false; }
+  get bridgeSessionManager() { return this._bridge; }
+  recordSessionCustomEntry(sessionPath, customType, data) {
+    const bridgeResult = this._bridge?.recordCustomEntryForSessionPath?.(sessionPath, customType, data);
+    if (bridgeResult?.ok) return bridgeResult;
+    return this._sessionCoord.recordCustomEntry(sessionPath, customType, data);
+  }
+  getBridgeContextForSessionPath(sessionPath, opts = {}) {
+    return this._bridge?.getBridgeContextForSessionPath?.(sessionPath, opts) || null;
+  }
+  async deliverNotification(payload, opts = {}) {
+    return this._notifications.notify(payload, opts);
+  }
+  get slashRegistry() { return this._slashSystem?.registry ?? null; }
+  get slashDispatcher() { return this._slashSystem?.dispatcher ?? null; }
+  /** /rc 接管态 + pending-selection 内存 store（Phase 2-A） */
+  get rcState() { return this._slashSystem?.rcState ?? null; }
+  async closeSession(p) { return this._sessionCoord.closeSession(p); }
+  async discardSessionRuntime(p, reason) { return this._sessionCoord.discardSessionRuntime(p, reason); }
+  getSessionByPath(p) { return this._sessionCoord.getSessionByPath(p); }
+  getSessionContextUsage(p) { return this._sessionCoord.getSessionContextUsage(p); }
+  /** 确保桌面 session 已加载进 cache 但不改 UI 焦点（Phase 2-C：/rc 接管态用） */
+  async ensureSessionLoaded(p) { return this._sessionCoord.ensureSessionLoaded(p); }
+  async reloadSessionRuntime(p) { return this._sessionCoord.reloadSessionRuntime(p); }
+  isSessionStreaming(p) { return this._sessionCoord.isSessionStreaming(p); }
+  isSessionSwitching(p) { return this._sessionCoord.isSessionSwitching(p); }
+  async abortSessionByPath(p) { return this._sessionCoord.abortSessionByPath(p); }
+  async listSessions() { return this._sessionCoord.listSessions(); }
+  async listArchivedSessions() { return this._sessionCoord.listArchivedSessions(); }
+  async saveSessionTitle(p, t) { return this._sessionCoord.saveSessionTitle(p, t); }
+  async clearSessionTitle(p) { return this._sessionCoord.clearSessionTitle(p); }
+  async setSessionPinned(p, pinned) { return this._sessionCoord.setSessionPinned(p, pinned); }
+  createSessionContext() { return this._sessionCoord.createSessionContext(); }
+  promoteActivitySession(f, agentId) { return this._sessionCoord.promoteActivitySession(f, agentId); }
+  async executeIsolated(prompt, opts) { return this._sessionCoord.executeIsolated(prompt, opts); }
+
+  // ════════════════════════════
+  //  Config 代理（→ ConfigCoordinator）
+  // ════════════════════════════
+
+  get config() { return this.agent.config; }
+  get factStore() { return this.agent.factStore; }
+  /** 下一次新对话将使用的模型（UI 选择器绑定此值） */
+  get currentModel() {
+    return this._sessionCoord.pendingModel
+      ?? this._models.currentModel;
+  }
+  /** 当前活跃 session 实际使用的模型（已创建的对话不随选择器变） */
+  get activeSessionModel() {
+    return this._sessionCoord.session?.model ?? null;
+  }
+  get availableModels() { return this._models.availableModels; }
+  get memoryEnabled() { return this.agent.memoryEnabled; }
+  get memoryModelUnavailableReason() { return this.agent.memoryModelUnavailableReason; }
+  get planMode() { return this._sessionCoord.getPlanMode(); }
+  getPrimaryAgentId() { return this._prefs.getPrimaryAgent(); }
+  get homeCwd() { return this.getHomeCwd(this.currentAgentId); }
+
+  getHomeCwd(agentId) {
+    return this._configCoord.getHomeFolder(agentId || this.currentAgentId) || null;
+  }
+
+  getExplicitHomeCwd(agentId) {
+    return this._configCoord.getExplicitHomeFolder(agentId || this.currentAgentId) || null;
+  }
+  _createResourceLoaderOptions(skillsDir) {
+    const cwd = resolveHanaPiProjectDir(this.hanakoHome);
+    const agentDir = resolveHanaPiAgentDir(this.hanakoHome);
+    if (!cwd || typeof cwd !== "string") {
+      throw new Error("ResourceLoader init: cwd is required");
+    }
+    if (!agentDir || typeof agentDir !== "string") {
+      throw new Error("ResourceLoader init: agentDir is required");
+    }
+    return {
+      cwd,
+      agentDir,
+      settingsManager: SettingsManager.inMemory(),
+      systemPromptOverride: () => this.agent.systemPrompt,
+      appendSystemPromptOverride: () => [],
+      agentsFilesOverride: () => ({ agentsFiles: [] }),
+      noContextFiles: true,
+      noExtensions: true,
+      noSkills: true,
+      noPromptTemplates: true,
+      noThemes: true,
+      additionalSkillPaths: [skillsDir],
+    };
+  }
+  get authStorage() { return this._models.authStorage; }
+  get modelRegistry() { return this._models.modelRegistry; }
+  get providerRegistry() { return this._models.providerRegistry; }
+  get preferences() { return this._prefs; }
+
+  /** 刷新可用模型列表（含 OAuth 自定义模型注入） */
+  async refreshModels() { return this._models.refreshAvailable(); }
+
+  getHomeFolder(agentId) { return this._configCoord.getHomeFolder(agentId); }
+  setHomeFolder(agentId, folder) { return this._configCoord.setHomeFolder(agentId, folder); }
+  getHeartbeatMaster() { return this._configCoord.getHeartbeatMaster(); }
+  setHeartbeatMaster(v) { return this._configCoord.setHeartbeatMaster(v); }
+  getChannelsEnabled() { return this._configCoord.getChannelsEnabled(); }
+  async setChannelsEnabled(v) { return this._configCoord.setChannelsEnabled(v); }
+  isChannelsEnabled() { return this._configCoord.getChannelsEnabled(); }
+  getBridgeReadOnly() { return this._prefs.getBridgeReadOnly(); }
+  setBridgeReadOnly(v) { this._prefs.setBridgeReadOnly(v); }
+  getBridgeReceiptEnabled() { return this._prefs.getBridgeReceiptEnabled(); }
+  setBridgeReceiptEnabled(v) { this._prefs.setBridgeReceiptEnabled(v); }
+  setOutboundProxyRuntime(runtime) { this._outboundProxyRuntime = runtime || null; }
+  getNetworkProxy() { return this._prefs.getNetworkProxy(); }
+  setNetworkProxy(v) {
+    const config = this._prefs.setNetworkProxy(v);
+    this._outboundProxyRuntime?.apply?.(config);
+    return config;
+  }
+  getBridgeMediaPublicBaseUrl() { return this._prefs.getBridgeMediaPublicBaseUrl(); }
+  setBridgeMediaPublicBaseUrl(v) { return this._prefs.setBridgeMediaPublicBaseUrl(v); }
+  getSharedModels() { return this._configCoord.getSharedModels(); }
+  setSharedModels(p) { return this._configCoord.setSharedModels(p); }
+  isVisionAuxiliaryEnabled() { return this.getSharedModels()?.vision_enabled === true; }
+  getVisionBridge() { return this._visionBridge; }
+  _ensureComputerRuntime() {
+    if (!this.isComputerUseSupported()) {
+      throw new Error("Computer Use is not supported on this platform.");
+    }
+    if (!this._computerProviders || !this._computerHost) {
+      this._computerProviders = new ComputerProviderRegistry();
+      this._computerProviders.register(createMockComputerProvider({ providerId: "mock" }));
+      this._computerProviders.register(createMacosCuaProvider());
+      this._computerProviders.register(createWindowsUiaProvider());
+      this._computerHost = new ComputerHost({
+        providers: this._computerProviders,
+        defaultProviderId: "mock",
+        getSettings: () => this.getComputerUseSettings(),
+        getAccessMode: (sessionPath) => this._sessionCoord.getAccessMode(sessionPath),
+        getPrimaryAgentId: () => this._prefs.getPrimaryAgent(),
+      });
+    }
+    return { providers: this._computerProviders, host: this._computerHost };
+  }
+  getComputerHost() { return this._ensureComputerRuntime().host; }
+  getComputerProviders() { return this._ensureComputerRuntime().providers; }
+  isComputerUseSupported(platform = process.platform) { return isComputerUsePlatformSupported(platform); }
+  getComputerUseSettings() {
+    return effectiveComputerUseSettings(this._prefs.getComputerUseSettings(), { platform: process.platform });
+  }
+  setComputerUseSettings(partial) {
+    if (!this.isComputerUseSupported() && partial?.enabled === true) {
+      throw new Error("Computer Use is not supported on this platform.");
+    }
+    const settings = this._prefs.setComputerUseSettings(partial);
+    const effectiveSettings = effectiveComputerUseSettings(settings, { platform: process.platform });
+    if (effectiveSettings.enabled === true) this._ensureComputerRuntime();
+    return effectiveSettings;
+  }
+  async updateComputerUseSettings(partial) {
+    const effectiveSettings = this.setComputerUseSettings(partial);
+    if (effectiveSettings.enabled !== true) {
+      await this.disposeComputerRuntime();
+    }
+    return effectiveSettings;
+  }
+  async disposeComputerRuntime() {
+    const host = this._computerHost;
+    try {
+      await host?.dispose?.();
+    } finally {
+      this._computerHost = null;
+      this._computerProviders = null;
+    }
+  }
+  approveComputerUseApp(approval) { return this._prefs.approveComputerUseApp(approval); }
+  revokeComputerUseApp(approval) { return this._prefs.revokeComputerUseApp(approval); }
+  resolveVisionConfig() {
+    if (!this.isVisionAuxiliaryEnabled()) return null;
+    const ref = this.getSharedModels()?.vision || null;
+    if (!ref) return null;
+    return this.resolveModelWithCredentials(ref);
+  }
+  getSearchConfig() { return this._configCoord.getSearchConfig(); }
+  setSearchConfig(p) { return this._configCoord.setSearchConfig(p); }
+  getUtilityApi() { return this._configCoord.getUtilityApi(); }
+  setUtilityApi(p) { return this._configCoord.setUtilityApi(p); }
+  resolveUtilityConfig(options) { return this._configCoord.resolveUtilityConfig(options); }
+  resolveUtilityConfigForAgent(agentId) { return this.resolveUtilityConfig({ agentId }); }
+  readAgentOrder() { return this._configCoord.readAgentOrder(); }
+  saveAgentOrder(o) { return this._configCoord.saveAgentOrder(o); }
+  async syncModelsAndRefresh() { return this._configCoord.syncAndRefresh(); }
+  setPendingModel(id, provider) { return this._configCoord.setPendingModel(id, provider); }
+  async switchSessionModel(sessionPath, modelId, provider) {
+    if (!provider) {
+      throw new Error(`switchSessionModel: provider required (modelId=${modelId})`);
+    }
+    const model = findModel(this._models.availableModels, modelId, provider);
+    if (!model) throw new Error(t("error.modelNotFound", { id: `${provider}/${modelId}` }));
+    return this._sessionCoord.switchSessionModel(sessionPath, model);
+  }
+  async setDefaultModel(id, provider, opts) { return this._configCoord.setDefaultModel(id, provider, opts); }
+  getThinkingLevel() { return this._configCoord.getThinkingLevel(); }
+  setThinkingLevel(l) { return this._configCoord.setThinkingLevel(l); }
+  getSessionThinkingLevel(sessionPath) { return this._sessionCoord.getSessionThinkingLevel(sessionPath); }
+  setSessionThinkingLevel(sessionPath, level) { return this._sessionCoord.setSessionThinkingLevel(sessionPath, level); }
+  getSandbox() { return this._prefs.getSandbox(); }
+  setSandbox(v) { this._prefs.setSandbox(v); }
+  startWin32LegacySandboxMaintenance() {
+    this._win32LegacySandboxCleanupQueue?.enqueueProfileCleanup?.();
+  }
+  getSandboxNetwork() {
+    if (process.platform === "win32") return true;
+    return this._prefs.getSandboxNetwork();
+  }
+  setSandboxNetwork(v) {
+    const enabled = typeof v === "string" ? v === "true" : !!v;
+    if (process.platform === "win32" && !enabled) {
+      throw new Error("Windows command sandbox does not support network isolation; sandboxed commands keep network access.");
+    }
+    this._prefs.setSandboxNetwork(enabled);
+  }
+  getHardwareAcceleration() { return this._prefs.getHardwareAcceleration(); }
+  setHardwareAcceleration(v) { this._prefs.setHardwareAcceleration(v); }
+  getFileBackup() { return this._prefs.getFileBackup(); }
+  setFileBackup(p) { this._prefs.setFileBackup(p); }
+  listCheckpoints() { return this._checkpointStore.list(); }
+  restoreCheckpoint(id) { return this._checkpointStore.restore(id); }
+  removeCheckpoint(id) { return this._checkpointStore.remove(id); }
+  async createUserEditCheckpoint({ filePath, reason = "edit-start" }) {
+    const cfg = this._prefs.getFileBackup();
+    const id = await this._checkpointStore.save({
+      sessionPath: null,
+      tool: "user-edit",
+      source: "user-edit",
+      reason,
+      filePath,
+      maxSizeKb: cfg.max_file_size_kb || 1024,
+    });
+    return id ? { id, path: filePath, reason } : null;
+  }
+  cleanupCheckpoints() {
+    const cfg = this._prefs.getFileBackup();
+    return this._checkpointStore.cleanup(cfg.retention_days || 1);
+  }
+  getLearnSkills() { return this._prefs.getLearnSkills(); }
+  setLearnSkills(p) { this._prefs.setLearnSkills(p); }
+  getLocale() { return this._prefs.getLocale(); }
+  setLocale(l) { this._prefs.setLocale(l); }
+  getSetupComplete() { return this._prefs.getSetupComplete(); }
+  markSetupComplete() { return this._prefs.markSetupComplete(); }
+  getEditor() { return this._prefs.getEditor(); }
+  setEditor(p) { return this._prefs.setEditor(p); }
+  getAppearance() { return this._prefs.getAppearance(); }
+  setAppearance(p) { return this._prefs.setAppearance(p); }
+  getWorkspaceUiState(workspaceRoot, surface) { return this._prefs.getWorkspaceUiState(workspaceRoot, surface); }
+  setWorkspaceUiState(workspaceRoot, surface, state) { return this._prefs.setWorkspaceUiState(workspaceRoot, surface, state); }
+  getPluginUiPrefs() { return this._prefs.getPluginUiPrefs(); }
+  setPluginUiPrefs(partial) { return this._prefs.setPluginUiPrefs(partial); }
+  getPluginDevToolsEnabled() { return this._prefs.getPluginDevToolsEnabled(); }
+  setPluginDevToolsEnabled(value) { return this._prefs.setPluginDevToolsEnabled(value); }
+  getPluginInstallRecord(pluginId) { return this._pluginInstallRecords.get(pluginId); }
+  recordPluginInstall(record) { return this._pluginInstallRecords.recordInstall(record); }
+  getTimezone() { return this._prefs.getTimezone(); }
+  setTimezone(tz) { this._prefs.setTimezone(tz); }
+  getUpdateChannel() { return this._prefs.getUpdateChannel(); }
+  setUpdateChannel(ch) { this._prefs.setUpdateChannel(ch); }
+  getAutoCheckUpdates() { return this._prefs.getAutoCheckUpdates(); }
+  setAutoCheckUpdates(v) { this._prefs.setAutoCheckUpdates(v); }
+  setMemoryEnabled(v) { return this._configCoord.setMemoryEnabled(v); }
+  setMemoryMasterEnabled(id, v) { return this._configCoord.setMemoryMasterEnabled(id, v); }
+  persistSessionMeta() { return this._configCoord.persistSessionMeta(); }
+  get permissionMode() { return this._sessionCoord.getPermissionMode(); }
+  getSessionPermissionMode(sessionPath) { return this._sessionCoord.getPermissionMode(sessionPath); }
+  setSessionPermissionMode(mode) { return this._sessionCoord.setPermissionMode(mode); }
+  setSessionPermissionModeForSession(sessionPath, mode) { return this._sessionCoord.setSessionPermissionMode(sessionPath, mode); }
+  setCurrentSessionPermissionMode(mode) { return this._sessionCoord.setCurrentSessionPermissionMode(mode); }
+  setPendingSessionPermissionMode(mode) { return this._sessionCoord.setPendingPermissionMode(mode); }
+  getSessionPermissionModeDefault() { return this._sessionCoord.getPermissionModeDefault(); }
+  get accessMode() { return this._sessionCoord.getAccessMode(); }
+  setAccessMode(mode) { return this._sessionCoord.setAccessMode(mode); }
+  setPlanMode(enabled) { return this._sessionCoord.setPlanMode(enabled); }
+  async updateConfig(p, opts) { return this._configCoord.updateConfig(p, opts); }
+
+  getPreferences() { return this._readPreferences(); }
+  savePreferences(p) { return this._writePreferences(p); }
+
+  // ════════════════════════════
+  //  Channel 代理（→ ChannelManager）
+  // ════════════════════════════
+
+  async deleteChannelByName(n) { return this._channels.deleteChannelByName(n); }
+  async triggerChannelDelivery(n, o) { return this._channels.triggerChannelDelivery(n, o); }
+  async triggerChannelTriage(n, o) { return this.triggerChannelDelivery(n, o); }
+
+  // ════════════════════════════
+  //  Bridge 代理（→ BridgeSessionManager）
+  // ════════════════════════════
+
+  getBridgeIndex(agentId) {
+    const agent = agentId ? this.getAgent(agentId) : undefined;
+    return this._bridge.readIndex(agent);
+  }
+  saveBridgeIndex(i, agentId) {
+    const agent = agentId ? this.getAgent(agentId) : undefined;
+    return this._bridge.writeIndex(i, agent);
+  }
+  async executeExternalMessage(p, sk, m, o) { return this._bridge.executeExternalMessage(p, sk, m, o); }
+  injectBridgeMessage(sk, t) { return this._bridge.injectMessage(sk, t); }
+  /** 对指定 bridge session 执行真正的上下文压缩；返回 { tokensBefore, tokensAfter, contextWindow } */
+  async compactBridgeSession(sessionKey, opts) { return this._bridge.compactSession(sessionKey, opts); }
+  async freshCompactBridgeSession(sessionKey, opts) { return this._bridge.freshCompactSession(sessionKey, opts); }
+  /**
+   * 对桌面 session 做上下文压缩；返回 { tokensBefore, tokensAfter, contextWindow }
+   * 供 /compact 在 /rc 接管态下给出 token delta 反馈（Phase 2-E）
+   */
+  async compactDesktopSession(sessionPath) {
+    let session = this.getSessionByPath(sessionPath);
+    if (!session) throw new Error("compactDesktopSession: session not found");
+    if (session.isCompacting) throw new Error("compactDesktopSession: already compacting");
+    let before = session.getContextUsage?.() ?? null;
+    try {
+      await compactSessionWithCachePreservation(session);
+    } catch (error) {
+      if (!isStaleExtensionContextError(error)) throw error;
+      session = await this.reloadSessionRuntime(sessionPath);
+      if (!session) throw error;
+      if (session.isCompacting) throw new Error("compactDesktopSession: already compacting");
+      before = session.getContextUsage?.() ?? before;
+      await compactSessionWithCachePreservation(session);
+    }
+    const after = session.getContextUsage?.() ?? null;
+    return {
+      tokensBefore: before?.tokens ?? null,
+      tokensAfter: after?.tokens ?? null,
+      contextWindow: after?.contextWindow ?? before?.contextWindow ?? null,
+    };
+  }
+
+  // ════════════════════════════
+  //  Skills（→ SkillManager）
+  // ════════════════════════════
+
+  _syncAgentSkills() { this._skills.syncAgentSkills(this.agent); }
+  _syncAllAgentSkills() { for (const ag of this._agentMgr.agents.values()) this._skills.syncAgentSkills(ag); }
+  getAllSkills(agentId) {
+    // 不接受 fallback 到 this.agent — 调用方必须显式指定 agentId，
+    // 否则前后端 agent 错位会导致 desk skill toggle 把错位列表写入当前 agent (#397)
+    if (!agentId) throw new Error("getAllSkills requires explicit agentId");
+    const ag = this._agentMgr.getAgent(agentId);
+    if (!ag) throw new Error(`agent not found: ${agentId}`);
+    return this._skills.getAllSkills(ag);
+  }
+  getRuntimeSkills(agentId) {
+    if (!agentId) throw new Error("getRuntimeSkills requires explicit agentId");
+    const ag = this._agentMgr.getAgent(agentId);
+    if (!ag) throw new Error(`agent not found: ${agentId}`);
+    return this._skills.getRuntimeSkillInfos(ag);
+  }
+  _getSkillsForAgent(ag) { return this._skills.getSkillsForAgent(ag); }
+  get skillsDir() { return this._skills?.skillsDir; }
+  get userSkillsDir() { return this._skills?.skillsDir; }
+  get modelsJsonPath() { return this._models.modelsJsonPath; }
+  get authJsonPath() { return this._models.authJsonPath; }
+
+  async reloadSkills() {
+    await this._skills.reload(this._resourceLoader, this._agentMgr.agents);
+    this._resourceLoader.getSystemPrompt = () => this.agent.systemPrompt;
+    this._resourceLoader.getSkills = () => this._getSkillsForAgent(this.agent);
+    this._syncAllAgentSkills();
+  }
+
+  /** 获取外部技能路径配置（供 API 使用） */
+  getExternalSkillPaths() {
+    // 刷新 exists 状态，检测运行期间新增的目录
+    let newDirAppeared = false;
+    for (const d of this._discoveredExternalPaths || []) {
+      const nowExists = fs.existsSync(d.dirPath);
+      if (nowExists && !d.exists) newDirAppeared = true;
+      d.exists = nowExists;
+    }
+    // 运行期间有新目录出现：重新集成到 SkillManager（watcher + 扫描）
+    if (newDirAppeared) {
+      this.syncWorkspaceSkillPaths(this.currentSessionPath ? this.cwd : null, {
+        reload: true,
+        emitEvent: true,
+      }).catch(() => {});
+    }
+    return {
+      configured: this._prefs.getExternalSkillPaths(),
+      discovered: this._discoveredExternalPaths || [],
+    };
+  }
+
+  /** 更新外部技能路径 + 同步 ResourceLoader + 重载 */
+  async setExternalSkillPaths(paths) {
+    this._prefs.setExternalSkillPaths(paths);
+    await this.syncWorkspaceSkillPaths(this.currentSessionPath ? this.cwd : null, {
+      reload: true,
+      emitEvent: true,
+    });
+  }
+
+  /** 合并自动发现 + 用户配置的外部路径（去重） */
+  _mergeExternalPaths(userConfiguredPaths, extraPaths = []) {
+    // 每次合并时重新检测目录是否存在（不依赖初始化快照）
+    for (const d of this._discoveredExternalPaths || []) {
+      d.exists = fs.existsSync(d.dirPath);
+    }
+    const discovered = (this._discoveredExternalPaths || [])
+      .filter(d => d.exists)
+      .map(d => ({ dirPath: d.dirPath, label: d.label }));
+    const userParsed = (userConfiguredPaths || []).map(p => ({
+      dirPath: path.resolve(p),
+      label: path.basename(path.dirname(p)),
+    }));
+    const merged = [...discovered];
+    const seen = new Set(merged.map(m => m.dirPath));
+    for (const up of [...userParsed, ...extraPaths]) {
+      if (seen.has(up.dirPath)) continue;
+      merged.push(up);
+      seen.add(up.dirPath);
+    }
+    return merged;
+  }
+
+  _getWorkspaceExternalSkillPaths(cwd) {
+    return resolveWorkspaceSkillPaths(cwd);
+  }
+
+  _getResolvedExternalSkillPaths(cwd) {
+    const pluginPaths = this._pluginManager?.getSkillPaths?.() || [];
+    const workspacePaths = this._getWorkspaceExternalSkillPaths(cwd);
+    return this._mergeExternalPaths(this._prefs.getExternalSkillPaths(), [
+      ...pluginPaths,
+      ...workspacePaths,
+    ]);
+  }
+
+  _sameExternalSkillPaths(a = [], b = []) {
+    if (a.length !== b.length) return false;
+    return a.every((entry, index) => {
+      const other = b[index];
+      return entry?.dirPath === other?.dirPath
+        && entry?.label === other?.label
+        && (entry?.scope || "") === (other?.scope || "");
+    });
+  }
+
+  async syncWorkspaceSkillPaths(cwd = null, { reload = true, emitEvent = false, force = false } = {}) {
+    if (!this._skills) return false;
+    const resolved = this._getResolvedExternalSkillPaths(cwd);
+    const changed = !this._sameExternalSkillPaths(this._skills._externalPaths || [], resolved);
+    if (!changed && !force) return false;
+
+    this._skills.setExternalPaths(resolved);
+    if (reload) await this.reloadSkills();
+    if (emitEvent) this._emitAppEvent("skills-changed", { agentId: null });
+    return true;
+  }
+
+  // ════════════════════════════
+  //  Model 代理
+  // ════════════════════════════
+
+  _resolveThinkingLevel(l) { return this._models.resolveThinkingLevel(l); }
+  _resolveExecutionModel(r) { return this._models.resolveExecutionModel(r); }
+  _resolveProviderCredentials(p) { return this._models.resolveProviderCredentials(p); }
+  resolveProviderCredentials(p) { return this._resolveProviderCredentials(p); }
+  resolveModelWithCredentials(ref) { return this._models.resolveModelWithCredentials(ref); }
+  async refreshAvailableModels() { return this._models.refreshAvailable(); }
+  /**
+   * Provider 配置变更后的统一操作序列。
+   * reload registry → sync models.json → refresh available → normalize utility prefs
+   * → 通知 active session 重新解析 model 对象（baseUrl 等字段烤在对象上）
+   */
+  async onProviderChanged() {
+    await this._models.reloadAndSync();
+    this._configCoord.normalizeUtilityApiPreferences();
+    this._sessionCoord.refreshAllSessionsModels();
+  }
+  getRegistryModelsForProvider(name) { return this._models.getRegistryModelsForProvider(name); }
+
+  static SHARED_MODEL_KEYS = SHARED_MODEL_KEYS;
+
+  // ════════════════════════════
+  //  生命周期
+  // ════════════════════════════
+
+  async init(log = () => {}) {
+    const startupTimer = Date.now();
+
+    // 0. Config scope 迁移（全局字段从 agent config → preferences）
+    migrateConfigScope({
+      agentsDir: this.agentsDir,
+      prefs: this._prefs,
+      primaryAgentId: this._prefs.getPrimaryAgent(),
+      log,
+    });
+
+    // 0b. Provider 迁移（旧数据 → added-models.yaml，只跑一次）
+    migrateToProvidersYaml(this.hanakoHome, this.agentsDir, log);
+
+    // 0b2. Provider media 迁移（旧 type:image 模型 → media.image_generation）
+    migrateProviderMediaConfig(this.hanakoHome, log);
+
+    // 0c. Model overrides 迁移（config.models.overrides → added-models.yaml，只跑一次）
+    this._models.providerRegistry.migrateOverridesToAddedModels(this.agentsDir, log);
+
+    // 0d. 统一数据迁移（版本号驱动，新迁移统一加在 migrations.js）
+    runMigrations({
+      hanakoHome: this.hanakoHome,
+      agentsDir: this.agentsDir,
+      prefs: this._prefs,
+      providerRegistry: this._models.providerRegistry,
+      log,
+    });
+    this._runtimeContext = createServerRuntimeContext({
+      hanakoHome: this.hanakoHome,
+      appVersion: this.appVersion,
+    });
+    this._resources = new ResourceService({
+      agentsDir: this.agentsDir,
+      sessionFiles: this._sessionFiles,
+      runtimeContext: this._runtimeContext,
+    });
+    this._resourceAccess = new ResourceAccessService({
+      resourceService: this._resources,
+      audit: (event) => appendSecurityAuditEvent(this.hanakoHome, event),
+    });
+
+    // 频道初始化和 agent 构造会调用 server-side i18n。locale 是 global
+    // preference，必须在任何会写持久化文案的初始化逻辑前加载。
+    loadLocale(this._prefs.getLocale());
+
+    // 1. Pi SDK + 模型基础设施（必须在 agent init 之前，agent 需要解析记忆模型）
+    log(`[init] 1/5 Pi SDK 初始化...`);
+    this._models.init();
+    // 预填充 _availableModels，agent init 时需要解析 utility model
+    await this._models.refreshAvailable();
+    log(`[init] 1/5 AuthStorage + ModelRegistry + ${this._models.availableModels.length} 个模型就绪`);
+
+    // 2. 初始化所有 agent
+    log(`[init] 2/5 初始化所有 agent...`);
+    await this._agentMgr.initAllAgents(log, this._agentMgr.activeAgentId);
+    log(`[init] 2/5 ${this._agentMgr.agents.size} 个 agent 已就绪`);
+
+    // 2b. 确保所有 agent 都有 channels.md（老用户升级兼容）
+    for (const [id] of this._agentMgr.agents) {
+      const channelsMd = path.join(this.agentsDir, id, 'channels.md');
+      if (!fs.existsSync(channelsMd)) {
+        await this._channels.setupChannelsForNewAgent(id);
+      }
+    }
+    await this._channels.repairChannelCursorProjection();
+
+    // 3. ResourceLoader + Skills
+    log(`[init] 3/5 ResourceLoader 初始化...`);
+    const t_rl = Date.now();
+    const skillsDir = path.join(this.hanakoHome, "skills");
+    fs.mkdirSync(skillsDir, { recursive: true });
+
+    // 解析外部兼容技能路径
+    const homeDir = os.homedir();
+    this._discoveredExternalPaths = WELL_KNOWN_SKILL_PATHS.map(w => ({
+      dirPath: path.join(homeDir, w.suffix),
+      label: w.label,
+      exists: fs.existsSync(path.join(homeDir, w.suffix)),
+    }));
+    const externalPaths = this._getResolvedExternalSkillPaths(null);
+
+    this._skills = new SkillManager({ skillsDir, externalPaths });
+    this._coreExtensionFactories = [
+      /**
+       * Provider payload 兼容化（chat 路径）。与 callText 共享 core/provider-compat.js，
+       * 是两条调用路径唯一的 normalize 入口——末端只在"流式 vs 非流式 fetch"分叉。
+       *
+       * ctx.model 是 Pi SDK 标准入参，正常 chat session 都会带；少数 edge case
+       * （子 session / 工具内调）下偏 SDK 实现可能不带，此时只在 payload.model
+       * 唯一匹配时补 model；重复 id 直接不猜 provider，避免错套 provider 兼容。
+       */
+      (pi) => {
+        pi.on("context", (event, ctx) => {
+          const model = ctx?.model;
+          if (!model) return;
+          const reasoningLevel = resolveRequestReasoningLevel(this._models, this._prefs, ctx);
+          const messages = normalizeProviderContextMessages(event.messages, model, {
+            mode: "chat",
+            reasoningLevel,
+          });
+          if (messages === event.messages) return;
+          return { messages };
+        });
+
+        pi.on("before_provider_request", (event, ctx) => {
+          const p = event.payload;
+          if (!p) return p;
+          const requestModel = ctx?.model
+            || findUniqueModelById(this._models.availableModels, p.model)
+            || null;
+          const reasoningLevel = resolveRequestReasoningLevel(this._models, this._prefs, ctx);
+          // The SDK hook exposes the serialized body, but not whether maxTokens came
+          // from user intent or buildBaseOptions' model-derived default. Keep source
+          // unspecified here; output-budget removes only values matching that SDK default.
+          return normalizeProviderPayload(p, requestModel, { mode: "chat", reasoningLevel });
+        });
+      },
+      /**
+       * Capability-aware message adaptation：把历史里的 ImageContent block
+       * 替换为 TextContent 占位，避免不支持 image 的 provider 反序列化失败
+       * （如 issue #441：messages[N]: unknown variant `image_url`, expected `text`）。
+       * 非静默降级：每个 session 首次剥图时通过事件总线通知 UI。
+       */
+      (pi) => {
+        pi.on("context", (event, ctx) => {
+          const model = ctx?.model;
+          if (!model) return;
+          const replaySafe = stripHistoricalInlineMediaForReplay(event.messages);
+          const { messages, stripped, strippedImages, strippedVideos } = sanitizeMessagesForModel(replaySafe.messages, model);
+          if (replaySafe.stripped === 0 && stripped === 0) return;
+          const sessionPath = ctx?.sessionManager?.getSessionFile?.();
+          if (sessionPath && strippedImages > 0 && !this._imageStripNotified.has(sessionPath)) {
+            this._imageStripNotified.add(sessionPath);
+            this._emitEvent({
+              type: "image_stripped_notice",
+              modelId: model.id,
+              modelProvider: model.provider,
+              count: strippedImages,
+            }, sessionPath);
+          }
+          if (sessionPath && strippedVideos > 0 && !this._videoStripNotified.has(sessionPath)) {
+            this._videoStripNotified.add(sessionPath);
+            this._emitEvent({
+              type: "video_stripped_notice",
+              modelId: model.id,
+              modelProvider: model.provider,
+              count: strippedVideos,
+            }, sessionPath);
+          }
+          return { messages };
+        });
+      },
+    ];
+    this._extensionFactories = [...this._coreExtensionFactories];
+    this._resourceLoader = new DefaultResourceLoader({
+      ...this._createResourceLoaderOptions(skillsDir),
+      extensionFactories: this._extensionFactories,
+    });
+    await this._resourceLoader.reload();
+
+    const HIDDEN_SKILLS = new Set(["canvas-design", "skill-creator", "skills-translate-temp"]);
+    this._skills.init(this._resourceLoader, this._agentMgr.agents, HIDDEN_SKILLS);
+    const extCount = this._skills.allSkills.filter(s => s.source === "external").length;
+    log(`[init] 3/5 ResourceLoader 完成 (${Date.now() - t_rl}ms, ${this._skills.allSkills.length} skills${extCount ? `, ${extCount} external` : ""})`);
+
+    this._resourceLoader.getSystemPrompt = () => this.agent.systemPrompt;
+    this._resourceLoader.getSkills = () => this._getSkillsForAgent(this.agent);
+
+    // 4. 模型发现
+    log(`[init] 4/5 发现可用模型...`);
+    try { await this.syncModelsAndRefresh(); } catch (err) { moduleLog.warn(`[init] syncModelsAndRefresh failed: ${err?.message}`); }
+    await this._models.refreshAvailable();
+    this._configCoord.normalizeUtilityApiPreferences(log);
+    const availableModels = this._models.availableModels;
+    log(`[init] 4/5 找到 ${availableModels.length} 个模型: ${availableModels.map(m => `${m.provider}/${m.id}`).join(", ")}`);
+    if (availableModels.length === 0) {
+      moduleLog.warn("⚠ 未找到可用模型，请在设置中配置 API key");
+      this._models.defaultModel = null;
+    } else {
+      // migrations #5 之后 models.chat 必为 {id, provider} 对象；
+      // 非对象说明 agent 从未配置过或 migration 未识别（added-models.yaml 里
+      // 没对应 provider），保守视为未配置。
+      const chatRef = this.agent.config.models?.chat;
+      const ref = (typeof chatRef === "object" && chatRef?.id && chatRef?.provider) ? chatRef : null;
+      if (!ref) {
+        moduleLog.warn("⚠ 未配置 models.chat（或配置缺 provider），defaultModel 为 null");
+        this._models.defaultModel = null;
+      } else {
+        const model = findModel(availableModels, ref.id, ref.provider);
+        if (!model) {
+          moduleLog.error(`⚠ 配置的模型 "${ref.provider}/${ref.id}" 不在可用列表中，defaultModel 为 null`);
+          this._models.defaultModel = null;
+        } else {
+          this._models.defaultModel = model;
+          log(`✿ 使用模型: ${model.name} (${model.provider})`);
+        }
+      }
+    }
+
+    // 5. Sync skills + watch skillsDir
+    this._syncAllAgentSkills();
+    this._skills.watch(this._resourceLoader, this._agentMgr.agents, () => {
+      this._resourceLoader.getSystemPrompt = () => this.agent.systemPrompt;
+      this._resourceLoader.getSkills = () => this._getSkillsForAgent(this.agent);
+      this._syncAllAgentSkills();
+      this._emitAppEvent("skills-changed", { agentId: null });
+    });
+
+    // 7. Bridge 孤儿清理
+    try { this._bridge.reconcile(); } catch (err) { moduleLog.warn(`[init] bridge reconcile failed: ${err?.message}`); }
+
+    // 8. 沙盒日志
+    const sandboxEnabled = this._readPreferences().sandbox !== false;
+    log(`✿ 沙盒${sandboxEnabled ? "已启用" : "已关闭"}`);
+
+    // 9. 清理过期的 .ephemeral session 文件（>7 天）
+    this._cleanEphemeralSessions();
+
+    const totalTime = ((Date.now() - startupTimer) / 1000).toFixed(1);
+    log(`✿ 初始化完成（${totalTime}s）`);
+  }
+
+  /** 清理所有 agent 的 .ephemeral/ 目录中超过 7 天的文件 */
+  _cleanEphemeralSessions() {
+    const maxAge = 7 * 24 * 60 * 60 * 1000;
+    const now = Date.now();
+    try {
+      if (!this.agentsDir || !fs.existsSync(this.agentsDir)) return;
+      for (const entry of fs.readdirSync(this.agentsDir, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        const ephDir = path.join(this.agentsDir, entry.name, '.ephemeral');
+        if (!fs.existsSync(ephDir)) continue;
+        for (const file of fs.readdirSync(ephDir)) {
+          if (!file.endsWith('.jsonl')) continue;
+          const filePath = path.join(ephDir, file);
+          try {
+            const stat = fs.statSync(filePath);
+            if (now - stat.mtimeMs > maxAge) fs.unlinkSync(filePath);
+          } catch {
+            // 过期 ephemeral 文件清理 best-effort：单个文件 stat/unlink 失败跳过即可，下次启动再试。
+          }
+        }
+      }
+    } catch {
+      // 整体清理 best-effort：扫描 agents 目录失败不应阻塞 init 后续步骤。
+    }
+  }
+
+  async dispose() {
+    try {
+      // 先卸载 plugins（它们可能依赖 engine 资源）
+      if (this._pluginManager) {
+        for (const p of this._pluginManager.listPlugins()) {
+          if (p.status === "loaded") {
+            await this._pluginManager.unloadPlugin(p.id, { pluginKey: p.pluginKey });
+          }
+        }
+      }
+      this._pluginDevEventBusCleanup?.();
+      this._pluginDevEventBusCleanup = null;
+      this._skills?.unwatch();
+      this._deferredResultCoordinator?.dispose?.();
+      this._deferredResultCoordinator = null;
+      await this._agentMgr.disposeAll(this._sessionCoord);
+      await this._sessionCoord.cleanupSession();
+    } finally {
+      await this.disposeComputerRuntime();
+    }
+  }
+
+  // ════════════════════════════
+  //  插件系统
+  // ════════════════════════════
+
+  /**
+   * Initialize plugin system. Called after Hub construction (EventBus available).
+   * @param {import('../hub/event-bus.js').EventBus} bus
+   */
+  async initPlugins(bus) {
+    const builtinPluginsDir = path.join(this.productDir, "..", "plugins");
+    const userPluginsDir = path.join(this.hanakoHome, "plugins");
+    const devPluginsDir = path.join(this.hanakoHome, "plugins-dev");
+    const pluginDevRunsDir = path.join(this.hanakoHome, "plugin-dev-runs");
+    const pluginDevSourcesDir = path.join(this.hanakoHome, "plugin-dev-sources");
+    const pluginDataDir = path.join(this.hanakoHome, "plugin-data");
+    fs.mkdirSync(pluginDevSourcesDir, { recursive: true });
+
+    // Read app version for plugin compatibility check
+    let appVersion = "0.0.0";
+    try {
+      const pkgPath = path.join(this.productDir, "..", "package.json");
+      appVersion = JSON.parse(fs.readFileSync(pkgPath, "utf-8")).version || "0.0.0";
+    } catch {
+      // package.json 缺失/损坏时沿用上面的 "0.0.0" 默认值，仅用于插件兼容性检查。
+    }
+    this.appVersion = appVersion;
+
+    this._pluginManager = new PluginManager({
+      pluginsDirs: [builtinPluginsDir, userPluginsDir],
+      dataDir: pluginDataDir,
+      bus,
+      preferencesManager: this._prefs,
+      appVersion,
+      getSessionPath: () => this.currentSessionPath,
+      registerSessionFile: (entry) => this.registerSessionFile(entry),
+      slashRegistry: this._slashSystem?.registry ?? null,
+      logSink: (entry) => this._pluginDevService?.recordLog(entry),
+      runtimeContext: this.getRuntimeContext(),
+    });
+    const allowedPluginDevSourceRoots = [
+      pluginDevSourcesDir,
+      this.homeCwd,
+      process.cwd(),
+      path.resolve(this.productDir, ".."),
+    ].filter((dir) => typeof dir === "string" && dir.trim());
+    this._pluginDevService = new PluginDevService({
+      pluginManager: this._pluginManager,
+      devPluginsDir,
+      runDataDir: pluginDevRunsDir,
+      allowedSourceRoots: allowedPluginDevSourceRoots,
+      syncPluginExtensions: () => this.syncPluginExtensions(),
+    });
+    this._pluginDevEventBusCleanup?.();
+    this._pluginDevEventBusCleanup = this._pluginDevService.registerEventBusHandlers(bus);
+    this._pluginManager.scan();
+    await this._pluginManager.loadAll();
+
+    let providerContributionsChanged = false;
+    for (const provider of this._pluginManager.getProviderPlugins()) {
+      this._models.providerRegistry.registerProviderContribution(provider);
+      providerContributionsChanged = true;
+    }
+    if (providerContributionsChanged) {
+      await this._models.reloadAndSync();
+    }
+
+    if (this._skills) {
+      await this.syncWorkspaceSkillPaths(this.currentSessionPath ? this.cwd : null, {
+        reload: true,
+        emitEvent: false,
+      });
+    }
+
+    // Inject plugin extension factories into ResourceLoader (same array reference)
+    await this.syncPluginExtensions();
+  }
+
+  /**
+   * 同步插件 extension factories 到 ResourceLoader 共享数组。
+   * 原地 splice 保持数组引用不变（DefaultResourceLoader 持有同一引用）。
+   * 在 initPlugins 以及任何插件热操作后调用。
+   */
+  _syncExtensionFactories() {
+    if (!this._extensionFactories) return;
+    const coreFactories = this._coreExtensionFactories || [];
+    const frameworkFactories = this._frameworkExtFactories || [];
+    const pluginFactories = this._pluginManager?.getExtensionFactories() || [];
+    this._extensionFactories.splice(0, Infinity, ...coreFactories, ...frameworkFactories, ...pluginFactories);
+  }
+
+  async _reloadResourceLoaderForExtensionFactories() {
+    if (!this._resourceLoader?.reload) return;
+    await this._resourceLoader.reload();
+  }
+
+  /**
+   * Register a framework-level extension factory.
+   * Tracked separately so _syncExtensionFactories preserves them across plugin hot-reloads.
+   * Only affects sessions created after this call.
+   */
+  async registerExtensionFactory(factory) {
+    if (!this._extensionFactories) return;
+    if (!this._frameworkExtFactories) this._frameworkExtFactories = [];
+    this._frameworkExtFactories.push(factory);
+    await this.syncPluginExtensions();
+  }
+
+  get pluginManager() { return this._pluginManager; }
+  get pluginDevService() { return this._pluginDevService; }
+
+  /** 插件热操作后调用，同步 extension factories 到 ResourceLoader */
+  async syncPluginExtensions() {
+    this._syncExtensionFactories();
+    await this._reloadResourceLoaderForExtensionFactories();
+  }
+
+  // ════════════════════════════
+  //  工具构建
+  // ════════════════════════════
+
+  buildTools(cwd, customTools, opts = {}) {
+    let ct = customTools;
+    let agentId;
+    let toolAgent;
+    if (!ct) {
+      // 通过 opts.agentDir 反查 agent 实例，避免隐式依赖焦点 agent
+      if (opts.agentDir) {
+        const dirAgentId = path.basename(opts.agentDir);
+        const dirAgent = this.getAgent(dirAgentId);
+        if (!dirAgent) throw new Error(`buildTools: agent "${dirAgentId}" not found`);
+        ct = dirAgent.tools;
+        agentId = dirAgentId;
+        toolAgent = dirAgent;
+      } else {
+        ct = this.agent.tools;
+        agentId = this.agent?.id || "";
+        toolAgent = this.agent;
+      }
+    } else {
+      agentId = opts.agentDir ? path.basename(opts.agentDir) : (this.agent?.id || "");
+      toolAgent = opts.agentDir ? this.getAgent(agentId) : this.agent;
+    }
+    const getSessionPath = typeof opts.getSessionPath === "function"
+      ? opts.getSessionPath
+      : (() => null);
+
+    // Append plugin tools
+    const pluginTools = this._pluginManager?.getAllTools() || [];
+    const executionBoundary = this._runtimeContext
+      ? this.createExecutionBoundary({ workbenchRoot: cwd })
+      : null;
+    const executionScope = executionBoundary
+      ? { serverNodeId: executionBoundary.serverNodeId, executionBoundary }
+      : {};
+    const wrappedPluginTools = pluginTools.map(t => ({
+      ...t,
+      execute: (toolCallId, params, signalOrRuntimeCtx, onUpdate, piCtx) => {
+        const { ctx: runtimeCtx } = normalizeToolRuntimeContext(signalOrRuntimeCtx, piCtx);
+        const sessionPath = runtimeCtx?.sessionPath
+          || getToolSessionPath(runtimeCtx)
+          || getSessionPath()
+          || null;
+        const mergedCtx = {
+          ...runtimeCtx,
+          ...(sessionPath ? { sessionPath } : {}),
+          ...(opts.bridgeContext ? { bridgeContext: opts.bridgeContext } : {}),
+          agentId,
+          ...executionScope,
+        };
+        return t.execute(toolCallId, params, signalOrRuntimeCtx, onUpdate, mergedCtx);
+      },
+    }));
+    const pluginDevTools = this._pluginDevService && this._prefs.getPluginDevToolsEnabled?.() === true
+      ? createPluginDevTools({
+          pluginDevService: this._pluginDevService,
+          getAgentId: () => agentId,
+        })
+      : [];
+    const allTools = filterToolObjectsByAvailability(
+      [...ct, ...wrappedPluginTools, ...pluginDevTools],
+      toolAgent?.config || {},
+      {
+        agentId,
+        channelsEnabled: resolveChannelsEnabledForToolAvailability(this),
+      },
+      { warn: (msg) => toolAvailabilityLog.warn(msg) },
+    );
+
+    const effectiveAgentDir = opts.agentDir || this.agent.agentDir;
+    const effectiveWorkspace = opts.workspace !== undefined ? opts.workspace : this.homeCwd;
+    const workspaceFolders = opts.workspaceFolders || [];
+    const fileReadSessionPaths = Array.isArray(opts.fileReadSessionPaths)
+      ? opts.fileReadSessionPaths.filter((sp) => typeof sp === "string" && sp.trim())
+      : [];
+    const getExternalReadPaths = () => {
+      const sessionPaths = [];
+      const seenSessionPaths = new Set();
+      const addSessionPath = (sp) => {
+        if (!sp || seenSessionPaths.has(sp)) return;
+        seenSessionPaths.add(sp);
+        sessionPaths.push(sp);
+      };
+      addSessionPath(getSessionPath());
+      for (const sp of fileReadSessionPaths) addSessionPath(sp);
+      if (!sessionPaths.length) return [];
+      const files = typeof this.listSessionFiles === "function"
+        ? sessionPaths.flatMap((sp) => this.listSessionFiles(sp))
+        : [];
+      return externalReadPathsFromSessionFiles(files, {
+        workspaceRoots: workspaceRootsForSandbox(effectiveWorkspace, workspaceFolders),
+        hanakoHome: this.hanakoHome,
+      });
+    };
+
+    let result = createSandboxedTools(cwd, allTools, {
+      agentDir: effectiveAgentDir,
+      workspace: effectiveWorkspace,
+      workspaceFolders,
+      hanakoHome: this.hanakoHome,
+      executionBoundary,
+      getSandboxEnabled: () => this._readPreferences().sandbox !== false,
+      getSandboxNetworkEnabled: () => process.platform === "win32"
+        ? true
+        : this._readPreferences().sandbox_network !== false,
+      getExternalReadPaths,
+      getSessionPath,
+      recordFileOperation: (entry) => this.registerSessionFile(entry),
+      getVisionBridge: () => this.getVisionBridge(),
+      isVisionAuxiliaryEnabled: () => this.isVisionAuxiliaryEnabled(),
+      legacyCleanupQueue: this._win32LegacySandboxCleanupQueue,
+    });
+
+    // Checkpoint wrapper (outside sandbox layer)
+    const backupCfg = this._prefs.getFileBackup();
+    if (backupCfg.enabled) {
+      result = {
+        ...result,
+        tools: wrapWithCheckpoint(result.tools, {
+          store: this._checkpointStore,
+          maxFileSizeKb: backupCfg.max_file_size_kb,
+          cwd,
+          getSessionPath,
+        }),
+      };
+    }
+
+    const getPermissionMode = typeof opts.getPermissionMode === "function"
+      ? opts.getPermissionMode
+      : (sessionPath) => this.getSessionPermissionMode(sessionPath);
+    result = {
+      ...result,
+      tools: wrapWithSessionPermission(result.tools, {
+        getSessionPath,
+        getPermissionMode,
+        getConfirmStore: () => this._confirmStore,
+        emitEvent: (event, sessionPath) => this._emitEvent(event, sessionPath),
+      }),
+      customTools: wrapWithSessionPermission(result.customTools, {
+        getSessionPath,
+        getPermissionMode,
+        getConfirmStore: () => this._confirmStore,
+        emitEvent: (event, sessionPath) => this._emitEvent(event, sessionPath),
+      }),
+    };
+
+    // Startup assertion: every built-in tool must be categorized in
+    // shared/tool-categories.js. All session-creation paths route through
+    // this function, so a single check here catches the whole surface.
+    assertAllToolsCategorized([
+      ...result.tools.map((t) => t.name).filter(Boolean),
+      ...ct
+        .filter((t) => !t._pluginId)
+        .map((t) => t.name)
+        .filter(Boolean),
+    ]);
+
+    return result;
+  }
+
+  // ════════════════════════════
+  //  事件系统
+  // ════════════════════════════
+
+  /**
+   * Hub 构造后注入回调，替代旧的 engine._hub = this 双向引用。
+   * Manager 通过 getHub() lazy getter 拿到这个对象。
+   */
+  setHubCallbacks(callbacks) {
+    this._hubCallbacks = callbacks;
+    // 把 hub 引用补给 slash dispatcher（Phase 3：bridge-manager / WS 入口都靠它路由命令）
+    if (callbacks?.hub) this._slashSystem?.dispatcher?.setHub(callbacks.hub);
+  }
+
+  registerAgentPhoneAbortHandler(handler, meta = {}) {
+    return this._hubCallbacks?.registerAgentPhoneAbortHandler?.(handler, meta) || (() => {});
+  }
+
+  setEventBus(bus) {
+    for (const fn of this._listeners) bus.subscribe(fn);
+    this._listeners.clear();
+    this._eventBus = bus;
+  }
+
+  getEventBus() {
+    return this._eventBus;
+  }
+
+  subscribe(listener) {
+    if (this._eventBus) return this._eventBus.subscribe(listener);
+    this._listeners.add(listener);
+    return () => this._listeners.delete(listener);
+  }
+
+  _emitEvent(event, sessionPath) {
+    if (this._eventBus) {
+      this._eventBus.emit(event, sessionPath);
+    } else {
+      for (const fn of this._listeners) {
+        // 单个 listener 抛错不能中断对其余 listener 的分发，但要记录避免静默漏处理事件。
+        try { fn(event, sessionPath); } catch (err) { moduleLog.warn(`event listener threw for ${event?.type}: ${err?.message}`); }
+      }
+    }
+  }
+
+  emitEvent(event, sessionPath) { this._emitEvent(event, sessionPath); }
+
+  _emitAppEvent(type, payload = {}) {
+    if (typeof type !== "string" || !type) return;
+    const normalizedPayload = payload && typeof payload === "object" && !Array.isArray(payload)
+      ? payload
+      : {};
+    this._emitEvent({
+      type: "app_event",
+      event: {
+        type,
+        payload: normalizedPayload,
+        source: "server",
+      },
+    }, null);
+  }
+
+  emitDevLog(text, level = "info") {
+    const entry = { text, level, ts: Date.now() };
+    this._devLogs.push(entry);
+    if (this._devLogs.length > this._devLogsMax) {
+      this._devLogs.shift();
+    }
+    const dl = debugLog();
+    if (dl) {
+      if (level === "error") dl.error("engine", text);
+      else dl.log("engine", text);
+    }
+    this._emitEvent({ type: "devlog", text, level }, null);
+  }
+
+  getDevLogs() {
+    return this._devLogs;
+  }
+
+  // ════════════════════════════
+  //  日记 / 工具调用
+  // ════════════════════════════
+
+  async writeDiary() {
+    const currentPath = this.currentSessionPath;
+    if (currentPath && this.agent.memoryTicker) {
+      await this.agent.memoryTicker.flushSession(currentPath);
+    }
+    const { writeDiary } = await import("../lib/diary/diary-writer.js");
+    const diaryModelId = this.agent.config.models?.chat || this.agent.memoryModel;
+    const resolvedModel = this._models.resolveModelWithCredentials(diaryModelId);
+    // 写日记是用户主动触发的「读历史」功能，必须参考记忆，
+    // 跟「在对话中潜移默化带入记忆」的 master 开关无关。所以不查 memoryMasterEnabled。
+    // per-session 开关只决定缺摘要时是否写回 summaries；关闭时仍可为本次日记临时压缩。
+    const agent = this.agent;
+    return writeDiary({
+      summaryManager: agent.summaryManager,
+      resolvedModel,
+      agentPersonality: agent.personality,
+      memory: (() => {
+        try { return fs.readFileSync(agent.memoryMdPath, "utf-8"); } catch { return ""; }
+      })(),
+      userName: agent.userName,
+      agentName: agent.agentName,
+      cwd: this.homeCwd || process.cwd(),
+      activityStore: this.activityStore,
+      sessionDir: agent.sessionDir,
+      isSessionMemoryEnabledForPath: (sessionPath) => {
+        return agent.isSessionMemoryEnabledFor(sessionPath);
+      },
+      getCompactionAuth: async (model) => {
+        const auth = await this._models.modelRegistry.getApiKeyAndHeaders(model);
+        if (!auth.ok) {
+          throw new Error(`Auth failed for model ${model.id}: ${auth.error}`);
+        }
+        if (!auth.apiKey) {
+          throw new Error(`No API key for provider ${model.provider}`);
+        }
+        return { apiKey: auth.apiKey, headers: auth.headers };
+      },
+    });
+  }
+
+  _utilityOptionsForContext(opts = {}) {
+    if (opts?.agentId) return { agentId: opts.agentId };
+    if (opts?.sessionPath) {
+      const agentId = this.agentIdFromSessionPath(opts.sessionPath);
+      if (agentId) return { agentId };
+    }
+    return undefined;
+  }
+
+  async summarizeTitle(ut, at, opts = {}) {
+    return _summarizeTitle(this.resolveUtilityConfig(this._utilityOptionsForContext(opts)), ut, at, opts);
+  }
+
+  async translateSkillNames(names, lang, opts = {}) {
+    const skills = Array.isArray(opts.skills)
+      ? opts.skills
+      : (opts.agentId ? this.getAllSkills(opts.agentId) : []);
+    return translateSkillNamesWithCache({
+      cachePath: getSkillNameTranslationCachePath(this.hanakoHome),
+      skills,
+      names,
+      lang,
+      translateMissing: (missingNames) => _translateSkillNames(
+        this.resolveUtilityConfig(opts.agentId ? { agentId: opts.agentId } : undefined),
+        missingNames,
+        lang,
+      ),
+    });
+  }
+
+  async summarizeActivity(sp, preloaded, opts = {}) {
+    const utilityOptions = this._utilityOptionsForContext({ ...opts, sessionPath: opts.sessionPath || sp });
+    return _summarizeActivity(this.resolveUtilityConfig(utilityOptions), sp, (msg) => this.emitDevLog(msg), preloaded);
+  }
+
+  async summarizeActivityQuick(activityId) {
+    let entry = null, foundAgentId = null;
+    for (const [agId] of this._agentMgr.agents) {
+      const store = this.getActivityStore(agId);
+      const e = store?.get(activityId);
+      if (e) { entry = e; foundAgentId = agId; break; }
+    }
+    if (!entry?.sessionFile) return null;
+    const sessionPath = path.join(this.agentsDir, foundAgentId, "activity", entry.sessionFile);
+    return _summarizeActivityQuick(this.resolveUtilityConfig({ agentId: foundAgentId }), sessionPath);
+  }
+
+  // ════════════════════════════
+  //  Desk 辅助
+  // ════════════════════════════
+
+  listDeskFiles() {
+    try {
+      const dir = this.homeCwd;
+      if (!dir || !fs.existsSync(dir)) return [];
+      return fs.readdirSync(dir, { withFileTypes: true })
+        .filter(e => !e.name.startsWith("."))
+        .map(e => {
+          const fp = path.join(dir, e.name);
+          let mtime = 0;
+          try { mtime = fs.statSync(fp).mtimeMs; } catch {
+            // 文件在 readdir 之后被删 / 无权限时 stat 失败，mtime 保持 0 兜底。
+          }
+          return { name: e.name, isDir: e.isDirectory(), mtime };
+        });
+    } catch {
+      return [];
+    }
+  }
+
+  get defaultDeskCwd() {
+    return this.homeCwd || null;
+  }
+
+  _realPathForWorkspaceCheck(p) {
+    if (!p || typeof p !== "string") return null;
+    try {
+      return fs.realpathSync(p);
+    } catch {
+      try {
+        return fs.realpathSync(path.dirname(p));
+      } catch {
+        return null;
+      }
+    }
+  }
+
+  isApprovedWorkspaceDir(dir) {
+    const resolved = this._realPathForWorkspaceCheck(dir);
+    if (!resolved) return false;
+    const roots = [
+      this.homeCwd,
+      this.deskCwd,
+      ...this.getSessionWorkspaceFolders(this.currentSessionPath),
+    ].filter(Boolean);
+    return roots.some((root) => {
+      const base = this._realPathForWorkspaceCheck(root);
+      if (!base) return false;
+      return resolved === base || resolved.startsWith(base + path.sep);
+    });
+  }
+
+  isApprovedDeskDir(dir) {
+    const resolved = this._realPathForWorkspaceCheck(dir);
+    if (!resolved) return false;
+    const roots = [
+      this.homeCwd,
+      this.deskCwd,
+      ...this.getSessionWorkspaceFolders(this.currentSessionPath),
+      ...(Array.isArray(this.config?.cwd_history) ? this.config.cwd_history : []),
+    ].filter(Boolean);
+    return roots.some((root) => {
+      const base = this._realPathForWorkspaceCheck(root);
+      if (!base) return false;
+      return resolved === base || resolved.startsWith(base + path.sep);
+    });
+  }
+
+  // ════════════════════════════
+  //  Preferences 代理
+  // ════════════════════════════
+
+  _readPreferences() { return this._prefs.getPreferences(); }
+  _writePreferences(prefs) { return this._prefs.savePreferences(prefs); }
+  _readPrimaryAgent() { return this._prefs.getPrimaryAgent(); }
+  _savePrimaryAgent(agentId) { return this._prefs.savePrimaryAgent(agentId); }
+
+  // ════════════════════════════
+  //  巡检工具白名单（向后兼容静态引用）
+  // ════════════════════════════
+
+  static PATROL_TOOLS_DEFAULT = "*";
+}

@@ -1,0 +1,54 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Z IMAGE ®" [level=1] [ref=e5]:
+        - text: Z IMAGE
+        - generic [ref=e6]: ®
+      - paragraph [ref=e7]: 细节增强
+    - navigation [ref=e8]:
+      - generic [ref=e9]: 细节增强
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - heading "01. 输入图片" [level=3] [ref=e13]
+        - generic "Hover here and paste an image" [ref=e14] [cursor=pointer]:
+          - generic [ref=e15]:
+            - img [ref=e17]
+            - paragraph [ref=e19]: 拖放图片到这里
+      - generic [ref=e20]:
+        - heading "02. 参数" [level=3] [ref=e21]
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - img [ref=e24]
+            - generic [ref=e27]: 引擎
+          - generic [ref=e28]:
+            - button "本地" [ref=e29] [cursor=pointer]:
+              - img [ref=e30]
+              - generic [ref=e33]: 本地
+            - button "ModelScope" [ref=e34] [cursor=pointer]:
+              - img [ref=e35]
+              - text: ModelScope
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - generic [ref=e40]: 细节强度
+              - generic [ref=e41]: "0.50"
+            - slider [ref=e42]: "0.5"
+          - generic [ref=e44]:
+            - generic [ref=e45]:
+              - img [ref=e47]
+              - generic [ref=e51]:
+                - paragraph [ref=e52]: 超分辨率
+                - paragraph [ref=e53]: 像素加倍 (4K)
+            - generic [ref=e54]:
+              - checkbox
+        - button "开始增强" [ref=e56] [cursor=pointer]:
+          - img [ref=e57]
+          - generic [ref=e59]: 开始增强
+    - generic [ref=e62]:
+      - img [ref=e63]
+      - paragraph [ref=e65]: 画布就绪
+  - generic [ref=e66]:
+    - heading "Archive" [level=2] [ref=e68]
+    - button "批量管理" [ref=e71] [cursor=pointer]
+    - generic [ref=e72]: End of Archive

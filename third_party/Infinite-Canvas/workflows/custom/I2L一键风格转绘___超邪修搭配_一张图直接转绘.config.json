@@ -1,0 +1,75 @@
+{
+  "title": "custom/I2L一键风格转绘___超邪修搭配_一张图直接转绘",
+  "fields": [
+    {
+      "id": "f_h539ex5",
+      "node": "486",
+      "input": "image",
+      "name": "图片",
+      "type": "image",
+      "default": "24Y02.G256.V2急速深渊.png",
+      "min": null,
+      "max": null,
+      "step": null,
+      "options": [],
+      "random_enabled": false
+    },
+    {
+      "id": "f_xv5vcwo",
+      "node": "512",
+      "input": "image",
+      "name": "图片",
+      "type": "image",
+      "default": "24Y02.G105.V1 液态金属.png",
+      "min": null,
+      "max": null,
+      "step": null,
+      "options": [],
+      "random_enabled": false
+    },
+    {
+      "id": "f_99wbjx1",
+      "node": "439",
+      "input": "image",
+      "name": "图片",
+      "type": "image",
+      "default": "飘渺山峰25Y07.G051.V1.png",
+      "min": null,
+      "max": null,
+      "step": null,
+      "options": [],
+      "random_enabled": false
+    },
+    {
+      "id": "f_kkqmsde",
+      "node": "200",
+      "input": "text",
+      "name": "提示词文本",
+      "type": "textarea",
+      "default": "这是一张黑白抽象数字艺术图片，无人物，**背景纯白，极简抽象的纹理图。\n石蒜花主体/扇叶边缘波浪缺刻；构图/大留白；引导/边缘波引向左上；光影/刀锋边+柔灰；结构/边缘微脊；走向/横向微波；提示词：纯白底 黑白灰 扇叶波缘 细脊浮雕",
+      "min": null,
+      "max": null,
+      "step": null,
+      "options": [],
+      "random_enabled": false
+    }
+  ],
+  "mini_cards": {
+    "prompt": {
+      "x": 24,
+      "y": 30
+    },
+    "image": {
+      "x": 24,
+      "y": 210
+    },
+    "custom": {
+      "x": 280,
+      "y": 78
+    },
+    "output": {
+      "x": 540,
+      "y": 120
+    }
+  }
+}

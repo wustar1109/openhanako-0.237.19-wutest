@@ -1,0 +1,196 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - navigation [ref=e6]:
+      - generic [ref=e7] [cursor=pointer]:
+        - img [ref=e8]
+        - generic [ref=e10]: 文生图
+      - generic [ref=e11] [cursor=pointer]:
+        - img [ref=e12]
+        - generic [ref=e14]: 细节增强
+      - generic [ref=e15] [cursor=pointer]:
+        - img [ref=e16]
+        - generic [ref=e18]: 图片编辑
+      - generic [ref=e19] [cursor=pointer]:
+        - img [ref=e20]
+        - generic [ref=e24]: 转矢量图
+      - generic [ref=e25] [cursor=pointer]:
+        - img [ref=e26]
+        - generic [ref=e29]: 角度控制
+      - generic [ref=e31] [cursor=pointer]:
+        - img [ref=e32]
+        - generic [ref=e35]: 在线生图
+      - generic [ref=e36] [cursor=pointer]:
+        - img [ref=e37]
+        - generic [ref=e39]: GPT 对话
+      - generic [ref=e40] [cursor=pointer]:
+        - img [ref=e41]
+        - generic [ref=e46]: 无限画布
+    - generic [ref=e47]:
+      - button "黑夜模式" [ref=e48] [cursor=pointer]:
+        - img [ref=e49]
+        - generic: 黑夜模式
+      - button "中文" [ref=e51] [cursor=pointer]:
+        - img [ref=e52]
+        - generic: 中文
+      - button "API 设置" [ref=e55] [cursor=pointer]:
+        - img [ref=e56]
+        - generic: API 设置
+      - button "工作流设置" [ref=e59] [cursor=pointer]:
+        - img [ref=e60]
+        - generic: 工作流设置
+  - main [ref=e65]:
+    - iframe [ref=e66]:
+      
+    - iframe [ref=e67]:
+      
+    - iframe [ref=e68]:
+      
+    - iframe [ref=e69]:
+      - main [ref=f4e2]:
+        - generic [ref=f4e3]:
+          - generic [ref=f4e4]:
+            - heading "VECTORIZE®" [level=1] [ref=f4e5]:
+              - text: VECTORIZE
+              - superscript [ref=f4e6]: ®
+            - paragraph [ref=f4e7]: 位图转 SVG
+          - generic [ref=f4e10]: 等待图片
+        - generic [ref=f4e11]:
+          - generic [ref=f4e12]:
+            - generic [ref=f4e13]:
+              - heading "01. 输入图片" [level=2] [ref=f4e14]:
+                - img [ref=f4e15]
+                - text: 01. 输入图片
+              - button "拖放位图到这里 PNG / JPG / WebP / BMP" [ref=f4e19] [cursor=pointer]:
+                - generic:
+                  - generic:
+                    - img
+                  - strong: 拖放位图到这里
+                  - generic: PNG / JPG / WebP / BMP
+            - generic [ref=f4e20]:
+              - heading "02. 预处理" [level=2] [ref=f4e21]:
+                - img [ref=f4e22]
+                - text: 02. 预处理
+              - generic [ref=f4e26]:
+                - generic [ref=f4e27]:
+                  - generic [ref=f4e28]: 处理方式
+                  - combobox "处理方式" [ref=f4e29]:
+                    - option "灰度分层后矢量化" [selected]
+                    - option "原图直转"
+                - generic [ref=f4e30]:
+                  - generic [ref=f4e31]: 白底处理
+                  - combobox "白底处理" [ref=f4e32]:
+                    - option "保留白底" [selected]
+                    - option "去白底"
+            - generic [ref=f4e33]:
+              - generic [ref=f4e34]:
+                - generic [ref=f4e35]:
+                  - generic [ref=f4e36]: 灰阶层数
+                  - generic [ref=f4e37]: "12"
+                - slider "灰阶层数" [ref=f4e38]: "12"
+              - generic [ref=f4e39]:
+                - generic [ref=f4e40]:
+                  - generic [ref=f4e41]: 白底阈值
+                  - generic [ref=f4e42]: "248"
+                - slider "白底阈值" [ref=f4e43]: "248"
+              - generic [ref=f4e44]:
+                - generic [ref=f4e45]:
+                  - generic [ref=f4e46]: 模糊核
+                  - generic [ref=f4e47]: "3"
+                - slider "模糊核" [ref=f4e48]: "3"
+            - generic [ref=f4e49]:
+              - heading "03. VTracer" [level=2] [ref=f4e50]:
+                - img [ref=f4e51]
+                - text: 03. VTracer
+              - generic [ref=f4e52]:
+                - generic [ref=f4e53]:
+                  - generic [ref=f4e54]: 颜色模式
+                  - combobox "颜色模式" [ref=f4e55]:
+                    - option "彩色" [selected]
+                    - option "黑白"
+                - generic [ref=f4e56]:
+                  - generic [ref=f4e57]: 层级方式
+                  - combobox "层级方式" [ref=f4e58]:
+                    - option "堆叠" [selected]
+                    - option "镂空"
+                - generic [ref=f4e59]:
+                  - generic [ref=f4e60]: 路径模式
+                  - combobox "路径模式" [ref=f4e61]:
+                    - option "平滑曲线"
+                    - option "多边形" [selected]
+                    - option "无曲线拟合"
+                - generic [ref=f4e62]:
+                  - generic [ref=f4e63]: 迭代次数
+                  - spinbutton "迭代次数" [ref=f4e64]: "10"
+            - generic [ref=f4e65]:
+              - generic [ref=f4e66]:
+                - generic [ref=f4e67]:
+                  - generic [ref=f4e68]: 过滤噪点
+                  - generic [ref=f4e69]: "3"
+                - slider "过滤噪点" [ref=f4e70]: "3"
+              - generic [ref=f4e71]:
+                - generic [ref=f4e72]:
+                  - generic [ref=f4e73]: 颜色精度
+                  - generic [ref=f4e74]: "8"
+                - slider "颜色精度" [ref=f4e75]: "8"
+              - generic [ref=f4e76]:
+                - generic [ref=f4e77]:
+                  - generic [ref=f4e78]: 渐变层差
+                  - generic [ref=f4e79]: "6"
+                - slider "渐变层差" [ref=f4e80]: "6"
+              - generic [ref=f4e81]:
+                - generic [ref=f4e82]:
+                  - generic [ref=f4e83]: 角点阈值
+                  - generic [ref=f4e84]: "70"
+                - slider "角点阈值" [ref=f4e85]: "70"
+              - generic [ref=f4e86]:
+                - generic [ref=f4e87]:
+                  - generic [ref=f4e88]: 细分长度
+                  - generic [ref=f4e89]: "4"
+                - slider "细分长度" [ref=f4e90]: "4"
+              - generic [ref=f4e91]:
+                - generic [ref=f4e92]:
+                  - generic [ref=f4e93]: 拼接阈值
+                  - generic [ref=f4e94]: "45"
+                - slider "拼接阈值" [ref=f4e95]: "45"
+              - generic [ref=f4e96]:
+                - generic [ref=f4e97]:
+                  - generic [ref=f4e98]: 路径小数精度
+                  - generic [ref=f4e99]: "5"
+                - slider "路径小数精度" [ref=f4e100]: "5"
+            - button "生成 SVG" [disabled] [ref=f4e101]:
+              - img [ref=f4e102]
+              - text: 生成 SVG
+          - generic [ref=f4e106]:
+            - generic [ref=f4e107]:
+              - heading "Result" [level=2] [ref=f4e108]:
+                - img [ref=f4e109]
+                - text: Result
+              - generic [ref=f4e114]:
+                - link "在新窗口打开" [disabled]:
+                  - /url: "#"
+                  - img
+                - link "下载 SVG" [disabled]:
+                  - /url: "#"
+                  - img
+            - generic [ref=f4e116]:
+              - img [ref=f4e117]
+              - generic [ref=f4e121]: SVG 结果会显示在这里
+    - iframe [ref=e70]:
+      
+    - iframe [ref=e71]:
+      
+    - iframe [ref=e72]:
+      
+    - iframe [ref=e73]:
+      
+    - iframe [ref=e74]:
+      
+    - iframe [ref=e75]:
+      
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e79]: ONLINE
+        - generic [ref=e80]: "1"
+      - generic [ref=e82]:
+        - generic [ref=e83]: QUEUE
+        - generic [ref=e84]: "0"

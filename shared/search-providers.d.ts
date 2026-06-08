@@ -1,0 +1,9 @@
+export const AUTO_SEARCH_PROVIDER: "auto";
+export const SEARCH_API_PROVIDER_IDS: readonly ["tavily", "brave", "serper"];
+export const BROWSER_SEARCH_PROVIDER_IDS: readonly ["bing_browser", "google_browser", "duckduckgo_browser"];
+export function normalizeSearchProvider(provider: unknown): string;
+export function isSearchApiProvider(provider: unknown): boolean;
+export function isBrowserSearchProvider(provider: unknown): boolean;
+export function isKnownSearchProvider(provider: unknown): boolean;
+export function normalizeSearchApiKeys(raw: unknown): Record<string, string>;
+export function mergeSearchApiKeys(base: unknown, patch: unknown): Record<string, string>;

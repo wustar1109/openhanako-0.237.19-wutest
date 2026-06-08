@@ -1,0 +1,803 @@
+[
+  {
+    "id": "runninghub",
+    "name": "RunningHub",
+    "base_url": "https://www.runninghub.cn",
+    "protocol": "runninghub",
+    "image_generation_endpoint": "",
+    "image_edit_endpoint": "",
+    "enabled": true,
+    "primary": false,
+    "image_models": [
+      "seedream-v5-lite/text-to-image",
+      "seedream-v5-lite/image-to-image"
+    ],
+    "chat_models": [],
+    "video_models": [],
+    "ms_loras": [],
+    "ms_defaults_version": 0,
+    "rh_apps": [
+      {
+        "id": "2058517022748798977",
+        "title": "2511-风格迁移",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "fields": [
+          {
+            "id": "100::image",
+            "nodeId": "100",
+            "fieldName": "image",
+            "fieldValue": "pasted/57ef7dc980b6446bca366caaf3f94eb12b22b23f78aa30e294b39cabd7d0187b.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "AI 应用参数",
+            "note": "image",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "112::image",
+            "nodeId": "112",
+            "fieldName": "image",
+            "fieldValue": "8cff63ee4b3e0285ca85ab90a52e26746df84ed0dec0be9d76c679cbb62a247d.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "AI 应用参数",
+            "note": "image",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "14::seed",
+            "nodeId": "14",
+            "fieldName": "seed",
+            "fieldValue": "554049736557817",
+            "fieldType": "INT",
+            "label": "seed",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "AI 应用参数",
+            "note": "seed",
+            "options": [],
+            "random_enabled": true,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          }
+        ],
+        "appId": "2058517022748798977"
+      },
+      {
+        "id": "1997622492837646338",
+        "title": "2511-光线迁移",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "appId": "1997622492837646338"
+      }
+    ],
+    "rh_workflows": [
+      {
+        "id": "2058554058318897153",
+        "title": "GPT-Image-2-图片编辑",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "fields": [
+          {
+            "id": "1::filename_prefix",
+            "nodeId": "1",
+            "fieldName": "filename_prefix",
+            "fieldValue": "ComfyUI",
+            "fieldType": "TEXT",
+            "label": "filename_prefix",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Save Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "3::image",
+            "nodeId": "3",
+            "fieldName": "image",
+            "fieldValue": "pasted/13839fc6bad36400c5fdb0e595b56a8518ca1dea00e552455bd23fe2e47f3f49.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 1,
+            "required": true
+          },
+          {
+            "id": "4::seed",
+            "nodeId": "4",
+            "fieldName": "seed",
+            "fieldValue": "1420337323",
+            "fieldType": "NUMBER",
+            "label": "seed",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH GPT Image 2.0 Edit Channel Low Price",
+            "note": "",
+            "options": [],
+            "random_enabled": true,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "4::skip_error",
+            "nodeId": "4",
+            "fieldName": "skip_error",
+            "fieldValue": "False",
+            "fieldType": "BOOLEAN",
+            "label": "skip_error",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "RH GPT Image 2.0 Edit Channel Low Price",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "4::aspectRatio",
+            "nodeId": "4",
+            "fieldName": "aspectRatio",
+            "fieldValue": "9:16",
+            "fieldType": "SELECT",
+            "label": "aspectRatio",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH GPT Image 2.0 Edit Channel Low Price",
+            "note": "",
+            "options": [
+              "1:1",
+              "16:9",
+              "9:16",
+              "4:3",
+              "3:4",
+              "4:5",
+              "5:4",
+              "3:2",
+              "2:3"
+            ],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "4::prompt",
+            "nodeId": "4",
+            "fieldName": "prompt",
+            "fieldValue": "图1的模特戴上图2的眼镜/图3的上衣/图4的裤子/图5的背包",
+            "fieldType": "TEXT",
+            "label": "prompt",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH GPT Image 2.0 Edit Channel Low Price",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "4::resolution",
+            "nodeId": "4",
+            "fieldName": "resolution",
+            "fieldValue": "1k",
+            "fieldType": "SELECT",
+            "label": "resolution",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH GPT Image 2.0 Edit Channel Low Price",
+            "note": "",
+            "options": [
+              "512",
+              "768",
+              "1024",
+              "1280",
+              "1536",
+              "2048",
+              "1k",
+              "2k",
+              "4k"
+            ],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "5::image",
+            "nodeId": "5",
+            "fieldName": "image",
+            "fieldValue": "pasted/1aa2f479aade662c1820b780dbc397860ef133c1345ccce75bc4d2f089e71eb2.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 2,
+            "required": false
+          },
+          {
+            "id": "6::image",
+            "nodeId": "6",
+            "fieldName": "image",
+            "fieldValue": "pasted/9f196a9affbce26eff7dcb65abb067a498e392e8d6f210b73521d126c09505fd.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 3,
+            "required": false
+          },
+          {
+            "id": "7::image",
+            "nodeId": "7",
+            "fieldName": "image",
+            "fieldValue": "pasted/46948afdef9592cbf0ec98f2976eb8743c516a4eb4539474c4307044ae56fa88.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 4,
+            "required": false
+          },
+          {
+            "id": "8::image",
+            "nodeId": "8",
+            "fieldName": "image",
+            "fieldValue": "pasted/be53aea7278c58fa7f48ab8eae1d772099e4900ceda7e88157ab97cf3f5e64aa.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 5,
+            "required": false
+          }
+        ],
+        "optionalImageMode": "prune-workflow",
+        "workflowJson": {
+          "1": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "ComfyUI",
+              "images": [
+                "4",
+                0
+              ]
+            },
+            "_meta": {
+              "title": "Save Image"
+            }
+          },
+          "3": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/13839fc6bad36400c5fdb0e595b56a8518ca1dea00e552455bd23fe2e47f3f49.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "4": {
+            "class_type": "RH_RhartImageG2ImageToImage",
+            "inputs": {
+              "image5": [
+                "8",
+                0
+              ],
+              "image3": [
+                "6",
+                0
+              ],
+              "image4": [
+                "7",
+                0
+              ],
+              "seed": 1420337323,
+              "skip_error": false,
+              "aspectRatio": "9:16",
+              "image1": [
+                "3",
+                0
+              ],
+              "prompt": "图1的模特戴上图2的眼镜/图3的上衣/图4的裤子/图5的背包",
+              "resolution": "1k",
+              "image2": [
+                "5",
+                0
+              ]
+            },
+            "_meta": {
+              "title": "RH GPT Image 2.0 Edit Channel Low Price"
+            }
+          },
+          "5": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/1aa2f479aade662c1820b780dbc397860ef133c1345ccce75bc4d2f089e71eb2.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "6": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/9f196a9affbce26eff7dcb65abb067a498e392e8d6f210b73521d126c09505fd.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "7": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/46948afdef9592cbf0ec98f2976eb8743c516a4eb4539474c4307044ae56fa88.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "8": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/be53aea7278c58fa7f48ab8eae1d772099e4900ceda7e88157ab97cf3f5e64aa.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          }
+        },
+        "raw": {
+          "code": 0,
+          "msg": "success",
+          "errorMessages": null,
+          "data": {
+            "prompt": "{\"1\":{\"class_type\":\"SaveImage\",\"inputs\":{\"filename_prefix\":\"ComfyUI\",\"images\":[\"4\",0]},\"_meta\":{\"title\":\"Save Image\"}},\"3\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/13839fc6bad36400c5fdb0e595b56a8518ca1dea00e552455bd23fe2e47f3f49.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"4\":{\"class_type\":\"RH_RhartImageG2ImageToImage\",\"inputs\":{\"image5\":[\"8\",0],\"image3\":[\"6\",0],\"image4\":[\"7\",0],\"seed\":1420337323,\"skip_error\":false,\"aspectRatio\":\"9:16\",\"image1\":[\"3\",0],\"prompt\":\"图1的模特戴上图2的眼镜/图3的上衣/图4的裤子/图5的背包\",\"resolution\":\"1k\",\"image2\":[\"5\",0]},\"_meta\":{\"title\":\"RH GPT Image 2.0 Edit Channel Low Price\"}},\"5\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/1aa2f479aade662c1820b780dbc397860ef133c1345ccce75bc4d2f089e71eb2.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"6\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/9f196a9affbce26eff7dcb65abb067a498e392e8d6f210b73521d126c09505fd.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"7\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/46948afdef9592cbf0ec98f2976eb8743c516a4eb4539474c4307044ae56fa88.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"8\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/be53aea7278c58fa7f48ab8eae1d772099e4900ceda7e88157ab97cf3f5e64aa.png\"},\"_meta\":{\"title\":\"Load Image\"}}}"
+          }
+        },
+        "updatedAt": 1779688720289,
+        "workflowId": "2058554058318897153"
+      },
+      {
+        "id": "2058541134623891458",
+        "title": "NanoBanana-2-图片编辑",
+        "note": "",
+        "thumbnail": "",
+        "enabled": true,
+        "fields": [
+          {
+            "id": "1::seed",
+            "nodeId": "1",
+            "fieldName": "seed",
+            "fieldValue": "1074325503",
+            "fieldType": "NUMBER",
+            "label": "seed",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕",
+            "note": "",
+            "options": [],
+            "random_enabled": true,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "1::skip_error",
+            "nodeId": "1",
+            "fieldName": "skip_error",
+            "fieldValue": "False",
+            "fieldType": "BOOLEAN",
+            "label": "skip_error",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "1::channel",
+            "nodeId": "1",
+            "fieldName": "channel",
+            "fieldValue": "Third-party",
+            "fieldType": "TEXT",
+            "label": "channel",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "1::aspectRatio",
+            "nodeId": "1",
+            "fieldName": "aspectRatio",
+            "fieldValue": "9:16",
+            "fieldType": "SELECT",
+            "label": "aspectRatio",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕",
+            "note": "",
+            "options": [
+              "1:1",
+              "16:9",
+              "9:16",
+              "4:3",
+              "3:4",
+              "4:5",
+              "5:4",
+              "3:2",
+              "2:3"
+            ],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "1::prompt",
+            "nodeId": "1",
+            "fieldName": "prompt",
+            "fieldValue": "图1的模特戴上图2的眼镜/图3的上衣/图4的裤子/图5的背包",
+            "fieldType": "TEXT",
+            "label": "prompt",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "1::resolution",
+            "nodeId": "1",
+            "fieldName": "resolution",
+            "fieldValue": "1k",
+            "fieldType": "SELECT",
+            "label": "resolution",
+            "enabled": true,
+            "sourceFromUpstream": true,
+            "group": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕",
+            "note": "",
+            "options": [
+              "512",
+              "768",
+              "1024",
+              "1280",
+              "1536",
+              "2048",
+              "1k",
+              "2k",
+              "4k"
+            ],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          },
+          {
+            "id": "12::image",
+            "nodeId": "12",
+            "fieldName": "image",
+            "fieldValue": "pasted/46948afdef9592cbf0ec98f2976eb8743c516a4eb4539474c4307044ae56fa88.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 1,
+            "required": false
+          },
+          {
+            "id": "2::image",
+            "nodeId": "2",
+            "fieldName": "image",
+            "fieldValue": "pasted/13839fc6bad36400c5fdb0e595b56a8518ca1dea00e552455bd23fe2e47f3f49.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 2,
+            "required": true
+          },
+          {
+            "id": "13::image",
+            "nodeId": "13",
+            "fieldName": "image",
+            "fieldValue": "pasted/be53aea7278c58fa7f48ab8eae1d772099e4900ceda7e88157ab97cf3f5e64aa.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 3,
+            "required": false
+          },
+          {
+            "id": "3::image",
+            "nodeId": "3",
+            "fieldName": "image",
+            "fieldValue": "pasted/1aa2f479aade662c1820b780dbc397860ef133c1345ccce75bc4d2f089e71eb2.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 4,
+            "required": false
+          },
+          {
+            "id": "4::image",
+            "nodeId": "4",
+            "fieldName": "image",
+            "fieldValue": "pasted/9f196a9affbce26eff7dcb65abb067a498e392e8d6f210b73521d126c09505fd.png",
+            "fieldType": "IMAGE",
+            "label": "image",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Load Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 5,
+            "required": false
+          },
+          {
+            "id": "5::filename_prefix",
+            "nodeId": "5",
+            "fieldName": "filename_prefix",
+            "fieldValue": "ComfyUI",
+            "fieldType": "TEXT",
+            "label": "filename_prefix",
+            "enabled": false,
+            "sourceFromUpstream": true,
+            "group": "Save Image",
+            "note": "",
+            "options": [],
+            "random_enabled": false,
+            "min": "",
+            "max": "",
+            "step": "",
+            "imageOrder": 0,
+            "required": false
+          }
+        ],
+        "optionalImageMode": "prune-workflow",
+        "workflowJson": {
+          "1": {
+            "class_type": "RH_Nano_Banana2_Gemini31Flash",
+            "inputs": {
+              "images": [
+                "2",
+                0
+              ],
+              "image3": [
+                "12",
+                0
+              ],
+              "image4": [
+                "13",
+                0
+              ],
+              "seed": 1074325503,
+              "skip_error": false,
+              "channel": "Third-party",
+              "aspectRatio": "9:16",
+              "image1": [
+                "3",
+                0
+              ],
+              "prompt": "图1的模特戴上图2的眼镜/图3的上衣/图4的裤子/图5的背包",
+              "resolution": "1k",
+              "image2": [
+                "4",
+                0
+              ]
+            },
+            "_meta": {
+              "title": "RH NanoBanana2 gemini-3.1-flash-image-preview 🆕"
+            }
+          },
+          "2": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/13839fc6bad36400c5fdb0e595b56a8518ca1dea00e552455bd23fe2e47f3f49.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "3": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/1aa2f479aade662c1820b780dbc397860ef133c1345ccce75bc4d2f089e71eb2.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "4": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/9f196a9affbce26eff7dcb65abb067a498e392e8d6f210b73521d126c09505fd.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "5": {
+            "class_type": "SaveImage",
+            "inputs": {
+              "filename_prefix": "ComfyUI",
+              "images": [
+                "1",
+                0
+              ]
+            },
+            "_meta": {
+              "title": "Save Image"
+            }
+          },
+          "12": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/46948afdef9592cbf0ec98f2976eb8743c516a4eb4539474c4307044ae56fa88.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          },
+          "13": {
+            "class_type": "LoadImage",
+            "inputs": {
+              "image": "pasted/be53aea7278c58fa7f48ab8eae1d772099e4900ceda7e88157ab97cf3f5e64aa.png"
+            },
+            "_meta": {
+              "title": "Load Image"
+            }
+          }
+        },
+        "raw": {
+          "code": 0,
+          "msg": "success",
+          "errorMessages": null,
+          "data": {
+            "prompt": "{\"1\":{\"class_type\":\"RH_Nano_Banana2_Gemini31Flash\",\"inputs\":{\"images\":[\"2\",0],\"image3\":[\"12\",0],\"image4\":[\"13\",0],\"seed\":1074325503,\"skip_error\":false,\"channel\":\"Third-party\",\"aspectRatio\":\"9:16\",\"image1\":[\"3\",0],\"prompt\":\"图1的模特戴上图2的眼镜/图3的上衣/图4的裤子/图5的背包\",\"resolution\":\"1k\",\"image2\":[\"4\",0]},\"_meta\":{\"title\":\"RH NanoBanana2 gemini-3.1-flash-image-preview 🆕\"}},\"12\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/46948afdef9592cbf0ec98f2976eb8743c516a4eb4539474c4307044ae56fa88.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"2\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/13839fc6bad36400c5fdb0e595b56a8518ca1dea00e552455bd23fe2e47f3f49.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"13\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/be53aea7278c58fa7f48ab8eae1d772099e4900ceda7e88157ab97cf3f5e64aa.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"3\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/1aa2f479aade662c1820b780dbc397860ef133c1345ccce75bc4d2f089e71eb2.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"4\":{\"class_type\":\"LoadImage\",\"inputs\":{\"image\":\"pasted/9f196a9affbce26eff7dcb65abb067a498e392e8d6f210b73521d126c09505fd.png\"},\"_meta\":{\"title\":\"Load Image\"}},\"5\":{\"class_type\":\"SaveImage\",\"inputs\":{\"filename_prefix\":\"ComfyUI\",\"images\":[\"1\",0]},\"_meta\":{\"title\":\"Save Image\"}}}"
+          }
+        },
+        "updatedAt": 1779688751328,
+        "workflowId": "2058541134623891458"
+      }
+    ]
+  }
+]

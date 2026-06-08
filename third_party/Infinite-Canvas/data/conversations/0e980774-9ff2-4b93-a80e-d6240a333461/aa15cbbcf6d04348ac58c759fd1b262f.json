@@ -1,0 +1,16 @@
+{
+  "id": "aa15cbbcf6d04348ac58c759fd1b262f",
+  "title": "你好",
+  "created_at": 1779958742326,
+  "updated_at": 1779958742331,
+  "messages": [
+    {
+      "id": "cc0cb1adce5c40afa5593eec717e7a2a",
+      "role": "user",
+      "content": "你好",
+      "created_at": 1779958742331,
+      "attachments": [],
+      "mode": "image"
+    }
+  ]
+}

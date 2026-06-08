@@ -1,0 +1,746 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "ASSETS" [level=1] [ref=e5]
+      - generic [ref=e6]: 生成资产
+    - generic [ref=e7]:
+      - textbox "搜索资产、提示词、模型..." [ref=e8]
+      - button "刷新" [ref=e9] [cursor=pointer]:
+        - img [ref=e10]
+  - generic [ref=e13]:
+    - button "全部 62" [ref=e14] [cursor=pointer]:
+      - text: 全部
+      - generic [ref=e15]: "62"
+    - button "文生图 31" [ref=e16] [cursor=pointer]:
+      - text: 文生图
+      - generic [ref=e17]: "31"
+    - button "细节增强 0" [ref=e18] [cursor=pointer]:
+      - text: 细节增强
+      - generic [ref=e19]: "0"
+    - button "图片编辑 0" [ref=e20] [cursor=pointer]:
+      - text: 图片编辑
+      - generic [ref=e21]: "0"
+    - button "转矢量图 0" [ref=e22] [cursor=pointer]:
+      - text: 转矢量图
+      - generic [ref=e23]: "0"
+    - button "角度控制 9" [ref=e24] [cursor=pointer]:
+      - text: 角度控制
+      - generic [ref=e25]: "9"
+    - button "在线生图 2" [ref=e26] [cursor=pointer]:
+      - text: 在线生图
+      - generic [ref=e27]: "2"
+    - button "无限画布 20" [ref=e28] [cursor=pointer]:
+      - text: 无限画布
+      - generic [ref=e29]: "20"
+    - button "其他生成 0" [ref=e30] [cursor=pointer]:
+      - text: 其他生成
+      - generic [ref=e31]: "0"
+    - button "角色 0" [ref=e32] [cursor=pointer]:
+      - text: 角色
+      - generic [ref=e33]: "0"
+    - button "场景 0" [ref=e34] [cursor=pointer]:
+      - text: 场景
+      - generic [ref=e35]: "0"
+  - main [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "文生图" [level=2] [ref=e39]
+        - generic [ref=e40]: 31 项
+      - generic [ref=e41]:
+        - article [ref=e42]:
+          - img "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构" [ref=e43]
+          - generic [ref=e44]:
+            - generic [ref=e45]: 这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构
+            - generic [ref=e46]:
+              - generic [ref=e47]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e48]: 05/27 17:35
+          - generic [ref=e49]:
+            - link "下载" [ref=e50] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874535_df8feec649.png
+            - button "删除" [ref=e51] [cursor=pointer]
+        - article [ref=e52]:
+          - img "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构" [ref=e53]
+          - generic [ref=e54]:
+            - generic [ref=e55]: 这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构
+            - generic [ref=e56]:
+              - generic [ref=e57]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e58]: 05/27 17:35
+          - generic [ref=e59]:
+            - link "下载" [ref=e60] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874535_a768e052dc.png
+            - button "删除" [ref=e61] [cursor=pointer]
+        - article [ref=e62]:
+          - img "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构" [ref=e63]
+          - generic [ref=e64]:
+            - generic [ref=e65]: 这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构
+            - generic [ref=e66]:
+              - generic [ref=e67]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e68]: 05/27 17:35
+          - generic [ref=e69]:
+            - link "下载" [ref=e70] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874535_f473b63eee.png
+            - button "删除" [ref=e71] [cursor=pointer]
+        - article [ref=e72]:
+          - img "刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学" [ref=e73]
+          - generic [ref=e74]:
+            - generic [ref=e75]: 刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学
+            - generic [ref=e76]:
+              - generic [ref=e77]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e78]: 05/27 17:33
+          - generic [ref=e79]:
+            - link "下载" [ref=e80] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874431_94c561ffcf.png
+            - button "删除" [ref=e81] [cursor=pointer]
+        - article [ref=e82]:
+          - img "刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学" [ref=e83]
+          - generic [ref=e84]:
+            - generic [ref=e85]: 刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学
+            - generic [ref=e86]:
+              - generic [ref=e87]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e88]: 05/27 17:33
+          - generic [ref=e89]:
+            - link "下载" [ref=e90] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874431_46ea6ee9e7.png
+            - button "删除" [ref=e91] [cursor=pointer]
+        - article [ref=e92]:
+          - img "刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学" [ref=e93]
+          - generic [ref=e94]:
+            - generic [ref=e95]: 刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学
+            - generic [ref=e96]:
+              - generic [ref=e97]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e98]: 05/27 17:33
+          - generic [ref=e99]:
+            - link "下载" [ref=e100] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874431_f8a9b6eed6.png
+            - button "删除" [ref=e101] [cursor=pointer]
+        - article [ref=e102]:
+          - img "刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学" [ref=e103]
+          - generic [ref=e104]:
+            - generic [ref=e105]: 刻板印象把我的斗笠和八字胡气歪了，害我从梯田上滚了下来，把邻家扎着丸子头穿着旗袍的妹妹的A+数学
+            - generic [ref=e106]:
+              - generic [ref=e107]: Z-Image-Yaoguang-Detail.json
+              - generic [ref=e108]: 05/27 17:33
+          - generic [ref=e109]:
+            - link "下载" [ref=e110] [cursor=pointer]:
+              - /url: /assets/output/zimage_1779874431_e3e059b08f.png
+            - button "删除" [ref=e111] [cursor=pointer]
+        - article [ref=e112]:
+          - img "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构" [ref=e113]
+          - generic [ref=e114]:
+            - generic [ref=e115]: 这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构
+            - generic [ref=e116]:
+              - generic [ref=e117]: Qwen/Qwen-Image-2512
+              - generic [ref=e118]: 05/27 16:21
+          - generic [ref=e119]:
+            - link "下载" [ref=e120] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779870100.png
+            - button "删除" [ref=e121] [cursor=pointer]
+        - article [ref=e122]:
+          - img "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构" [ref=e123]
+          - generic [ref=e124]:
+            - generic [ref=e125]: 这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构
+            - generic [ref=e126]:
+              - generic [ref=e127]: Tongyi-MAI/Z-Image-Turbo
+              - generic [ref=e128]: 05/27 16:19
+          - generic [ref=e129]:
+            - link "下载" [ref=e130] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779869998.png
+            - button "删除" [ref=e131] [cursor=pointer]
+        - article [ref=e132]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e133]
+          - generic [ref=e134]:
+            - generic [ref=e135]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e136]:
+              - generic [ref=e137]: Qwen/Qwen-Image-2512
+              - generic [ref=e138]: 05/27 16:04
+          - generic [ref=e139]:
+            - link "下载" [ref=e140] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779869053.png
+            - button "删除" [ref=e141] [cursor=pointer]
+        - article [ref=e142]:
+          - img "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导" [ref=e143]
+          - generic [ref=e144]:
+            - generic [ref=e145]: 图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导
+            - generic [ref=e146]:
+              - generic [ref=e147]: Tongyi-MAI/Z-Image-Turbo
+              - generic [ref=e148]: 05/27 16:00
+          - generic [ref=e149]:
+            - link "下载" [ref=e150] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779868811.png
+            - button "删除" [ref=e151] [cursor=pointer]
+        - article [ref=e152]:
+          - img "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导" [ref=e153]
+          - generic [ref=e154]:
+            - generic [ref=e155]: 图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导
+            - generic [ref=e156]:
+              - generic [ref=e157]: Qwen/Qwen-Image-2512
+              - generic [ref=e158]: 05/27 15:55
+          - generic [ref=e159]:
+            - link "下载" [ref=e160] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779868520.png
+            - button "删除" [ref=e161] [cursor=pointer]
+        - article [ref=e162]:
+          - img "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导" [ref=e163]
+          - generic [ref=e164]:
+            - generic [ref=e165]: 图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导
+            - generic [ref=e166]:
+              - generic [ref=e167]: Qwen/Qwen-Image-2512
+              - generic [ref=e168]: 05/27 15:53
+          - generic [ref=e169]:
+            - link "下载" [ref=e170] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779868433.png
+            - button "删除" [ref=e171] [cursor=pointer]
+        - article [ref=e172]:
+          - img "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导" [ref=e173]
+          - generic [ref=e174]:
+            - generic [ref=e175]: 图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导
+            - generic [ref=e176]:
+              - generic [ref=e177]: black-forest-labs/FLUX.2-klein-9B
+              - generic [ref=e178]: 05/27 15:50
+          - generic [ref=e179]:
+            - link "下载" [ref=e180] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779868234.png
+            - button "删除" [ref=e181] [cursor=pointer]
+        - article [ref=e182]:
+          - img "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导" [ref=e183]
+          - generic [ref=e184]:
+            - generic [ref=e185]: 图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导
+            - generic [ref=e186]:
+              - generic [ref=e187]: Tongyi-MAI/Z-Image-Turbo
+              - generic [ref=e188]: 05/27 15:49
+          - generic [ref=e189]:
+            - link "下载" [ref=e190] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779868158.png
+            - button "删除" [ref=e191] [cursor=pointer]
+        - article [ref=e192]:
+          - img "Detail Enhance" [ref=e193]
+          - generic [ref=e194]:
+            - generic [ref=e195]: Detail Enhance
+            - generic [ref=e196]:
+              - generic [ref=e197]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e198]: 05/27 08:41
+          - generic [ref=e199]:
+            - link "下载" [ref=e200] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779842510_31eb2608be.png
+            - button "删除" [ref=e201] [cursor=pointer]
+        - article [ref=e202]:
+          - img "Detail Enhance" [ref=e203]
+          - generic [ref=e204]:
+            - generic [ref=e205]: Detail Enhance
+            - generic [ref=e206]:
+              - generic [ref=e207]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e208]: 05/27 08:41
+          - generic [ref=e209]:
+            - link "下载" [ref=e210] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779842510_adf8cff84a.png
+            - button "删除" [ref=e211] [cursor=pointer]
+        - article [ref=e212]:
+          - img "Detail Enhance" [ref=e213]
+          - generic [ref=e214]:
+            - generic [ref=e215]: Detail Enhance
+            - generic [ref=e216]:
+              - generic [ref=e217]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e218]: 05/27 08:41
+          - generic [ref=e219]:
+            - link "下载" [ref=e220] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779842510_843ff358a7.png
+            - button "删除" [ref=e221] [cursor=pointer]
+        - article [ref=e222]:
+          - img "Detail Enhance" [ref=e223]
+          - generic [ref=e224]:
+            - generic [ref=e225]: Detail Enhance
+            - generic [ref=e226]:
+              - generic [ref=e227]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e228]: 05/27 08:41
+          - generic [ref=e229]:
+            - link "下载" [ref=e230] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779842510_b2903d4f18.png
+            - button "删除" [ref=e231] [cursor=pointer]
+        - article [ref=e232]:
+          - img "灰度图，极为抽象的花" [ref=e233]
+          - generic [ref=e234]:
+            - generic [ref=e235]: 灰度图，极为抽象的花
+            - generic [ref=e236]:
+              - generic [ref=e237]: cloud
+              - generic [ref=e238]: 05/27 08:39
+          - generic [ref=e239]:
+            - link "下载" [ref=e240] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779842344.png
+            - button "删除" [ref=e241] [cursor=pointer]
+        - article [ref=e242]:
+          - img "Detail Enhance" [ref=e243]
+          - generic [ref=e244]:
+            - generic [ref=e245]: Detail Enhance
+            - generic [ref=e246]:
+              - generic [ref=e247]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e248]: 05/26 16:24
+          - generic [ref=e249]:
+            - link "下载" [ref=e250] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783899_36f588bb5b.png
+            - button "删除" [ref=e251] [cursor=pointer]
+        - article [ref=e252]:
+          - img "Detail Enhance" [ref=e253]
+          - generic [ref=e254]:
+            - generic [ref=e255]: Detail Enhance
+            - generic [ref=e256]:
+              - generic [ref=e257]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e258]: 05/26 16:24
+          - generic [ref=e259]:
+            - link "下载" [ref=e260] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783899_8a17e190e9.png
+            - button "删除" [ref=e261] [cursor=pointer]
+        - article [ref=e262]:
+          - img "Detail Enhance" [ref=e263]
+          - generic [ref=e264]:
+            - generic [ref=e265]: Detail Enhance
+            - generic [ref=e266]:
+              - generic [ref=e267]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e268]: 05/26 16:24
+          - generic [ref=e269]:
+            - link "下载" [ref=e270] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783899_62f31e0cb0.png
+            - button "删除" [ref=e271] [cursor=pointer]
+        - article [ref=e272]:
+          - img "Detail Enhance" [ref=e273]
+          - generic [ref=e274]:
+            - generic [ref=e275]: Detail Enhance
+            - generic [ref=e276]:
+              - generic [ref=e277]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e278]: 05/26 16:24
+          - generic [ref=e279]:
+            - link "下载" [ref=e280] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783899_997abb859d.png
+            - button "删除" [ref=e281] [cursor=pointer]
+        - article [ref=e282]:
+          - img "Detail Enhance" [ref=e283]
+          - generic [ref=e284]:
+            - generic [ref=e285]: Detail Enhance
+            - generic [ref=e286]:
+              - generic [ref=e287]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e288]: 05/26 16:24
+          - generic [ref=e289]:
+            - link "下载" [ref=e290] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783884_bba6334616.png
+            - button "删除" [ref=e291] [cursor=pointer]
+        - article [ref=e292]:
+          - img "Detail Enhance" [ref=e293]
+          - generic [ref=e294]:
+            - generic [ref=e295]: Detail Enhance
+            - generic [ref=e296]:
+              - generic [ref=e297]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e298]: 05/26 16:24
+          - generic [ref=e299]:
+            - link "下载" [ref=e300] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783884_03717810a3.png
+            - button "删除" [ref=e301] [cursor=pointer]
+        - article [ref=e302]:
+          - img "Detail Enhance" [ref=e303]
+          - generic [ref=e304]:
+            - generic [ref=e305]: Detail Enhance
+            - generic [ref=e306]:
+              - generic [ref=e307]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e308]: 05/26 16:24
+          - generic [ref=e309]:
+            - link "下载" [ref=e310] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783884_6800d4aeed.png
+            - button "删除" [ref=e311] [cursor=pointer]
+        - article [ref=e312]:
+          - img "Detail Enhance" [ref=e313]
+          - generic [ref=e314]:
+            - generic [ref=e315]: Detail Enhance
+            - generic [ref=e316]:
+              - generic [ref=e317]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e318]: 05/26 16:24
+          - generic [ref=e319]:
+            - link "下载" [ref=e320] [cursor=pointer]:
+              - /url: /assets/output/workflow-test_1779783884_4f8e7fc131.png
+            - button "删除" [ref=e321] [cursor=pointer]
+        - article [ref=e322]:
+          - img "灰度图，抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型" [ref=e323]
+          - generic [ref=e324]:
+            - generic [ref=e325]: 灰度图，抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型
+            - generic [ref=e326]:
+              - generic [ref=e327]: cloud
+              - generic [ref=e328]: 05/26 15:14
+          - generic [ref=e329]:
+            - link "下载" [ref=e330] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779779664.png
+            - button "删除" [ref=e331] [cursor=pointer]
+        - article [ref=e332]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e333]
+          - generic [ref=e334]:
+            - generic [ref=e335]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e336]:
+              - generic [ref=e337]: cloud
+              - generic [ref=e338]: 05/26 15:12
+          - generic [ref=e339]:
+            - link "下载" [ref=e340] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779779570.png
+            - button "删除" [ref=e341] [cursor=pointer]
+        - article [ref=e342]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e343]
+          - generic [ref=e344]:
+            - generic [ref=e345]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e346]:
+              - generic [ref=e347]: cloud
+              - generic [ref=e348]: 05/26 14:08
+          - generic [ref=e349]:
+            - link "下载" [ref=e350] [cursor=pointer]:
+              - /url: /assets/output/cloud_1779775683.png
+            - button "删除" [ref=e351] [cursor=pointer]
+    - generic [ref=e352]:
+      - generic [ref=e353]:
+        - heading "角度控制" [level=2] [ref=e354]
+        - generic [ref=e355]: 9 项
+      - generic [ref=e356]:
+        - article [ref=e357]:
+          - img "将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头" [ref=e358]
+          - generic [ref=e359]:
+            - generic [ref=e360]: 将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头
+            - generic [ref=e361]:
+              - generic [ref=e362]: angle
+              - generic [ref=e363]: 05/28 08:21
+          - generic [ref=e364]:
+            - link "下载" [ref=e365] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779927716.png
+            - button "删除" [ref=e366] [cursor=pointer]
+        - article [ref=e367]:
+          - img "将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头" [ref=e368]
+          - generic [ref=e369]:
+            - generic [ref=e370]: 将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头
+            - generic [ref=e371]:
+              - generic [ref=e372]: angle
+              - generic [ref=e373]: 05/27 17:53
+          - generic [ref=e374]:
+            - link "下载" [ref=e375] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779875594.png
+            - button "删除" [ref=e376] [cursor=pointer]
+        - article [ref=e377]:
+          - img "将相机逆时针滚动90度" [ref=e378]
+          - generic [ref=e379]:
+            - generic [ref=e380]: 将相机逆时针滚动90度
+            - generic [ref=e381]:
+              - generic [ref=e382]: angle
+              - generic [ref=e383]: 05/26 13:51
+          - generic [ref=e384]:
+            - link "下载" [ref=e385] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779774664.png
+            - button "删除" [ref=e386] [cursor=pointer]
+        - article [ref=e387]:
+          - img "将相机向左旋转37度，仰视48度，使用特写镜头" [ref=e388]
+          - generic [ref=e389]:
+            - generic [ref=e390]: 将相机向左旋转37度，仰视48度，使用特写镜头
+            - generic [ref=e391]:
+              - generic [ref=e392]: angle
+              - generic [ref=e393]: 05/26 13:34
+          - generic [ref=e394]:
+            - link "下载" [ref=e395] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779773650.png
+            - button "删除" [ref=e396] [cursor=pointer]
+        - article [ref=e397]:
+          - img "将相机向左旋转66度，仰视20度，使用特写镜头" [ref=e398]
+          - generic [ref=e399]:
+            - generic [ref=e400]: 将相机向左旋转66度，仰视20度，使用特写镜头
+            - generic [ref=e401]:
+              - generic [ref=e402]: angle
+              - generic [ref=e403]: 05/26 13:31
+          - generic [ref=e404]:
+            - link "下载" [ref=e405] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779773484.png
+            - button "删除" [ref=e406] [cursor=pointer]
+        - article [ref=e407]:
+          - img "将相机向左旋转67度，俯视67度，使用特写镜头" [ref=e408]
+          - generic [ref=e409]:
+            - generic [ref=e410]: 将相机向左旋转67度，俯视67度，使用特写镜头
+            - generic [ref=e411]:
+              - generic [ref=e412]: angle
+              - generic [ref=e413]: 05/26 12:02
+          - generic [ref=e414]:
+            - link "下载" [ref=e415] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779768146.png
+            - button "删除" [ref=e416] [cursor=pointer]
+        - article [ref=e417]:
+          - img "将相机向左旋转50度，俯视55度，使用特写镜头" [ref=e418]
+          - generic [ref=e419]:
+            - generic [ref=e420]: 将相机向左旋转50度，俯视55度，使用特写镜头
+            - generic [ref=e421]:
+              - generic [ref=e422]: angle
+              - generic [ref=e423]: 05/26 11:58
+          - generic [ref=e424]:
+            - link "下载" [ref=e425] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779767917.png
+            - button "删除" [ref=e426] [cursor=pointer]
+        - article [ref=e427]:
+          - img "将相机向右旋转61度，仰视42度，使用特写镜头，1_2" [ref=e428]
+          - generic [ref=e429]:
+            - generic [ref=e430]: 将相机向右旋转61度，仰视42度，使用特写镜头，1_2
+            - generic [ref=e431]:
+              - generic [ref=e432]: angle
+              - generic [ref=e433]: 05/26 11:20
+          - generic [ref=e434]:
+            - link "下载" [ref=e435] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779765602.png
+            - button "删除" [ref=e436] [cursor=pointer]
+        - article [ref=e437]:
+          - img "将相机向右旋转38度，仰视40度，使用特写镜头" [ref=e438]
+          - generic [ref=e439]:
+            - generic [ref=e440]: 将相机向右旋转38度，仰视40度，使用特写镜头
+            - generic [ref=e441]:
+              - generic [ref=e442]: angle
+              - generic [ref=e443]: 05/26 11:16
+          - generic [ref=e444]:
+            - link "下载" [ref=e445] [cursor=pointer]:
+              - /url: /assets/output/cloud_angle_1779765368.png
+            - button "删除" [ref=e446] [cursor=pointer]
+    - generic [ref=e447]:
+      - generic [ref=e448]:
+        - heading "在线生图" [level=2] [ref=e449]
+        - generic [ref=e450]: 2 项
+      - generic [ref=e451]:
+        - article [ref=e452]:
+          - img "兰花" [ref=e453]
+          - generic [ref=e454]:
+            - generic [ref=e455]: 兰花
+            - generic [ref=e456]:
+              - generic [ref=e457]: Tongyi-MAI/Z-Image-Turbo
+              - generic [ref=e458]: 05/26 15:19
+          - generic [ref=e459]:
+            - link "下载" [ref=e460] [cursor=pointer]:
+              - /url: /assets/output/online_bf37ce3757.png
+            - button "删除" [ref=e461] [cursor=pointer]
+        - article [ref=e462]:
+          - img "兰花" [ref=e463]
+          - generic [ref=e464]:
+            - generic [ref=e465]: 兰花
+            - generic [ref=e466]:
+              - generic [ref=e467]: Tongyi-MAI/Z-Image-Turbo
+              - generic [ref=e468]: 05/26 15:18
+          - generic [ref=e469]:
+            - link "下载" [ref=e470] [cursor=pointer]:
+              - /url: /assets/output/online_7e04c86135.png
+            - button "删除" [ref=e471] [cursor=pointer]
+    - generic [ref=e472]:
+      - generic [ref=e473]:
+        - heading "无限画布" [level=2] [ref=e474]
+        - generic [ref=e475]: 20 项
+      - generic [ref=e476]:
+        - article [ref=e477]:
+          - img "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e478]
+          - generic [ref=e479]:
+            - generic [ref=e480]: 抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e481]:
+              - generic [ref=e482]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e483]: 05/27 09:41
+          - generic [ref=e484]:
+            - link "下载" [ref=e485] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779846088_6a26168d3f.png
+            - button "删除" [ref=e486] [cursor=pointer]
+        - article [ref=e487]:
+          - img "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e488]
+          - generic [ref=e489]:
+            - generic [ref=e490]: 抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e491]:
+              - generic [ref=e492]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e493]: 05/27 09:41
+          - generic [ref=e494]:
+            - link "下载" [ref=e495] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779846088_6a3d5e502d.png
+            - button "删除" [ref=e496] [cursor=pointer]
+        - article [ref=e497]:
+          - img "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e498]
+          - generic [ref=e499]:
+            - generic [ref=e500]: 抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e501]:
+              - generic [ref=e502]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e503]: 05/27 09:41
+          - generic [ref=e504]:
+            - link "下载" [ref=e505] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779846088_b05a2c51e9.png
+            - button "删除" [ref=e506] [cursor=pointer]
+        - article [ref=e507]:
+          - img "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e508]
+          - generic [ref=e509]:
+            - generic [ref=e510]: 抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e511]:
+              - generic [ref=e512]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e513]: 05/27 09:41
+          - generic [ref=e514]:
+            - link "下载" [ref=e515] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779846088_589541d308.png
+            - button "删除" [ref=e516] [cursor=pointer]
+        - article [ref=e517]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e518]
+          - generic [ref=e519]:
+            - generic [ref=e520]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e521]:
+              - generic [ref=e522]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e523]: 05/27 09:04
+          - generic [ref=e524]:
+            - link "下载" [ref=e525] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843899_d4b51b7e1b.png
+            - button "删除" [ref=e526] [cursor=pointer]
+        - article [ref=e527]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e528]
+          - generic [ref=e529]:
+            - generic [ref=e530]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e531]:
+              - generic [ref=e532]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e533]: 05/27 09:04
+          - generic [ref=e534]:
+            - link "下载" [ref=e535] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843899_50c18403e8.png
+            - button "删除" [ref=e536] [cursor=pointer]
+        - article [ref=e537]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e538]
+          - generic [ref=e539]:
+            - generic [ref=e540]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e541]:
+              - generic [ref=e542]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e543]: 05/27 09:04
+          - generic [ref=e544]:
+            - link "下载" [ref=e545] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843899_09ca7ab852.png
+            - button "删除" [ref=e546] [cursor=pointer]
+        - article [ref=e547]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e548]
+          - generic [ref=e549]:
+            - generic [ref=e550]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e551]:
+              - generic [ref=e552]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e553]: 05/27 09:04
+          - generic [ref=e554]:
+            - link "下载" [ref=e555] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843899_d745dc4d95.png
+            - button "删除" [ref=e556] [cursor=pointer]
+        - article [ref=e557]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e558]
+          - generic [ref=e559]:
+            - generic [ref=e560]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e561]:
+              - generic [ref=e562]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e563]: 05/27 09:02
+          - generic [ref=e564]:
+            - link "下载" [ref=e565] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843776_533eb278ae.png
+            - button "删除" [ref=e566] [cursor=pointer]
+        - article [ref=e567]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e568]
+          - generic [ref=e569]:
+            - generic [ref=e570]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e571]:
+              - generic [ref=e572]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e573]: 05/27 09:02
+          - generic [ref=e574]:
+            - link "下载" [ref=e575] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843776_f2c7bf282d.png
+            - button "删除" [ref=e576] [cursor=pointer]
+        - article [ref=e577]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e578]
+          - generic [ref=e579]:
+            - generic [ref=e580]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e581]:
+              - generic [ref=e582]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e583]: 05/27 09:02
+          - generic [ref=e584]:
+            - link "下载" [ref=e585] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843776_5f20c42f0e.png
+            - button "删除" [ref=e586] [cursor=pointer]
+        - article [ref=e587]:
+          - img "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔" [ref=e588]
+          - generic [ref=e589]:
+            - generic [ref=e590]: 抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔
+            - generic [ref=e591]:
+              - generic [ref=e592]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e593]: 05/27 09:02
+          - generic [ref=e594]:
+            - link "下载" [ref=e595] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843776_d0f6c24387.png
+            - button "删除" [ref=e596] [cursor=pointer]
+        - article [ref=e597]:
+          - img "山水" [ref=e598]
+          - generic [ref=e599]:
+            - generic [ref=e600]: 山水
+            - generic [ref=e601]:
+              - generic [ref=e602]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e603]: 05/27 09:00
+          - generic [ref=e604]:
+            - link "下载" [ref=e605] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843642_3d25ae30f2.png
+            - button "删除" [ref=e606] [cursor=pointer]
+        - article [ref=e607]:
+          - img "山水" [ref=e608]
+          - generic [ref=e609]:
+            - generic [ref=e610]: 山水
+            - generic [ref=e611]:
+              - generic [ref=e612]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e613]: 05/27 09:00
+          - generic [ref=e614]:
+            - link "下载" [ref=e615] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843642_6c77067792.png
+            - button "删除" [ref=e616] [cursor=pointer]
+        - article [ref=e617]:
+          - img "山水" [ref=e618]
+          - generic [ref=e619]:
+            - generic [ref=e620]: 山水
+            - generic [ref=e621]:
+              - generic [ref=e622]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e623]: 05/27 09:00
+          - generic [ref=e624]:
+            - link "下载" [ref=e625] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843642_65456b1afc.png
+            - button "删除" [ref=e626] [cursor=pointer]
+        - article [ref=e627]:
+          - img "山水" [ref=e628]
+          - generic [ref=e629]:
+            - generic [ref=e630]: 山水
+            - generic [ref=e631]:
+              - generic [ref=e632]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e633]: 05/27 09:00
+          - generic [ref=e634]:
+            - link "下载" [ref=e635] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779843642_5c29012fcb.png
+            - button "删除" [ref=e636] [cursor=pointer]
+        - article [ref=e637]:
+          - img "山水" [ref=e638]
+          - generic [ref=e639]:
+            - generic [ref=e640]: 山水
+            - generic [ref=e641]:
+              - generic [ref=e642]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e643]: 05/26 16:25
+          - generic [ref=e644]:
+            - link "下载" [ref=e645] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779783919_0fd9edaf42.png
+            - button "删除" [ref=e646] [cursor=pointer]
+        - article [ref=e647]:
+          - img "山水" [ref=e648]
+          - generic [ref=e649]:
+            - generic [ref=e650]: 山水
+            - generic [ref=e651]:
+              - generic [ref=e652]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e653]: 05/26 16:25
+          - generic [ref=e654]:
+            - link "下载" [ref=e655] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779783919_96177977be.png
+            - button "删除" [ref=e656] [cursor=pointer]
+        - article [ref=e657]:
+          - img "山水" [ref=e658]
+          - generic [ref=e659]:
+            - generic [ref=e660]: 山水
+            - generic [ref=e661]:
+              - generic [ref=e662]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e663]: 05/26 16:25
+          - generic [ref=e664]:
+            - link "下载" [ref=e665] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779783919_166ffecc1c.png
+            - button "删除" [ref=e666] [cursor=pointer]
+        - article [ref=e667]:
+          - img "山水" [ref=e668]
+          - generic [ref=e669]:
+            - generic [ref=e670]: 山水
+            - generic [ref=e671]:
+              - generic [ref=e672]: custom/Z-Image-瑶光版-超真实细节增强.json
+              - generic [ref=e673]: 05/26 16:25
+          - generic [ref=e674]:
+            - link "下载" [ref=e675] [cursor=pointer]:
+              - /url: /assets/output/workflow-custom_1779783919_b7558fec7d.png
+            - button "删除" [ref=e676] [cursor=pointer]

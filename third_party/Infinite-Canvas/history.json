@@ -1,0 +1,2245 @@
+[
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780904361_ccb8a8045c.png",
+            "/assets/output/workflow-test_1780904361_7082e7c01f.png",
+            "/assets/output/workflow-test_1780904361_9e5fbccac5.png",
+            "/assets/output/workflow-test_1780904361_92e5a28c60.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780904361_ccb8a8045c.png",
+                "kind": "image",
+                "name": "ComfyUI_07590_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904361_7082e7c01f.png",
+                "kind": "image",
+                "name": "ComfyUI_07591_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904361_9e5fbccac5.png",
+                "kind": "image",
+                "name": "ComfyUI_07592_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904361_92e5a28c60.png",
+                "kind": "image",
+                "name": "ComfyUI_07593_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780904361_ccb8a8045c.png",
+            "/assets/output/workflow-test_1780904361_7082e7c01f.png",
+            "/assets/output/workflow-test_1780904361_9e5fbccac5.png",
+            "/assets/output/workflow-test_1780904361_92e5a28c60.png"
+        ],
+        "seed": 706987179868313,
+        "timestamp": 1780904361.6683216,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 2,
+        "prompt_id": "5ac28373-6eb6-4506-9ddc-b82a9987ddb6",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "An abstract firework burst in pure grayscale, clean minimal composition, smooth even grayscale gradients radiating from the center outward, expanding light rays and organic flowing shapes, no realistic fireworks particles or sparks, no figurative or literal firework shapes, pure abstract form and light, bright center core fading smoothly into deep dark surroundings, high-contrast center to low-contrast edges, crisp clean edges, smooth surface, museum-grade fine art print quality, monochrome only, no color\n"
+            }
+        }
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [],
+        "videos": [],
+        "audios": [],
+        "texts": [
+            "/assets/output/workflow-test_1780904290_a764aba705_text.txt",
+            "/assets/output/workflow-test_1780904290_d5fec10d6f_text.txt",
+            "/assets/output/workflow-test_1780904290_996b79e449_text.txt",
+            "/assets/output/workflow-test_1780904290_3ffc1601f1_text.txt",
+            "/assets/output/workflow-test_1780904290_f1640d9d1a_text.txt",
+            "/assets/output/workflow-test_1780904290_702c241b4e_text.txt",
+            "/assets/output/workflow-test_1780904290_6f6efbc346_text.txt",
+            "/assets/output/workflow-test_1780904290_0f8eccafbe_text.txt",
+            "/assets/output/workflow-test_1780904290_7d701551df_text.txt",
+            "/assets/output/workflow-test_1780904290_4c7f493032_text.txt",
+            "/assets/output/workflow-test_1780904290_8d4786d21e_text.txt",
+            "/assets/output/workflow-test_1780904290_63442ed6f7_text.txt",
+            "/assets/output/workflow-test_1780904290_49d8136241_text.txt",
+            "/assets/output/workflow-test_1780904290_f358ae544f_text.txt",
+            "/assets/output/workflow-test_1780904290_55c706bdea_text.txt",
+            "/assets/output/workflow-test_1780904290_97c098f8d0_text.txt",
+            "/assets/output/workflow-test_1780904290_1cd675a56b_text.txt",
+            "/assets/output/workflow-test_1780904290_5369016dd6_text.txt",
+            "/assets/output/workflow-test_1780904290_04ec58f5ee_text.txt",
+            "/assets/output/workflow-test_1780904290_ece4774cd6_text.txt"
+        ],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780904290_a764aba705_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_a764aba705_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_d5fec10d6f_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_d5fec10d6f_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_996b79e449_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_996b79e449_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_3ffc1601f1_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_3ffc1601f1_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_f1640d9d1a_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_f1640d9d1a_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_702c241b4e_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_702c241b4e_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_6f6efbc346_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_6f6efbc346_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_0f8eccafbe_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_0f8eccafbe_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_7d701551df_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_7d701551df_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_4c7f493032_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_4c7f493032_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_8d4786d21e_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_8d4786d21e_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_63442ed6f7_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_63442ed6f7_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_49d8136241_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_49d8136241_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_f358ae544f_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_f358ae544f_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_55c706bdea_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_55c706bdea_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_97c098f8d0_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_97c098f8d0_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_1cd675a56b_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_1cd675a56b_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_5369016dd6_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_5369016dd6_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_04ec58f5ee_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_04ec58f5ee_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780904290_ece4774cd6_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780904290_ece4774cd6_text.txt",
+                "node_id": "178",
+                "output_key": "text"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780904290_a764aba705_text.txt",
+            "/assets/output/workflow-test_1780904290_d5fec10d6f_text.txt",
+            "/assets/output/workflow-test_1780904290_996b79e449_text.txt",
+            "/assets/output/workflow-test_1780904290_3ffc1601f1_text.txt",
+            "/assets/output/workflow-test_1780904290_f1640d9d1a_text.txt",
+            "/assets/output/workflow-test_1780904290_702c241b4e_text.txt",
+            "/assets/output/workflow-test_1780904290_6f6efbc346_text.txt",
+            "/assets/output/workflow-test_1780904290_0f8eccafbe_text.txt",
+            "/assets/output/workflow-test_1780904290_7d701551df_text.txt",
+            "/assets/output/workflow-test_1780904290_4c7f493032_text.txt",
+            "/assets/output/workflow-test_1780904290_8d4786d21e_text.txt",
+            "/assets/output/workflow-test_1780904290_63442ed6f7_text.txt",
+            "/assets/output/workflow-test_1780904290_49d8136241_text.txt",
+            "/assets/output/workflow-test_1780904290_f358ae544f_text.txt",
+            "/assets/output/workflow-test_1780904290_55c706bdea_text.txt",
+            "/assets/output/workflow-test_1780904290_97c098f8d0_text.txt",
+            "/assets/output/workflow-test_1780904290_1cd675a56b_text.txt",
+            "/assets/output/workflow-test_1780904290_5369016dd6_text.txt",
+            "/assets/output/workflow-test_1780904290_04ec58f5ee_text.txt",
+            "/assets/output/workflow-test_1780904290_ece4774cd6_text.txt"
+        ],
+        "seed": 736772392236889,
+        "timestamp": 1780904290.4758925,
+        "type": "workflow-test",
+        "workflow_json": "custom/超清放大-最高可放大至1亿像素-SeedVR2.5.15_api.json",
+        "task_id": 1,
+        "prompt_id": "07c1b572-7f7e-4ab1-9dd0-ef079d2975aa",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "200": {
+                "image": "94257bbf-468f-43a3-a4ff-a4351c135b95.png"
+            }
+        }
+    },
+    {
+        "timestamp": 1780648893.416062,
+        "prompt": "将树叶变为樱花花瓣,并保持原图的风格灰度图不变和构图不变",
+        "images": [
+            "/assets/output/cloud_1780648893.png"
+        ],
+        "type": "cloud",
+        "model": "FireRedTeam/FireRed-Image-Edit-1.1"
+    },
+    {
+        "timestamp": 1780647593.1271145,
+        "prompt": "将树叶变为樱花花瓣,并保持原图的风格灰度图不变和构图不变",
+        "images": [
+            "/assets/output/cloud_1780647593.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-Edit-2511"
+    },
+    {
+        "timestamp": 1780647428.9563236,
+        "prompt": "将树叶变为樱花花瓣,并保持原图的风格和构图不变",
+        "images": [
+            "/assets/output/cloud_1780647428.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-Edit-2511"
+    },
+    {
+        "timestamp": 1780646712.0618227,
+        "prompt": "将树叶变为樱花花瓣",
+        "images": [
+            "/assets/output/cloud_1780646712.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-Edit-2511"
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780540510_1f754d7e7b.png",
+            "/assets/output/workflow-test_1780540510_aeaeeb5f5b.png",
+            "/assets/output/workflow-test_1780540510_b9e5cd34e4.png",
+            "/assets/output/workflow-test_1780540510_b826b63ad0.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780540510_1f754d7e7b.png",
+                "kind": "image",
+                "name": "ComfyUI_07586_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780540510_aeaeeb5f5b.png",
+                "kind": "image",
+                "name": "ComfyUI_07587_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780540510_b9e5cd34e4.png",
+                "kind": "image",
+                "name": "ComfyUI_07588_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780540510_b826b63ad0.png",
+                "kind": "image",
+                "name": "ComfyUI_07589_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780540510_1f754d7e7b.png",
+            "/assets/output/workflow-test_1780540510_aeaeeb5f5b.png",
+            "/assets/output/workflow-test_1780540510_b9e5cd34e4.png",
+            "/assets/output/workflow-test_1780540510_b826b63ad0.png"
+        ],
+        "seed": 926585341343383,
+        "timestamp": 1780540510.0197296,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 4,
+        "prompt_id": "f4d0ddc4-32d3-47c4-a9b6-a539e98a372c",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "wu_softgrain_style, abstract monochrome gradient texture, soft blurred organic shadows, grayscale, frosted glass diffusion, fine grain, low contrast, no subject"
+            }
+        }
+    },
+    {
+        "timestamp": 1780469843.2900217,
+        "prompt": "保持原有的结构布局和风格不变，将树叶变为枫叶",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780469843.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780467968.560021,
+        "prompt": "保持原有的结构布局和风格不变，去除噪声和杂点",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780467968.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780467898.1285522,
+        "prompt": "保持原有的结构布局和风格不变",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780467898.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780467835.4854298,
+        "prompt": "masterpiece, best quality, ultra-detailed, high resolution",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780467835.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780467706.98609,
+        "prompt": "保持原有的结构布局和风格不变",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780467706.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780466039.5432322,
+        "prompt": "保持原有的结构布局和风格不变",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780466039.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780465974.41024,
+        "prompt": "保持原有的结构布局和风格不变",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780465974.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780454458.2538738,
+        "prompt": "保持原有构图和风格不变",
+        "images": [
+            "/assets/output/ms_Tongyi-MAI_Z-Image-Turbo_1780454458.png"
+        ],
+        "type": "klein",
+        "model": "Tongyi-MAI/Z-Image-Turbo"
+    },
+    {
+        "prompt": "一张nigger的照片",
+        "images": [
+            "/assets/output/workflow-custom_1780451945_4f29c3022f.png",
+            "/assets/output/workflow-custom_1780451945_dd6e79a73d.png",
+            "/assets/output/workflow-custom_1780451945_f417655251.png",
+            "/assets/output/workflow-custom_1780451945_e93ad5a52c.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1780451945_4f29c3022f.png",
+                "kind": "image",
+                "name": "ComfyUI_07582_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1780451945_dd6e79a73d.png",
+                "kind": "image",
+                "name": "ComfyUI_07583_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1780451945_f417655251.png",
+                "kind": "image",
+                "name": "ComfyUI_07584_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1780451945_e93ad5a52c.png",
+                "kind": "image",
+                "name": "ComfyUI_07585_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1780451945_4f29c3022f.png",
+            "/assets/output/workflow-custom_1780451945_dd6e79a73d.png",
+            "/assets/output/workflow-custom_1780451945_f417655251.png",
+            "/assets/output/workflow-custom_1780451945_e93ad5a52c.png"
+        ],
+        "seed": 543268928464105,
+        "timestamp": 1780451945.3865914,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 4,
+        "prompt_id": "207f6b5a-688f-468b-bf22-3855286191a2",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "一张nigger的照片"
+            }
+        }
+    },
+    {
+        "prompt": "一张尼哥的照片",
+        "images": [
+            "/assets/output/workflow-custom_1780451909_891773461b.png",
+            "/assets/output/workflow-custom_1780451909_8af673075e.png",
+            "/assets/output/workflow-custom_1780451909_16c206b427.png",
+            "/assets/output/workflow-custom_1780451909_3e61e63103.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1780451909_891773461b.png",
+                "kind": "image",
+                "name": "ComfyUI_07578_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1780451909_8af673075e.png",
+                "kind": "image",
+                "name": "ComfyUI_07579_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1780451909_16c206b427.png",
+                "kind": "image",
+                "name": "ComfyUI_07580_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1780451909_3e61e63103.png",
+                "kind": "image",
+                "name": "ComfyUI_07581_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1780451909_891773461b.png",
+            "/assets/output/workflow-custom_1780451909_8af673075e.png",
+            "/assets/output/workflow-custom_1780451909_16c206b427.png",
+            "/assets/output/workflow-custom_1780451909_3e61e63103.png"
+        ],
+        "seed": 310299422972062,
+        "timestamp": 1780451909.2274113,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 3,
+        "prompt_id": "7140a118-6b12-4319-b9fe-7435956a838a",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "一张尼哥的照片"
+            }
+        }
+    },
+    {
+        "prompt": "一张尼哥的照片",
+        "images": [
+            "/assets/output/workflow-custom_1780451867_40f4712c14.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1780451867_40f4712c14.png",
+                "kind": "image",
+                "name": "ComfyUI_07577_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1780451867_40f4712c14.png"
+        ],
+        "seed": 109663010893037,
+        "timestamp": 1780451867.163192,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 2,
+        "prompt_id": "ca760990-c86b-4c5e-91d1-1ae85485e1db",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 1,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "一张尼哥的照片"
+            }
+        }
+    },
+    {
+        "prompt": "一张尼哥的照片",
+        "images": [
+            "/assets/output/workflow-custom_1780451816_29ac6bf3ad.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1780451816_29ac6bf3ad.png",
+                "kind": "image",
+                "name": "ComfyUI_07576_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1780451816_29ac6bf3ad.png"
+        ],
+        "seed": 340259033203639,
+        "timestamp": 1780451816.7307937,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 1,
+        "prompt_id": "0a26b588-05f4-48a7-88c6-9f2701f3575a",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 1,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "一张尼哥的照片"
+            }
+        }
+    },
+    {
+        "timestamp": 1780387154.4574707,
+        "prompt": "把图中所有飘落的叶子变为枫叶，保持参考图片的构图和风格不变",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780387154.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780386776.151717,
+        "prompt": "把图中所有飘落的叶子变为枫叶，保持原有的风格不变",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780386776.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780385623.4964237,
+        "prompt": "把图中飘落的叶子变为枫叶",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780385623.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780385534.4147198,
+        "prompt": "把叶子变为枫叶",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780385534.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1780385455.0706165,
+        "prompt": "把叶子变为枫叶",
+        "images": [
+            "/assets/output/ms_black-forest-labs_FLUX.2-klein-9B_1780385455.png"
+        ],
+        "type": "klein",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780381782_4f0359e331.png",
+            "/assets/output/workflow-test_1780381782_7be9110042.png",
+            "/assets/output/workflow-test_1780381782_67263e259f.png",
+            "/assets/output/workflow-test_1780381782_19d493b59b.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780381782_4f0359e331.png",
+                "kind": "image",
+                "name": "ComfyUI_07572_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381782_7be9110042.png",
+                "kind": "image",
+                "name": "ComfyUI_07573_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381782_67263e259f.png",
+                "kind": "image",
+                "name": "ComfyUI_07574_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381782_19d493b59b.png",
+                "kind": "image",
+                "name": "ComfyUI_07575_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780381782_4f0359e331.png",
+            "/assets/output/workflow-test_1780381782_7be9110042.png",
+            "/assets/output/workflow-test_1780381782_67263e259f.png",
+            "/assets/output/workflow-test_1780381782_19d493b59b.png"
+        ],
+        "seed": 337640494657977,
+        "timestamp": 1780381782.8767743,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 4,
+        "prompt_id": "88bec1b3-4df8-4e75-9b4b-c035b288bef5",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 1800,
+                "width": 900
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "一朵纯粹的抽象烟花在灰阶世界中绽放，构图简洁极简；平滑均匀的灰阶渐变自中心向外辐射，伴随着向外扩展的光线与有机流动的形态；画面中不含任何写实的烟花颗粒或火星，亦无任何具象或写实的烟花造型，唯有纯粹的抽象形态与光影；明亮的核心区域平滑地过渡并消融于深邃幽暗的周遭环境之中，呈现出由高对比度的中心向低对比度的边缘逐渐过渡的视觉效果；边缘轮廓清晰锐利，画面表面质感平滑细腻；具备博物馆级艺术微喷的精湛品质；仅限单色灰阶，不含任何色彩。"
+            }
+        }
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780381663_fd88a5ac3c.png",
+            "/assets/output/workflow-test_1780381663_1d2f0ea7fd.png",
+            "/assets/output/workflow-test_1780381663_01baf46ccb.png",
+            "/assets/output/workflow-test_1780381663_8882264946.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780381663_fd88a5ac3c.png",
+                "kind": "image",
+                "name": "ComfyUI_07568_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381663_1d2f0ea7fd.png",
+                "kind": "image",
+                "name": "ComfyUI_07569_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381663_01baf46ccb.png",
+                "kind": "image",
+                "name": "ComfyUI_07570_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381663_8882264946.png",
+                "kind": "image",
+                "name": "ComfyUI_07571_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780381663_fd88a5ac3c.png",
+            "/assets/output/workflow-test_1780381663_1d2f0ea7fd.png",
+            "/assets/output/workflow-test_1780381663_01baf46ccb.png",
+            "/assets/output/workflow-test_1780381663_8882264946.png"
+        ],
+        "seed": 561737219612549,
+        "timestamp": 1780381663.6211097,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 3,
+        "prompt_id": "4ac2404e-7c80-4bf1-ac4b-d0d2830bccd4",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 1800,
+                "width": 900
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "这张图片采用黑白抽象风格，整体构图以柔和的斜向引导线为主，这些线条从画面左下方向右上延伸，形成动态的流动感。线条呈现模糊的渐变质感，类似烟雾或水流轨迹，没有锐利边缘，亮度从亮部自然过渡到暗部，构成流畅的视觉引导路径。画面无明确几何分割，未运用三分法或对称性构图，整体为非对称布局，通过线条的动态分布营造速度感与朦胧氛围，引导视线在画面中游移，形成抽象且富有动感的视觉效果。\n"
+            }
+        }
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780381514_985720a22e.png",
+            "/assets/output/workflow-test_1780381514_35a998dec9.png",
+            "/assets/output/workflow-test_1780381514_c4293f03eb.png",
+            "/assets/output/workflow-test_1780381514_8ffc8a4bf7.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780381514_985720a22e.png",
+                "kind": "image",
+                "name": "ComfyUI_07564_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381514_35a998dec9.png",
+                "kind": "image",
+                "name": "ComfyUI_07565_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381514_c4293f03eb.png",
+                "kind": "image",
+                "name": "ComfyUI_07566_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780381514_8ffc8a4bf7.png",
+                "kind": "image",
+                "name": "ComfyUI_07567_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780381514_985720a22e.png",
+            "/assets/output/workflow-test_1780381514_35a998dec9.png",
+            "/assets/output/workflow-test_1780381514_c4293f03eb.png",
+            "/assets/output/workflow-test_1780381514_8ffc8a4bf7.png"
+        ],
+        "seed": 265431450132473,
+        "timestamp": 1780381514.5155566,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 2,
+        "prompt_id": "eceb9043-ad5c-423d-bbd3-d19d78910086",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 1800,
+                "width": 900
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "碳纤维流光"
+            }
+        }
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780380993_faa1899c3e.png",
+            "/assets/output/workflow-test_1780380993_77aed0e346.png",
+            "/assets/output/workflow-test_1780380993_af5b7ba5ab.png",
+            "/assets/output/workflow-test_1780380993_ed4404c309.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780380993_faa1899c3e.png",
+                "kind": "image",
+                "name": "ComfyUI_07560_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780380993_77aed0e346.png",
+                "kind": "image",
+                "name": "ComfyUI_07561_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780380993_af5b7ba5ab.png",
+                "kind": "image",
+                "name": "ComfyUI_07562_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780380993_ed4404c309.png",
+                "kind": "image",
+                "name": "ComfyUI_07563_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780380993_faa1899c3e.png",
+            "/assets/output/workflow-test_1780380993_77aed0e346.png",
+            "/assets/output/workflow-test_1780380993_af5b7ba5ab.png",
+            "/assets/output/workflow-test_1780380993_ed4404c309.png"
+        ],
+        "seed": 994306315510481,
+        "timestamp": 1780380993.6308446,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 1,
+        "prompt_id": "7b4deb8c-cae9-44e9-917f-68c8f83f9414",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "An abstract firework burst in pure grayscale, clean minimal composition, smooth even grayscale gradients radiating from the center outward, expanding light rays and organic flowing shapes, no realistic fireworks particles or sparks, no figurative or literal firework shapes, pure abstract form and light, bright center core fading smoothly into deep dark surroundings, high-contrast center to low-contrast edges, crisp clean edges, smooth surface, museum-grade fine art print quality, monochrome only, no color\n"
+            }
+        }
+    },
+    {
+        "timestamp": 1780366005.5130334,
+        "prompt": "将相机向左旋转59度，仰视60度，逆时针滚动125度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780366005.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780365866.4949875,
+        "prompt": "将相机向左旋转59度，俯视58度，逆时针滚动125度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780365866.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780365772.013971,
+        "prompt": "将相机仰视57度，逆时针滚动92度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780365772.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780362121.5585084,
+        "prompt": "将相机仰视57度，逆时针滚动92度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780362121.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780361951.9734538,
+        "prompt": "将相机俯视41度，逆时针滚动100度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780361951.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780304114.6131265,
+        "prompt": "将相机俯视41度，逆时针滚动100度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780304114.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780303931.5938413,
+        "prompt": "将相机俯视41度，逆时针滚动100度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780303931.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780303819.7455797,
+        "prompt": "将相机仰视53度，逆时针滚动100度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780303819.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780294846.354757,
+        "prompt": "将相机仰视53度，逆时针滚动100度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780294846.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780292452.717488,
+        "prompt": "将相机向左旋转34度，仰视48度，逆时针滚动112度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780292452.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780281282.7945251,
+        "prompt": "将相机向右旋转12度，仰视20度，逆时针滚动92度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780281282.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780278301.7457788,
+        "prompt": "将相机仰视59度，逆时针滚动92度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780278301.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780273770.6270015,
+        "prompt": "将相机仰视59度，逆时针滚动92度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780273770.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1780039572.6664433,
+        "prompt": "将相机向左旋转61度，仰视42度，顺时针滚动108度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1780039572.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1780038566_75fb6df8d3.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [
+            "/assets/output/workflow-test_1780038566_f80c1bb9a8_text.txt",
+            "/assets/output/workflow-test_1780038566_43202a5059_text.txt",
+            "/assets/output/workflow-test_1780038566_ac6b2e257a_text.txt",
+            "/assets/output/workflow-test_1780038566_345b7222d3_text.txt",
+            "/assets/output/workflow-test_1780038566_c81f07e63c_text.txt",
+            "/assets/output/workflow-test_1780038566_10e7714c32_text.txt",
+            "/assets/output/workflow-test_1780038566_1662f00895_text.txt",
+            "/assets/output/workflow-test_1780038566_f1d07bdcdf_text.txt",
+            "/assets/output/workflow-test_1780038566_82a513eb3c_text.txt",
+            "/assets/output/workflow-test_1780038566_c32534d517_text.txt",
+            "/assets/output/workflow-test_1780038566_7586c9989e_text.txt",
+            "/assets/output/workflow-test_1780038566_64b49e33e5_text.txt",
+            "/assets/output/workflow-test_1780038566_34730e7806_text.txt",
+            "/assets/output/workflow-test_1780038566_9d3121234a_text.txt",
+            "/assets/output/workflow-test_1780038566_5cc9cf6564_text.txt",
+            "/assets/output/workflow-test_1780038566_bb7220598e_text.txt",
+            "/assets/output/workflow-test_1780038566_5c3bd6ef0d_text.txt",
+            "/assets/output/workflow-test_1780038566_64cb940014_text.txt",
+            "/assets/output/workflow-test_1780038566_a171d11925_text.txt",
+            "/assets/output/workflow-test_1780038566_cccc5cce98_text.txt",
+            "/assets/output/workflow-test_1780038566_441a50ac96_text.txt",
+            "/assets/output/workflow-test_1780038566_e65b388e7d_text.txt",
+            "/assets/output/workflow-test_1780038566_8752aeb5fd_text.txt",
+            "/assets/output/workflow-test_1780038566_966feb7391_text.txt",
+            "/assets/output/workflow-test_1780038566_d3cbc37253_text.txt",
+            "/assets/output/workflow-test_1780038566_9ab430d206_text.txt",
+            "/assets/output/workflow-test_1780038566_216cf1a999_text.txt",
+            "/assets/output/workflow-test_1780038566_cfdf79d7c1_text.txt",
+            "/assets/output/workflow-test_1780038566_c07e37053a_text.txt",
+            "/assets/output/workflow-test_1780038566_5ceb230d63_text.txt",
+            "/assets/output/workflow-test_1780038566_f9c22d8f8f_text.txt",
+            "/assets/output/workflow-test_1780038566_d4ed7acd24_text.txt",
+            "/assets/output/workflow-test_1780038566_5948d4e94d_text.txt",
+            "/assets/output/workflow-test_1780038566_0cbf3db9d8_text.txt",
+            "/assets/output/workflow-test_1780038566_1394814b23_text.txt",
+            "/assets/output/workflow-test_1780038566_5c0de98d28_text.txt",
+            "/assets/output/workflow-test_1780038566_2f6ebdd385_text.txt",
+            "/assets/output/workflow-test_1780038566_180d5cf904_text.txt",
+            "/assets/output/workflow-test_1780038566_02555f4dc5_text.txt"
+        ],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1780038566_f80c1bb9a8_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_f80c1bb9a8_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_43202a5059_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_43202a5059_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_ac6b2e257a_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_ac6b2e257a_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_345b7222d3_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_345b7222d3_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_c81f07e63c_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_c81f07e63c_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_10e7714c32_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_10e7714c32_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_1662f00895_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_1662f00895_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_f1d07bdcdf_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_f1d07bdcdf_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_82a513eb3c_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_82a513eb3c_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_c32534d517_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_c32534d517_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_7586c9989e_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_7586c9989e_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_64b49e33e5_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_64b49e33e5_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_34730e7806_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_34730e7806_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_9d3121234a_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_9d3121234a_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_5cc9cf6564_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_5cc9cf6564_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_bb7220598e_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_bb7220598e_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_5c3bd6ef0d_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_5c3bd6ef0d_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_64cb940014_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_64cb940014_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_a171d11925_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_a171d11925_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_cccc5cce98_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_cccc5cce98_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_441a50ac96_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_441a50ac96_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_e65b388e7d_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_e65b388e7d_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_8752aeb5fd_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_8752aeb5fd_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_966feb7391_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_966feb7391_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_d3cbc37253_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_d3cbc37253_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_9ab430d206_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_9ab430d206_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_216cf1a999_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_216cf1a999_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_cfdf79d7c1_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_cfdf79d7c1_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_c07e37053a_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_c07e37053a_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_5ceb230d63_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_5ceb230d63_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_f9c22d8f8f_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_f9c22d8f8f_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_d4ed7acd24_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_d4ed7acd24_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_5948d4e94d_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_5948d4e94d_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_0cbf3db9d8_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_0cbf3db9d8_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_1394814b23_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_1394814b23_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_5c0de98d28_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_5c0de98d28_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_2f6ebdd385_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_2f6ebdd385_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_180d5cf904_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_180d5cf904_text.txt",
+                "node_id": "281",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_02555f4dc5_text.txt",
+                "kind": "text",
+                "name": "workflow-test_1780038566_02555f4dc5_text.txt",
+                "node_id": "280",
+                "output_key": "text"
+            },
+            {
+                "url": "/assets/output/workflow-test_1780038566_75fb6df8d3.png",
+                "kind": "image",
+                "name": "ComfyUI_temp_vopku_00001_.png",
+                "node_id": "271",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1780038566_f80c1bb9a8_text.txt",
+            "/assets/output/workflow-test_1780038566_43202a5059_text.txt",
+            "/assets/output/workflow-test_1780038566_ac6b2e257a_text.txt",
+            "/assets/output/workflow-test_1780038566_345b7222d3_text.txt",
+            "/assets/output/workflow-test_1780038566_c81f07e63c_text.txt",
+            "/assets/output/workflow-test_1780038566_10e7714c32_text.txt",
+            "/assets/output/workflow-test_1780038566_1662f00895_text.txt",
+            "/assets/output/workflow-test_1780038566_f1d07bdcdf_text.txt",
+            "/assets/output/workflow-test_1780038566_82a513eb3c_text.txt",
+            "/assets/output/workflow-test_1780038566_c32534d517_text.txt",
+            "/assets/output/workflow-test_1780038566_7586c9989e_text.txt",
+            "/assets/output/workflow-test_1780038566_64b49e33e5_text.txt",
+            "/assets/output/workflow-test_1780038566_34730e7806_text.txt",
+            "/assets/output/workflow-test_1780038566_9d3121234a_text.txt",
+            "/assets/output/workflow-test_1780038566_5cc9cf6564_text.txt",
+            "/assets/output/workflow-test_1780038566_bb7220598e_text.txt",
+            "/assets/output/workflow-test_1780038566_5c3bd6ef0d_text.txt",
+            "/assets/output/workflow-test_1780038566_64cb940014_text.txt",
+            "/assets/output/workflow-test_1780038566_a171d11925_text.txt",
+            "/assets/output/workflow-test_1780038566_cccc5cce98_text.txt",
+            "/assets/output/workflow-test_1780038566_441a50ac96_text.txt",
+            "/assets/output/workflow-test_1780038566_e65b388e7d_text.txt",
+            "/assets/output/workflow-test_1780038566_8752aeb5fd_text.txt",
+            "/assets/output/workflow-test_1780038566_966feb7391_text.txt",
+            "/assets/output/workflow-test_1780038566_d3cbc37253_text.txt",
+            "/assets/output/workflow-test_1780038566_9ab430d206_text.txt",
+            "/assets/output/workflow-test_1780038566_216cf1a999_text.txt",
+            "/assets/output/workflow-test_1780038566_cfdf79d7c1_text.txt",
+            "/assets/output/workflow-test_1780038566_c07e37053a_text.txt",
+            "/assets/output/workflow-test_1780038566_5ceb230d63_text.txt",
+            "/assets/output/workflow-test_1780038566_f9c22d8f8f_text.txt",
+            "/assets/output/workflow-test_1780038566_d4ed7acd24_text.txt",
+            "/assets/output/workflow-test_1780038566_5948d4e94d_text.txt",
+            "/assets/output/workflow-test_1780038566_0cbf3db9d8_text.txt",
+            "/assets/output/workflow-test_1780038566_1394814b23_text.txt",
+            "/assets/output/workflow-test_1780038566_5c0de98d28_text.txt",
+            "/assets/output/workflow-test_1780038566_2f6ebdd385_text.txt",
+            "/assets/output/workflow-test_1780038566_180d5cf904_text.txt",
+            "/assets/output/workflow-test_1780038566_02555f4dc5_text.txt",
+            "/assets/output/workflow-test_1780038566_75fb6df8d3.png"
+        ],
+        "seed": 796748495261153,
+        "timestamp": 1780038566.9754562,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z_Image-洗图_高清修复v1_api.json",
+        "task_id": 2,
+        "prompt_id": "67256d39-8612-4371-a416-49ccb5d605c9",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "143": {
+                "image": "62758885-3a48-4977-9e9f-05a1ad4610f2.png"
+            },
+            "282": {
+                "index": 0
+            }
+        }
+    },
+    {
+        "prompt": "灰度图，抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉 ，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [],
+        "outputs": [],
+        "seed": 893696169547980,
+        "timestamp": 1780036322.1069493,
+        "type": "workflow-custom",
+        "workflow_json": "custom/I2L一键风格转绘___超邪修搭配_一张图直接转绘.json",
+        "task_id": 1,
+        "prompt_id": "4b01c391-f370-4ccf-9fa4-1667b1546be9",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "200": {
+                "text": "灰度图，抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉 ，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富"
+            },
+            "439": {
+                "image": "ai_ref_31acff8ffafc.png"
+            },
+            "486": {
+                "image": "ai_ref_0bf9f8179df5.png"
+            },
+            "512": {
+                "image": "ai_ref_25769754c642.png"
+            }
+        }
+    },
+    {
+        "timestamp": 1779927716.081296,
+        "prompt": "将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779927716.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779875594.296263,
+        "prompt": "将相机向左旋转57度，仰视40度，逆时针滚动71度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779875594.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779870100.7851923,
+        "prompt": "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构成，轨迹从画面左上角起始，向右下方蜿蜒流动，形成连续的S形与波浪形曲线；部分轨迹在画面中部交汇后分叉，产生多层交织的视觉层次，且轨迹在画面中下部逐渐变得纤细、稀疏。构图上，烟雾的动态曲线构成明显的引导线，将观众视线从左上角引向右下方，引导线走向具有强烈的流动感与方向性，形成非对称的动态构图，画面中未应用三分法，而是通过烟雾的自然流动轨迹确立视觉焦点；整体布局上，烟雾占据画面大部分区域，但边缘留有黑色负空间，形成疏密对比，强化烟雾的轻盈与流动感。",
+        "images": [
+            "/assets/output/cloud_1779870100.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-2512"
+    },
+    {
+        "timestamp": 1779869998.0847692,
+        "prompt": "这是一张竖版黑白照片，画面以纯黑色为背景，主体是流动的白色烟雾。烟雾由多条细长、弯曲的白色轨迹构成，轨迹从画面左上角起始，向右下方蜿蜒流动，形成连续的S形与波浪形曲线；部分轨迹在画面中部交汇后分叉，产生多层交织的视觉层次，且轨迹在画面中下部逐渐变得纤细、稀疏。构图上，烟雾的动态曲线构成明显的引导线，将观众视线从左上角引向右下方，引导线走向具有强烈的流动感与方向性，形成非对称的动态构图，画面中未应用三分法，而是通过烟雾的自然流动轨迹确立视觉焦点；整体布局上，烟雾占据画面大部分区域，但边缘留有黑色负空间，形成疏密对比，强化烟雾的轻盈与流动感。",
+        "images": [
+            "/assets/output/cloud_1779869998.png"
+        ],
+        "type": "cloud",
+        "model": "Tongyi-MAI/Z-Image-Turbo"
+    },
+    {
+        "timestamp": 1779869053.4287724,
+        "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/cloud_1779869053.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-2512"
+    },
+    {
+        "timestamp": 1779868811.696077,
+        "prompt": "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导线，自左上向右下贯穿，将画面分割为不同明暗层次区域，引导视线沿线条流动。在构图比例上，画面采用三分法原则：上部约三分之一区域以浅灰及白色为主，形成明亮过渡层；中部约三分之一区域为中等灰度过渡带，连接上下部分；下部约三分之一区域以深灰及黑色为主，形成暗部基底，明暗分布形成视觉平衡。画面整体呈非对称构图，左上区域亮度较高且纹理较为开阔，右下区域亮度较低且纹理更为密集，无中心对称轴，呈现出自然流动的动态感，没有明显的对称性特征。线条的疏密变化与明暗对比共同构建出富有层次的抽象视觉效果，无具体物体，纯粹依赖纹理和光影关系营造画面结构。",
+        "images": [
+            "/assets/output/cloud_1779868811.png"
+        ],
+        "type": "cloud",
+        "model": "Tongyi-MAI/Z-Image-Turbo"
+    },
+    {
+        "timestamp": 1779868520.2441804,
+        "prompt": "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导线，自左上向右下贯穿，将画面分割为不同明暗层次区域，引导视线沿线条流动。在构图比例上，画面采用三分法原则：上部约三分之一区域以浅灰及白色为主，形成明亮过渡层；中部约三分之一区域为中等灰度过渡带，连接上下部分；下部约三分之一区域以深灰及黑色为主，形成暗部基底，明暗分布形成视觉平衡。画面整体呈非对称构图，左上区域亮度较高且纹理较为开阔，右下区域亮度较低且纹理更为密集，无中心对称轴，呈现出自然流动的动态感，没有明显的对称性特征。线条的疏密变化与明暗对比共同构建出富有层次的抽象视觉效果，无具体物体，纯粹依赖纹理和光影关系营造画面结构。",
+        "images": [
+            "/assets/output/cloud_1779868520.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-2512"
+    },
+    {
+        "timestamp": 1779868433.9024837,
+        "prompt": "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导线，自左上向右下贯穿，将画面分割为不同明暗层次区域，引导视线沿线条流动。在构图比例上，画面采用三分法原则：上部约三分之一区域以浅灰及白色为主，形成明亮过渡层；中部约三分之一区域为中等灰度过渡带，连接上下部分；下部约三分之一区域以深灰及黑色为主，形成暗部基底，明暗分布形成视觉平衡。画面整体呈非对称构图，左上区域亮度较高且纹理较为开阔，右下区域亮度较低且纹理更为密集，无中心对称轴，呈现出自然流动的动态感，没有明显的对称性特征。线条的疏密变化与明暗对比共同构建出富有层次的抽象视觉效果，无具体物体，纯粹依赖纹理和光影关系营造画面结构。",
+        "images": [
+            "/assets/output/cloud_1779868433.png"
+        ],
+        "type": "cloud",
+        "model": "Qwen/Qwen-Image-2512"
+    },
+    {
+        "timestamp": 1779868234.9596503,
+        "prompt": "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导线，自左上向右下贯穿，将画面分割为不同明暗层次区域，引导视线沿线条流动。在构图比例上，画面采用三分法原则：上部约三分之一区域以浅灰及白色为主，形成明亮过渡层；中部约三分之一区域为中等灰度过渡带，连接上下部分；下部约三分之一区域以深灰及黑色为主，形成暗部基底，明暗分布形成视觉平衡。画面整体呈非对称构图，左上区域亮度较高且纹理较为开阔，右下区域亮度较低且纹理更为密集，无中心对称轴，呈现出自然流动的动态感，没有明显的对称性特征。线条的疏密变化与明暗对比共同构建出富有层次的抽象视觉效果，无具体物体，纯粹依赖纹理和光影关系营造画面结构。",
+        "images": [
+            "/assets/output/cloud_1779868234.png"
+        ],
+        "type": "cloud",
+        "model": "black-forest-labs/FLUX.2-klein-9B"
+    },
+    {
+        "timestamp": 1779868158.166747,
+        "prompt": "图片为黑白灰调的抽象纹理构图，以自然流动的波浪状线条构成主体。画面中存在多条斜向延伸的波浪形引导线，自左上向右下贯穿，将画面分割为不同明暗层次区域，引导视线沿线条流动。在构图比例上，画面采用三分法原则：上部约三分之一区域以浅灰及白色为主，形成明亮过渡层；中部约三分之一区域为中等灰度过渡带，连接上下部分；下部约三分之一区域以深灰及黑色为主，形成暗部基底，明暗分布形成视觉平衡。画面整体呈非对称构图，左上区域亮度较高且纹理较为开阔，右下区域亮度较低且纹理更为密集，无中心对称轴，呈现出自然流动的动态感，没有明显的对称性特征。线条的疏密变化与明暗对比共同构建出富有层次的抽象视觉效果，无具体物体，纯粹依赖纹理和光影关系营造画面结构。",
+        "images": [
+            "/assets/output/cloud_1779868158.png"
+        ],
+        "type": "cloud",
+        "model": "Tongyi-MAI/Z-Image-Turbo"
+    },
+    {
+        "prompt": "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/workflow-custom_1779846088_6a26168d3f.png",
+            "/assets/output/workflow-custom_1779846088_6a3d5e502d.png",
+            "/assets/output/workflow-custom_1779846088_b05a2c51e9.png",
+            "/assets/output/workflow-custom_1779846088_589541d308.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1779846088_6a26168d3f.png",
+                "kind": "image",
+                "name": "ComfyUI_07548_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779846088_6a3d5e502d.png",
+                "kind": "image",
+                "name": "ComfyUI_07549_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779846088_b05a2c51e9.png",
+                "kind": "image",
+                "name": "ComfyUI_07550_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779846088_589541d308.png",
+                "kind": "image",
+                "name": "ComfyUI_07551_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1779846088_6a26168d3f.png",
+            "/assets/output/workflow-custom_1779846088_6a3d5e502d.png",
+            "/assets/output/workflow-custom_1779846088_b05a2c51e9.png",
+            "/assets/output/workflow-custom_1779846088_589541d308.png"
+        ],
+        "seed": 623593258526813,
+        "timestamp": 1779846088.0285091,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 15,
+        "prompt_id": "d7e28b58-226f-4445-b56b-c713c03b6bb4",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 1800,
+                "width": 900
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "抽象有机形态，白色丝绸般的山川曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富"
+            }
+        }
+    },
+    {
+        "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/workflow-custom_1779843899_d4b51b7e1b.png",
+            "/assets/output/workflow-custom_1779843899_50c18403e8.png",
+            "/assets/output/workflow-custom_1779843899_09ca7ab852.png",
+            "/assets/output/workflow-custom_1779843899_d745dc4d95.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1779843899_d4b51b7e1b.png",
+                "kind": "image",
+                "name": "ComfyUI_07544_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843899_50c18403e8.png",
+                "kind": "image",
+                "name": "ComfyUI_07545_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843899_09ca7ab852.png",
+                "kind": "image",
+                "name": "ComfyUI_07546_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843899_d745dc4d95.png",
+                "kind": "image",
+                "name": "ComfyUI_07547_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1779843899_d4b51b7e1b.png",
+            "/assets/output/workflow-custom_1779843899_50c18403e8.png",
+            "/assets/output/workflow-custom_1779843899_09ca7ab852.png",
+            "/assets/output/workflow-custom_1779843899_d745dc4d95.png"
+        ],
+        "seed": 930642574714404,
+        "timestamp": 1779843899.6707056,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 12,
+        "prompt_id": "bc0f9cb8-0453-44e2-9255-5ced0991b65b",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 1800,
+                "width": 900
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富"
+            }
+        }
+    },
+    {
+        "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+            "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+            "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+            "/assets/output/workflow-custom_1779843776_d0f6c24387.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+                "kind": "image",
+                "name": "ComfyUI_07540_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+                "kind": "image",
+                "name": "ComfyUI_07541_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+                "kind": "image",
+                "name": "ComfyUI_07542_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843776_d0f6c24387.png",
+                "kind": "image",
+                "name": "ComfyUI_07543_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1779843776_533eb278ae.png",
+            "/assets/output/workflow-custom_1779843776_f2c7bf282d.png",
+            "/assets/output/workflow-custom_1779843776_5f20c42f0e.png",
+            "/assets/output/workflow-custom_1779843776_d0f6c24387.png"
+        ],
+        "seed": 199539710924430,
+        "timestamp": 1779843776.6539896,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 11,
+        "prompt_id": "dc4e6643-3be4-43eb-9610-44082deb2577",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 900,
+                "width": 1800
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富"
+            }
+        }
+    },
+    {
+        "prompt": "山水",
+        "images": [
+            "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+            "/assets/output/workflow-custom_1779843642_6c77067792.png",
+            "/assets/output/workflow-custom_1779843642_65456b1afc.png",
+            "/assets/output/workflow-custom_1779843642_5c29012fcb.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+                "kind": "image",
+                "name": "ComfyUI_07536_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843642_6c77067792.png",
+                "kind": "image",
+                "name": "ComfyUI_07537_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843642_65456b1afc.png",
+                "kind": "image",
+                "name": "ComfyUI_07538_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779843642_5c29012fcb.png",
+                "kind": "image",
+                "name": "ComfyUI_07539_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1779843642_3d25ae30f2.png",
+            "/assets/output/workflow-custom_1779843642_6c77067792.png",
+            "/assets/output/workflow-custom_1779843642_65456b1afc.png",
+            "/assets/output/workflow-custom_1779843642_5c29012fcb.png"
+        ],
+        "seed": 509358210425638,
+        "timestamp": 1779843642.0645447,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 10,
+        "prompt_id": "47a1bcd4-db77-4a61-bafb-077e97d2f3f3",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4,
+                "height": 900,
+                "width": 1800
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "山水"
+            }
+        }
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1779842510_31eb2608be.png",
+            "/assets/output/workflow-test_1779842510_adf8cff84a.png",
+            "/assets/output/workflow-test_1779842510_843ff358a7.png",
+            "/assets/output/workflow-test_1779842510_b2903d4f18.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1779842510_31eb2608be.png",
+                "kind": "image",
+                "name": "ComfyUI_07532_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779842510_adf8cff84a.png",
+                "kind": "image",
+                "name": "ComfyUI_07533_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779842510_843ff358a7.png",
+                "kind": "image",
+                "name": "ComfyUI_07534_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779842510_b2903d4f18.png",
+                "kind": "image",
+                "name": "ComfyUI_07535_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1779842510_31eb2608be.png",
+            "/assets/output/workflow-test_1779842510_adf8cff84a.png",
+            "/assets/output/workflow-test_1779842510_843ff358a7.png",
+            "/assets/output/workflow-test_1779842510_b2903d4f18.png"
+        ],
+        "seed": 435285953183012,
+        "timestamp": 1779842510.5402765,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 9,
+        "prompt_id": "72854f00-017c-4d22-8126-6c68e020112c",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "21": {
+                "batch_size": 4.0,
+                "height": 512,
+                "width": 512
+            },
+            "23": {
+                "lora_name": "Kook_Zimage_瑶光.safetensors"
+            },
+            "33": {
+                "text": "An abstract firework burst in pure grayscale, clean minimal composition, smooth even grayscale gradients radiating from the center outward, expanding light rays and organic flowing shapes, no realistic fireworks particles or sparks, no figurative or literal firework shapes, pure abstract form and light, bright center core fading smoothly into deep dark surroundings, high-contrast center to low-contrast edges, crisp clean edges, smooth surface, museum-grade fine art print quality, monochrome only, no color\n"
+            }
+        }
+    },
+    {
+        "timestamp": 1779842344.052015,
+        "prompt": "灰度图，极为抽象的花",
+        "images": [
+            "/assets/output/cloud_1779842344.png"
+        ],
+        "type": "cloud"
+    },
+    {
+        "prompt": "山水",
+        "images": [
+            "/assets/output/workflow-custom_1779783919_0fd9edaf42.png",
+            "/assets/output/workflow-custom_1779783919_96177977be.png",
+            "/assets/output/workflow-custom_1779783919_166ffecc1c.png",
+            "/assets/output/workflow-custom_1779783919_b7558fec7d.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-custom_1779783919_0fd9edaf42.png",
+                "kind": "image",
+                "name": "ComfyUI_07528_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779783919_96177977be.png",
+                "kind": "image",
+                "name": "ComfyUI_07529_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779783919_166ffecc1c.png",
+                "kind": "image",
+                "name": "ComfyUI_07530_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-custom_1779783919_b7558fec7d.png",
+                "kind": "image",
+                "name": "ComfyUI_07531_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-custom_1779783919_0fd9edaf42.png",
+            "/assets/output/workflow-custom_1779783919_96177977be.png",
+            "/assets/output/workflow-custom_1779783919_166ffecc1c.png",
+            "/assets/output/workflow-custom_1779783919_b7558fec7d.png"
+        ],
+        "seed": 803575223577906,
+        "timestamp": 1779783919.3717198,
+        "type": "workflow-custom",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 8,
+        "prompt_id": "17ad2298-05bf-4858-b1a0-b27c65e7b9cc",
+        "backend": "172.16.10.111:8188",
+        "params": {}
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1779783899_36f588bb5b.png",
+            "/assets/output/workflow-test_1779783899_8a17e190e9.png",
+            "/assets/output/workflow-test_1779783899_62f31e0cb0.png",
+            "/assets/output/workflow-test_1779783899_997abb859d.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1779783899_36f588bb5b.png",
+                "kind": "image",
+                "name": "ComfyUI_07524_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779783899_8a17e190e9.png",
+                "kind": "image",
+                "name": "ComfyUI_07525_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779783899_62f31e0cb0.png",
+                "kind": "image",
+                "name": "ComfyUI_07526_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779783899_997abb859d.png",
+                "kind": "image",
+                "name": "ComfyUI_07527_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1779783899_36f588bb5b.png",
+            "/assets/output/workflow-test_1779783899_8a17e190e9.png",
+            "/assets/output/workflow-test_1779783899_62f31e0cb0.png",
+            "/assets/output/workflow-test_1779783899_997abb859d.png"
+        ],
+        "seed": 865867707690326,
+        "timestamp": 1779783899.38003,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 7,
+        "prompt_id": "e894a673-3e87-43eb-886f-c5af8f946a97",
+        "backend": "172.16.10.111:8188",
+        "params": {}
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [
+            "/assets/output/workflow-test_1779783884_bba6334616.png",
+            "/assets/output/workflow-test_1779783884_03717810a3.png",
+            "/assets/output/workflow-test_1779783884_6800d4aeed.png",
+            "/assets/output/workflow-test_1779783884_4f8e7fc131.png"
+        ],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [
+            {
+                "url": "/assets/output/workflow-test_1779783884_bba6334616.png",
+                "kind": "image",
+                "name": "ComfyUI_07520_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779783884_03717810a3.png",
+                "kind": "image",
+                "name": "ComfyUI_07521_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779783884_6800d4aeed.png",
+                "kind": "image",
+                "name": "ComfyUI_07522_.png",
+                "node_id": "27",
+                "output_key": "images"
+            },
+            {
+                "url": "/assets/output/workflow-test_1779783884_4f8e7fc131.png",
+                "kind": "image",
+                "name": "ComfyUI_07523_.png",
+                "node_id": "27",
+                "output_key": "images"
+            }
+        ],
+        "outputs": [
+            "/assets/output/workflow-test_1779783884_bba6334616.png",
+            "/assets/output/workflow-test_1779783884_03717810a3.png",
+            "/assets/output/workflow-test_1779783884_6800d4aeed.png",
+            "/assets/output/workflow-test_1779783884_4f8e7fc131.png"
+        ],
+        "seed": 816847353991645,
+        "timestamp": 1779783884.6299624,
+        "type": "workflow-test",
+        "workflow_json": "custom/Z-Image-瑶光版-超真实细节增强.json",
+        "task_id": 6,
+        "prompt_id": "d41b7f19-273c-44d8-a8f3-33b386e72948",
+        "backend": "172.16.10.111:8188",
+        "params": {}
+    },
+    {
+        "timestamp": 1779779664.9006782,
+        "prompt": "灰度图，抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/cloud_1779779664.png"
+        ],
+        "type": "cloud"
+    },
+    {
+        "timestamp": 1779779570.8165815,
+        "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/cloud_1779779570.png"
+        ],
+        "type": "cloud"
+    },
+    {
+        "timestamp": 1779775683.8345118,
+        "prompt": "抽象有机形态，白色丝绸般的花瓣曲面，层叠卷曲的柔软片状结构，黑白灰单色渲染，细密的流线型纹理，柔和漫反射材质，雾化光线，浅景深，中心凹陷，柔和阴影，高级极简视觉，竖版 1:2 构图，梦幻、安静、纯净、现代艺术壁纸，超高分辨率，细节丰富",
+        "images": [
+            "/assets/output/cloud_1779775683.png"
+        ],
+        "type": "cloud"
+    },
+    {
+        "prompt": "Detail Enhance",
+        "images": [],
+        "videos": [],
+        "audios": [],
+        "texts": [],
+        "files": [],
+        "items": [],
+        "outputs": [],
+        "seed": 640436593366296,
+        "timestamp": 1779775203.2743065,
+        "type": "enhance",
+        "workflow_json": "Z-Image-Enhance.json",
+        "task_id": 2,
+        "prompt_id": "1f9401b3-adee-4f1b-a030-cd6df092e348",
+        "backend": "172.16.10.111:8188",
+        "params": {
+            "15": {
+                "image": "微信图片_20260402115906_15135_124.jpg"
+            },
+            "204": {
+                "value": 0.58
+            }
+        }
+    },
+    {
+        "timestamp": 1779774664.2503493,
+        "prompt": "将相机逆时针滚动90度",
+        "images": [
+            "/assets/output/cloud_angle_1779774664.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779773650.3947132,
+        "prompt": "将相机向左旋转37度，仰视48度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779773650.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779773484.7295613,
+        "prompt": "将相机向左旋转66度，仰视20度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779773484.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779768146.887489,
+        "prompt": "将相机向左旋转67度，俯视67度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779768146.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779767917.7521083,
+        "prompt": "将相机向左旋转50度，俯视55度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779767917.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779765602.1130204,
+        "prompt": "将相机向右旋转61度，仰视42度，使用特写镜头，1:2",
+        "images": [
+            "/assets/output/cloud_angle_1779765602.png"
+        ],
+        "type": "angle"
+    },
+    {
+        "timestamp": 1779765368.8537223,
+        "prompt": "将相机向右旋转38度，仰视40度，使用特写镜头",
+        "images": [
+            "/assets/output/cloud_angle_1779765368.png"
+        ],
+        "type": "angle"
+    }
+]

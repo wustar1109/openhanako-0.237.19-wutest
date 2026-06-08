@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+requests
+pydantic
+python-multipart
+httpx
+pillow
+numpy
+opencv-python-headless
+vtracer
